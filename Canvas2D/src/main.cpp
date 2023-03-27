@@ -20,21 +20,75 @@
 #define START_BUTTON_HEIGHT 100
 
 // main application
+
+// background rgb
 #define MAIN_APP_RED 0.8
 #define MAIN_APP_GREEN 0.8
 #define MAIN_APP_BLUE 0.8
+
+// color button
 #define COLOR_BOTTON_WIDTH 50
 #define COLOR_BOTTON_HEIGHT 50
+
+// draw circles button
 #define DRAW_CIRCLES_BUTTON_WIDTH 50
 #define DRAW_CIRCLES_BUTTON_HEIGHT 50
 #define DRAW_CIRCLES_BUTTON_COLOR_R 1
 #define DRAW_CIRCLES_BUTTON_COLOR_G 0.2
 #define DRAW_CIRCLES_BUTTON_COLOR_B 1
+
+// cancel function button
 #define CANCEL_FUNCTION_BUTTON_WIDTH 50
 #define CANCEL_FUNCTION_BUTTON_HEIGHT 50
 #define CANCEL_FUNCTION_BUTTON_R 1
 #define CANCEL_FUNCTION_BUTTON_G 0
 #define CANCEL_FUNCTION_BUTTON_B 0
+
+// radius plus button
+#define RADIUS_PLUS_BUTTON_WIDTH 40
+#define RADIUS_PLUS_BUTTON_HEIGHT 40
+#define RADIUS_PLUS_BUTTON_R 0
+#define RADIUS_PLUS_BUTTON_G 1
+#define RADIUS_PLUS_BUTTON_B 0
+
+// radius minus button
+#define RADIUS_MINUS_BUTTON_WIDTH 40
+#define RADIUS_MINUS_BUTTON_HEIGHT 40
+#define RADIUS_MINUS_BUTTON_R 1
+#define RADIUS_MINUS_BUTTON_G 0
+#define RADIUS_MINUS_BUTTON_B 0
+#define RADIUS_INCREASE_DECREASE 10
+
+// sides plus button
+#define SIDES_PLUS_BUTTON_WIDTH 40
+#define SIDES_PLUS_BUTTON_HEIGHT 40
+#define SIDES_PLUS_BUTTON_R 0
+#define SIDES_PLUS_BUTTON_G 1
+#define SIDES_PLUS_BUTTON_B 0
+#define SIDES_INCREASE_DECREASE 1
+
+// sides minus button
+#define SIDES_MINUS_BUTTON_WIDTH 40
+#define SIDES_MINUS_BUTTON_HEIGHT 40
+#define SIDES_MINUS_BUTTON_R 1
+#define SIDES_MINUS_BUTTON_G 0
+#define SIDES_MINUS_BUTTON_B 0
+
+
+
+// states
+#define MENU 0
+#define MAIN_APP 1
+
+// figures
+#define POLYGON 0
+
+// functions
+#define FUNCTION_NONE 0
+#define FUNCTION_DRAW 1
+#define DRAW_FUNCTION_DELAY 1000
+#define BUTTON_DELAY 100
+
 
 // global
 
@@ -43,9 +97,12 @@ int screenWidth = SCREENWIDTH;
 int screenHeight = SCREENHEIGHT;
 
 // state
-int app_state = 0;
+int app_state = MENU;
 // function
-int function = 0;
+int function = FUNCTION_NONE;
+int delay_bt = BUTTON_DELAY;
+// current figure to be drawed
+int current_figure = POLYGON;
 
 
 // mouse coords
@@ -68,20 +125,6 @@ class Figure {
          this->colorG = g;
       }
       //virtual void draw() = 0;
-};
-
-class Square : public Figure {
-   public:
-      int x0;
-      int y0;
-      int height;
-      int width;
-
-      Square(int x0, int y0, int height, int width, int r, int g, int b) : Figure(r, g, b), x0(x0), y0(y0), height(height), width(width) {}
-      void draw() { // implement draw() method
-         color(colorR, colorG, colorB);
-         rectFill(x0, y0, x0 + width, y0 + height);
-      }
 };
 
 // Circle class inherits from Figure
@@ -111,6 +154,7 @@ class FigureDrawer {
       float current_sides;
       Circle circles[10];
       int n_circles;
+      int draw_delay;
       FigureDrawer(float red, float green, float blue) {
          this->current_color_red = red;
          this->current_color_green = green;
@@ -118,7 +162,7 @@ class FigureDrawer {
          this->n_circles = 0;
          this->current_radius = 20;
          this->current_sides = 20;
-
+         this->draw_delay = DRAW_FUNCTION_DELAY;
       }
 
       void add_circle(int x, int y) {
@@ -133,6 +177,7 @@ class FigureDrawer {
          circles[n_circles].radius = current_radius;
          circles[n_circles].sides = current_sides;
          n_circles++;
+         draw_delay = DRAW_FUNCTION_DELAY;
       }
 };
 
@@ -181,6 +226,15 @@ Button draw_circles_button(int(90.0 * screenWidth / 100.0), int(40.0 * screenHei
 // cancel functions
 Button cancel_function_button(int(90.0 * screenWidth / 100.0), int(10.0 * screenHeight / 100.0), CANCEL_FUNCTION_BUTTON_WIDTH, CANCEL_FUNCTION_BUTTON_HEIGHT, CANCEL_FUNCTION_BUTTON_R, CANCEL_FUNCTION_BUTTON_G, CANCEL_FUNCTION_BUTTON_B);
 
+// radius size
+Button radius_size_plus(int(10.0 * screenWidth / 100.0), int(90.0 * screenHeight / 100.0), RADIUS_PLUS_BUTTON_WIDTH, RADIUS_PLUS_BUTTON_HEIGHT, RADIUS_PLUS_BUTTON_R, RADIUS_PLUS_BUTTON_G, RADIUS_PLUS_BUTTON_B);
+Button radius_size_minus(int(30.0 * screenWidth / 100.0), int(90.0 * screenHeight / 100.0), RADIUS_MINUS_BUTTON_WIDTH, RADIUS_MINUS_BUTTON_HEIGHT, RADIUS_MINUS_BUTTON_R, RADIUS_MINUS_BUTTON_G, RADIUS_MINUS_BUTTON_B);
+
+// sides size
+Button sides_plus(int(10.0 * screenWidth / 100.0), int(80.0 * screenHeight / 100.0), SIDES_PLUS_BUTTON_WIDTH, SIDES_PLUS_BUTTON_HEIGHT, SIDES_PLUS_BUTTON_R, SIDES_PLUS_BUTTON_G, SIDES_PLUS_BUTTON_B);
+Button sides_minus(int(30.0 * screenWidth / 100.0), int(80.0 * screenHeight / 100.0), SIDES_MINUS_BUTTON_WIDTH, SIDES_MINUS_BUTTON_HEIGHT, SIDES_MINUS_BUTTON_R, SIDES_MINUS_BUTTON_G, SIDES_MINUS_BUTTON_B);
+
+
 // funcoes auxiliares
 
 void menu_render(int width, int height) {
@@ -202,6 +256,10 @@ void main_app_render(int width, int height){
    collor_button.draw();
    draw_circles_button.draw();
    cancel_function_button.draw();
+   radius_size_plus.draw();
+   radius_size_minus.draw();
+   sides_plus.draw();
+   sides_minus.draw();
 
 
    // figures
@@ -223,32 +281,47 @@ int check_button_position(int x, int y, Button b) {
 void verify_buttons(int button, int x, int y){
    // start
    if (button == 0) {
-      if (app_state == 0) {
+      // button delay
+      if (delay_bt > 0) return;
+      delay_bt = BUTTON_DELAY;
+      if (app_state == MENU) {
          // start
          if (check_button_position(x, y, start_button)) {
-            app_state = 1;
+            app_state = MAIN_APP;
          }
       }
-      else if (app_state == 1) {
-         
+      else if (app_state == MAIN_APP) {
          // deactivate function
          if(check_button_position(x, y, cancel_function_button)) {
-            function = 0;
+            function = FUNCTION_NONE;
          }
 
-         if (function == 0){
+         if (function == FUNCTION_NONE){
             // draw circles button
             if (check_button_position(x, y, draw_circles_button)){
-               function = 1;
+               function = FUNCTION_DRAW;
+               figure_drawer.draw_delay = DRAW_FUNCTION_DELAY;
+            }
+            // radius configuration
+            if (check_button_position(x, y, radius_size_plus)) {
+               figure_drawer.current_radius += RADIUS_INCREASE_DECREASE;
+            }
+            else if (check_button_position(x, y, radius_size_minus)) {
+               figure_drawer.current_radius -= RADIUS_INCREASE_DECREASE;
+            }
+            else if (check_button_position(x, y, sides_plus)) {
+               figure_drawer.current_sides += SIDES_INCREASE_DECREASE;
+            }
+            else if (check_button_position(x, y, sides_minus)) {
+               figure_drawer.current_sides -= SIDES_INCREASE_DECREASE;
             }
          }
-         else if (function == 1){
+         else if (function == FUNCTION_DRAW){
             // draw circles activated
-            figure_drawer.add_circle(x, y);
+            if (figure_drawer.draw_delay == 0) {
+               figure_drawer.add_circle(x, y);
+            }
          }
-
-
-      
       }
    }
 }
@@ -285,6 +358,16 @@ int calc_position(float percent, int w_h) {
    return int(percent * screenHeight / 100.0);
 }
 
+void delay_manager(){
+   // draw delay
+   if (figure_drawer.draw_delay > 0) {
+      figure_drawer.draw_delay --;
+   }
+   if (delay_bt > 0) {
+      delay_bt --;
+   }
+}
+
 // pos = position percentage compared to the screen (50% would be central, 100% would be right) * screen / 100;
 void update_res() {
    // start button
@@ -302,26 +385,33 @@ void update_res() {
    // cancel function button 
    cancel_function_button.x0 = calc_position(90, 0);
    cancel_function_button.y0 = calc_position(10, 1);
+
+   // radius configuration buttons
+   radius_size_plus.x0 = calc_position(10, 0);
+   radius_size_plus.y0 = calc_position(90, 1);
+   radius_size_minus.x0 = calc_position(30, 0);
+   radius_size_minus.y0 = calc_position(90, 1);
+
+   // sides configuration button
+   sides_plus.x0 = calc_position(10, 0);
+   sides_plus.y0 = calc_position(80, 1);
+   sides_minus.x0 = calc_position(30, 0);
+   sides_minus.y0 = calc_position(80, 1);
 }
 
 // render
 void render()
 {
-   if (app_state == 0) { // menu
+   if (app_state == MENU) { // menu
       menu_render(screenWidth, screenHeight);
    }
-   else if (app_state = 1) { // main screen, no functions activated
+   else if (app_state = MAIN_APP) { // main screen, no functions activated
       main_app_render(screenWidth, screenHeight);
    }
 
-   if (function == 0) { // no function
-
-   }
-   else if (function == 1) { // drawing circles
-
-   }
 
    update_res();
+   delay_manager();
 }
 
 
