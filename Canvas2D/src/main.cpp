@@ -74,6 +74,11 @@
 #define SIDES_MINUS_BUTTON_G 0
 #define SIDES_MINUS_BUTTON_B 0
 
+// figure selected colors
+#define FIGURE_SELECTED_R 0
+#define FIGURE_SELECTED_G 0.8
+#define FIGURE_SELECTED_B 0.8
+
 
 
 // states
@@ -88,6 +93,7 @@
 #define FUNCTION_DRAW 1
 #define DRAW_FUNCTION_DELAY 1000
 #define BUTTON_DELAY 100
+#define FUNCTION_MODIFY 2
 
 
 // global
@@ -103,6 +109,8 @@ int function = FUNCTION_NONE;
 int delay_bt = BUTTON_DELAY;
 // current figure to be drawed
 int current_figure = POLYGON;
+// modifying figures
+int figure = -1;
 
 
 // mouse coords
@@ -264,6 +272,12 @@ void main_app_render(int width, int height){
 
    // figures
    for (int i = 0; i < figure_drawer.n_circles; i++) {
+      if (figure != -1) {
+         if (figure == i) {
+            color(FIGURE_SELECTED_R, FIGURE_SELECTED_G, FIGURE_SELECTED_B);
+            circleFill(figure_drawer.circles[i].cX, figure_drawer.circles[i].cY, figure_drawer.circles[i].radius + 10, figure_drawer.circles[i].sides);
+         }
+      }
       figure_drawer.circles[i].draw();
    }
    
@@ -276,14 +290,25 @@ int check_button_position(int x, int y, Button b) {
    return 0;
 }
 
+int distance(int x0, int y0, int x1, int y1) {
+   return int(sqrt((x1 - x0) * (x1 - x0) + (y1 - y0) * (y1 - y0)));
+}
+
+int find_figure(int x, int y) {
+   for (int i = 0; i < figure_drawer.n_circles; i++) {
+      if (distance(x, y, figure_drawer.circles[i].cX, figure_drawer.circles[i].cY) < figure_drawer.circles[i].radius) {
+         return i;
+      }
+   }
+   return -1;
+}
 
 // verify button press
 void verify_buttons(int button, int x, int y){
-   // start
+   // button delay
+   if (delay_bt > 0) return;
+   delay_bt = BUTTON_DELAY;
    if (button == 0) {
-      // button delay
-      if (delay_bt > 0) return;
-      delay_bt = BUTTON_DELAY;
       if (app_state == MENU) {
          // start
          if (check_button_position(x, y, start_button)) {
@@ -303,7 +328,7 @@ void verify_buttons(int button, int x, int y){
                figure_drawer.draw_delay = DRAW_FUNCTION_DELAY;
             }
             // radius configuration
-            if (check_button_position(x, y, radius_size_plus)) {
+            else if (check_button_position(x, y, radius_size_plus)) {
                figure_drawer.current_radius += RADIUS_INCREASE_DECREASE;
             }
             else if (check_button_position(x, y, radius_size_minus)) {
@@ -315,11 +340,25 @@ void verify_buttons(int button, int x, int y){
             else if (check_button_position(x, y, sides_minus)) {
                figure_drawer.current_sides -= SIDES_INCREASE_DECREASE;
             }
+            else { // clicking on a figure or not
+               int f = find_figure(x, y);
+               if (f != -1) {
+                  function = FUNCTION_MODIFY;
+                  figure = f;
+               }
+            }
          }
          else if (function == FUNCTION_DRAW){
             // draw circles activated
-            if (figure_drawer.draw_delay == 0) {
+            if (figure_drawer.draw_delay <= 0) {
                figure_drawer.add_circle(x, y);
+            }
+         }
+         else if (function == FUNCTION_MODIFY) {
+            int f = find_figure(x, y);
+            if (f == -1) {
+               function = FUNCTION_NONE;
+               figure = -1;
             }
          }
       }
