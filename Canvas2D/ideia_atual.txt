@@ -1,1 +1,2 @@
+spawn de circulos e quadrados
 criar 3 barras que configuram a cor de desenho atual

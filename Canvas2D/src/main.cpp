@@ -5,6 +5,8 @@
 #include <stdlib.h>
 #include "gl_canvas2d.h"
 #include "auxiliar.h"
+#include <list>
+
 
 // screen
 #define SCREENHEIGHT 800
@@ -23,6 +25,16 @@
 #define MAIN_APP_BLUE 0.8
 #define COLOR_BOTTON_WIDTH 50
 #define COLOR_BOTTON_HEIGHT 50
+#define DRAW_CIRCLES_BUTTON_WIDTH 50
+#define DRAW_CIRCLES_BUTTON_HEIGHT 50
+#define DRAW_CIRCLES_BUTTON_COLOR_R 1
+#define DRAW_CIRCLES_BUTTON_COLOR_G 0.2
+#define DRAW_CIRCLES_BUTTON_COLOR_B 1
+#define CANCEL_FUNCTION_BUTTON_WIDTH 50
+#define CANCEL_FUNCTION_BUTTON_HEIGHT 50
+#define CANCEL_FUNCTION_BUTTON_R 1
+#define CANCEL_FUNCTION_BUTTON_G 0
+#define CANCEL_FUNCTION_BUTTON_B 0
 
 // global
 
@@ -32,6 +44,10 @@ int screenHeight = SCREENHEIGHT;
 
 // state
 int app_state = 0;
+// function
+int function = 0;
+
+
 // mouse coords
 int mx, my;
 
@@ -45,6 +61,7 @@ class Figure {
       int colorR;
       int colorB;
       int colorG;
+      Figure(){}
       Figure(int r, int g, int b) {
          this->colorR = r;
          this->colorB = b;
@@ -75,6 +92,7 @@ class Circle : public Figure {
       int sides;
       int radius;
 
+      Circle() {}
       Circle(int cX, int cY, int sides, int radius, int r, int g, int b) : Figure(r, g, b), cX(cX), cY(cY), sides(sides), radius(radius) {}
 
       void draw() { // implement draw() method
@@ -83,17 +101,38 @@ class Circle : public Figure {
       }
 };
 
-Circle a(50, 50, 20, 50, 1, 0, 0);
 
 class FigureDrawer {
    public:
       float current_color_red;
       float current_color_green;
       float current_color_blue;
+      float current_radius;
+      float current_sides;
+      Circle circles[10];
+      int n_circles;
       FigureDrawer(float red, float green, float blue) {
          this->current_color_red = red;
          this->current_color_green = green;
          this->current_color_blue = blue;
+         this->n_circles = 0;
+         this->current_radius = 20;
+         this->current_sides = 20;
+
+      }
+
+      void add_circle(int x, int y) {
+         if (n_circles == 9) {
+            n_circles = 0;
+         }
+         circles[n_circles].cX = x;
+         circles[n_circles].cY = y;
+         circles[n_circles].colorR = current_color_red;
+         circles[n_circles].colorG = current_color_green;
+         circles[n_circles].colorB = current_color_blue;
+         circles[n_circles].radius = current_radius;
+         circles[n_circles].sides = current_sides;
+         n_circles++;
       }
 };
 
@@ -136,6 +175,11 @@ Button start_button((screenWidth - START_BUTTON_WIDTH) / 2, (screenHeight - STAR
 // main app
 Button collor_button(int(90.0 * screenWidth / 100.0), int(90.0 * screenHeight / 100.0), COLOR_BOTTON_WIDTH, COLOR_BOTTON_HEIGHT, figure_drawer.current_color_red, figure_drawer.current_color_green, figure_drawer.current_color_blue);
 
+// draw circles
+Button draw_circles_button(int(90.0 * screenWidth / 100.0), int(40.0 * screenHeight / 100.0), DRAW_CIRCLES_BUTTON_WIDTH, DRAW_CIRCLES_BUTTON_HEIGHT, DRAW_CIRCLES_BUTTON_COLOR_R, DRAW_CIRCLES_BUTTON_COLOR_G, DRAW_CIRCLES_BUTTON_COLOR_B);
+
+// cancel functions
+Button cancel_function_button(int(90.0 * screenWidth / 100.0), int(10.0 * screenHeight / 100.0), CANCEL_FUNCTION_BUTTON_WIDTH, CANCEL_FUNCTION_BUTTON_HEIGHT, CANCEL_FUNCTION_BUTTON_R, CANCEL_FUNCTION_BUTTON_G, CANCEL_FUNCTION_BUTTON_B);
 
 // funcoes auxiliares
 
@@ -154,10 +198,24 @@ void main_app_render(int width, int height){
    color(MAIN_APP_RED, MAIN_APP_GREEN, MAIN_APP_BLUE);
    rectFill(0, 0, width, height);
 
-   // color button
+   // buttons
    collor_button.draw();
-   a.draw();
+   draw_circles_button.draw();
+   cancel_function_button.draw();
+
+
+   // figures
+   for (int i = 0; i < figure_drawer.n_circles; i++) {
+      figure_drawer.circles[i].draw();
+   }
    
+}
+
+int check_button_position(int x, int y, Button b) {
+   if (x > b.x0 && y > b.y0 && x < b.x0 + b.width && y < b.y0 + b.height) {
+      return 1;
+   }
+   return 0;
 }
 
 
@@ -167,9 +225,30 @@ void verify_buttons(int button, int x, int y){
    if (button == 0) {
       if (app_state == 0) {
          // start
-         if (x > start_button.x0 && y > start_button.y0 && x < start_button.x0 + start_button.width && y < start_button.y0 + start_button.height) {
+         if (check_button_position(x, y, start_button)) {
             app_state = 1;
          }
+      }
+      else if (app_state == 1) {
+         
+         // deactivate function
+         if(check_button_position(x, y, cancel_function_button)) {
+            function = 0;
+         }
+
+         if (function == 0){
+            // draw circles button
+            if (check_button_position(x, y, draw_circles_button)){
+               function = 1;
+            }
+         }
+         else if (function == 1){
+            // draw circles activated
+            figure_drawer.add_circle(x, y);
+         }
+
+
+      
       }
    }
 }
@@ -215,16 +294,31 @@ void update_res() {
    // color button
    collor_button.x0 = calc_position(90, 0);
    collor_button.y0 = calc_position(90, 1);
+
+   // draw circles button
+   draw_circles_button.x0 = calc_position(90, 0);
+   draw_circles_button.y0 = calc_position(40, 1);
+
+   // cancel function button 
+   cancel_function_button.x0 = calc_position(90, 0);
+   cancel_function_button.y0 = calc_position(10, 1);
 }
 
 // render
 void render()
 {
-   if (app_state == 0) {
+   if (app_state == 0) { // menu
       menu_render(screenWidth, screenHeight);
    }
-   else if (app_state = 1) {
+   else if (app_state = 1) { // main screen, no functions activated
       main_app_render(screenWidth, screenHeight);
+   }
+
+   if (function == 0) { // no function
+
+   }
+   else if (function == 1) { // drawing circles
+
    }
 
    update_res();
