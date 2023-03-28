@@ -74,11 +74,22 @@
 #define SIDES_MINUS_BUTTON_G 0
 #define SIDES_MINUS_BUTTON_B 0
 
+// preview
+#define PREVIEW_X_PERCENT 10
+#define PREVIEW_Y_PERCENT 10
+#define PREVIEW_RADIUS_DIV 5
+
 // figure selected colors
 #define FIGURE_SELECTED_R 0
 #define FIGURE_SELECTED_G 0.8
 #define FIGURE_SELECTED_B 0.8
 
+// highlighting 
+#define HIGHLIGHT_R 0.4
+#define HIGHLIGHT_G 0.7
+#define HIGHLIGHT_B 0.9
+#define HIGHLIGHT_FACTOR 5
+#define HIGHLIGHT_NONE -1
 
 
 // states
@@ -91,8 +102,8 @@
 // functions
 #define FUNCTION_NONE 0
 #define FUNCTION_DRAW 1
-#define DRAW_FUNCTION_DELAY 1000
-#define BUTTON_DELAY 100
+#define DRAW_FUNCTION_DELAY 10
+#define BUTTON_DELAY 5
 #define FUNCTION_MODIFY 2
 
 
@@ -101,7 +112,6 @@
 // screen
 int screenWidth = SCREENWIDTH;
 int screenHeight = SCREENHEIGHT;
-
 // state
 int app_state = MENU;
 // function
@@ -109,6 +119,8 @@ int function = FUNCTION_NONE;
 int delay_bt = BUTTON_DELAY;
 // current figure to be drawed
 int current_figure = POLYGON;
+// current highlighted button
+int current_hightlight = HIGHLIGHT_NONE;
 // modifying figures
 int figure = -1;
 
@@ -174,7 +186,7 @@ class FigureDrawer {
       }
 
       void add_circle(int x, int y) {
-         if (n_circles == 9) {
+         if (n_circles == 20) {
             n_circles = 0;
          }
          circles[n_circles].cX = x;
@@ -200,6 +212,7 @@ class Button {
       float colorG;
       float colorB;
 
+      Button(){}
       // constructor 
       Button(int x0, int y0, int width, int height, float r, float g, float b) {
          this->x0 = x0;
@@ -215,7 +228,21 @@ class Button {
          color(this->colorR, this->colorG, this->colorB);
          rectFill(this->x0, this->y0, this->x0 + this->width, this->y0 + this->height);
       }
+
+      void highlight() {
+         color(HIGHLIGHT_R, HIGHLIGHT_G, HIGHLIGHT_B);
+         rectFill(this->x0 - HIGHLIGHT_FACTOR, this->y0 - HIGHLIGHT_FACTOR, this->x0 + this->width + HIGHLIGHT_FACTOR, this->y0 + this->height + HIGHLIGHT_FACTOR);
+      }
 };
+
+int calc_position(float percent, int w_h) {
+   if (w_h == 0) {
+      return int(percent * screenWidth / 100.0);
+   }
+   return int(percent * screenHeight / 100.0);
+}
+
+
 
 // entities
 FigureDrawer figure_drawer(0, 1, 0);
@@ -241,7 +268,6 @@ Button radius_size_minus(int(30.0 * screenWidth / 100.0), int(90.0 * screenHeigh
 // sides size
 Button sides_plus(int(10.0 * screenWidth / 100.0), int(80.0 * screenHeight / 100.0), SIDES_PLUS_BUTTON_WIDTH, SIDES_PLUS_BUTTON_HEIGHT, SIDES_PLUS_BUTTON_R, SIDES_PLUS_BUTTON_G, SIDES_PLUS_BUTTON_B);
 Button sides_minus(int(30.0 * screenWidth / 100.0), int(80.0 * screenHeight / 100.0), SIDES_MINUS_BUTTON_WIDTH, SIDES_MINUS_BUTTON_HEIGHT, SIDES_MINUS_BUTTON_R, SIDES_MINUS_BUTTON_G, SIDES_MINUS_BUTTON_B);
-
 
 // funcoes auxiliares
 
@@ -280,6 +306,17 @@ void main_app_render(int width, int height){
       }
       figure_drawer.circles[i].draw();
    }
+
+   // preview
+   Circle preview;
+   preview.sides = figure_drawer.current_sides;
+   preview.radius = int (figure_drawer.current_radius / PREVIEW_RADIUS_DIV);
+   preview.colorR = figure_drawer.current_color_red;
+   preview.colorG = figure_drawer.current_color_green;
+   preview.colorB = figure_drawer.current_color_blue;
+   preview.cX = calc_position(PREVIEW_X_PERCENT, 0);
+   preview.cY = calc_position(PREVIEW_Y_PERCENT, 1);
+   preview.draw();
    
 }
 
@@ -363,6 +400,10 @@ void verify_buttons(int button, int x, int y){
          }
       }
    }
+   else if (button == -2) {
+      // AQUI, HIGHLIGHT BUTTON
+      // for no manager, achou botao, atribui o sublinhado (idx) a variavel global, caso nao, -1
+   }
 }
 
 // mouse call back
@@ -388,13 +429,6 @@ void keyboard(int key)
 void keyboardUp(int key)
 {
    printf("\nLiberou Tecla: %d" , key);
-}
-
-int calc_position(float percent, int w_h) {
-   if (w_h == 0) {
-      return int(percent * screenWidth / 100.0);
-   }
-   return int(percent * screenHeight / 100.0);
 }
 
 void delay_manager(){
