@@ -1,0 +1,57 @@
+# depslib dependency file v1.0
+1626955631 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\gl_canvas2d.cpp
+	"gl_canvas2d.h"
+	<GL/glut.h>
+
+1680117594 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\gl_canvas2d.h
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	<string.h>
+	<GL/glut.h>
+	<GL/freeglut_ext.h>
+	"Vector2.h"
+
+1426372440 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\include\gl\glut.h
+	"freeglut_std.h"
+
+1437579942 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\include\gl\freeglut_std.h
+	<windows.h>
+	<EGL/egl.h>
+	<GLES/gl.h>
+	<GLES2/gl2.h>
+	<OpenGL/gl.h>
+	<OpenGL/glu.h>
+	<GL/gl.h>
+	<GL/glu.h>
+	<stdlib.h>
+
+1426372440 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\include\gl\freeglut_ext.h
+	<stdarg.h>
+
+1680117592 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\vector2.h
+
+1680117475 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\main.cpp
+	<GL/glut.h>
+	<GL/freeglut_ext.h>
+	<math.h>
+	<stdio.h>
+	<stdlib.h>
+	"gl_canvas2d.h"
+	<list>
+
+1589214882 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\bola.h
+	"gl_canvas2d.h"
+
+1193164156 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\relogio.h
+	"gl_canvas2d.h"
+
+1589214891 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\botao.h
+	"gl_canvas2d.h"
+
+1589218349 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\relogio.cpp
+	"Relogio.h"
+	<math.h>
+	<stdio.h>
+	<stdlib.h>
+
