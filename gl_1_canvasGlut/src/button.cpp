@@ -16,11 +16,6 @@ Button::Button(int x0, int y0, int width, int height, float r, float g, float b,
     this->app = app;
     this->percentageW = percentageW;
     this->percentageH = percentageH;
-    this->callback = callback;
-}
-
-void Button::set_callback(void (*callback)(void)) {
-    this->callback = callback;
 }
 
 void Button::draw() {
@@ -31,12 +26,6 @@ void Button::draw() {
 void Button::highlight(){
     CV::color(HIGHLIGHT_R, HIGHLIGHT_G, HIGHLIGHT_B);
     CV::rectFill(this->x0 - HIGHLIGHT_FACTOR, this->y0 - HIGHLIGHT_FACTOR, this->x0 + this->width + HIGHLIGHT_FACTOR, this->y0 + this->height + HIGHLIGHT_FACTOR);
-}
-
-void Button::onClick() {
-    if (this->callback != NULL) {
-        (*this->callback)(); // call the callback function
-    }
 }
 
 

@@ -8,7 +8,7 @@
 // functions
 #define FUNCTION_NONE 0
 #define FUNCTION_DRAW 1
-#define BUTTON_DELAY 10
+#define BUTTON_DELAY 1000
 #define FUNCTION_MODIFY 2
 // screen
 #define SCREENHEIGHT 800
@@ -27,7 +27,7 @@ public:
 };
 
 // initialization of static class members
-int AppManager::app_state = MAIN_APP;
+int AppManager::app_state = MENU;
 int AppManager::current_function = FUNCTION_NONE;
 int AppManager::screen_width = SCREENWIDTH;
 int AppManager::screen_height = SCREENHEIGHT;

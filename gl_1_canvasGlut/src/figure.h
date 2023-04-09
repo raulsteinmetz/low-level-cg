@@ -2,7 +2,7 @@
 #define FIGURE_H
 
 
-#define DRAW_FUNCTION_DELAY 100
+#define DRAW_FUNCTION_DELAY 500
 // figures
 #define CIRCLE 0
 

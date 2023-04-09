@@ -33,110 +33,30 @@ FigureDrawer figure_drawer(0, 1, 0);
 ButtonManager button_manager;
 
 void add_all_buttons() {
-    button_manager.add_button(
-        (AppManager::screen_width - START_BUTTON_WIDTH) / 2,
-        (AppManager::screen_height - START_BUTTON_HEIGHT) / 2,
-        START_BUTTON_WIDTH,
-        START_BUTTON_HEIGHT,
-        0,
-        1,
-        0,
-        MENU,
-        50,
-        50
+    button_manager.add_button((AppManager::screen_width - START_BUTTON_WIDTH) / 2, (AppManager::screen_height - START_BUTTON_HEIGHT) / 2, START_BUTTON_WIDTH,
+        START_BUTTON_HEIGHT, 0, 1, 0, MENU, 50, 50);
 
-    );
+    button_manager.add_button(int(90.0 * AppManager::screen_width / 100.0), int(90.0 * AppManager::screen_height / 100.0), COLOR_BOTTON_WIDTH, COLOR_BOTTON_HEIGHT,
+        figure_drawer.current_color_red, figure_drawer.current_color_green, figure_drawer.current_color_blue, MAIN_APP, 90.0, 90.0);
 
-    button_manager.add_button(
-        int(90.0 * AppManager::screen_width / 100.0),
-        int(90.0 * AppManager::screen_height / 100.0),
-        COLOR_BOTTON_WIDTH,
-        COLOR_BOTTON_HEIGHT,
-        figure_drawer.current_color_red,
-        figure_drawer.current_color_green,
-        figure_drawer.current_color_blue,
-        MAIN_APP,
-        90.0,
-        90.0
-    );
+    button_manager.add_button(int(90.0 * AppManager::screen_width / 100.0), int(40.0 * AppManager::screen_height / 100.0), DRAW_CIRCLES_BUTTON_WIDTH,
+        DRAW_CIRCLES_BUTTON_HEIGHT, DRAW_CIRCLES_BUTTON_COLOR_R, DRAW_CIRCLES_BUTTON_COLOR_G, DRAW_CIRCLES_BUTTON_COLOR_B, MAIN_APP, 90.0, 40.0);
 
-    button_manager.add_button(
-        int(90.0 * AppManager::screen_width / 100.0),
-        int(40.0 * AppManager::screen_height / 100.0),
-        DRAW_CIRCLES_BUTTON_WIDTH,
-        DRAW_CIRCLES_BUTTON_HEIGHT,
-        DRAW_CIRCLES_BUTTON_COLOR_R,
-        DRAW_CIRCLES_BUTTON_COLOR_G,
-        DRAW_CIRCLES_BUTTON_COLOR_B,
-        MAIN_APP,
-        90.0,
-        40.0
-    );
+    button_manager.add_button(int(90.0 * AppManager::screen_width / 100.0), int(10.0 * AppManager::screen_height / 100.0), CANCEL_FUNCTION_BUTTON_WIDTH,
+        CANCEL_FUNCTION_BUTTON_HEIGHT, CANCEL_FUNCTION_BUTTON_R, CANCEL_FUNCTION_BUTTON_G, CANCEL_FUNCTION_BUTTON_B, MAIN_APP, 90.0, 10.0);
 
-    button_manager.add_button(
-        int(90.0 * AppManager::screen_width / 100.0),
-        int(10.0 * AppManager::screen_height / 100.0),
-        CANCEL_FUNCTION_BUTTON_WIDTH,
-        CANCEL_FUNCTION_BUTTON_HEIGHT,
-        CANCEL_FUNCTION_BUTTON_R,
-        CANCEL_FUNCTION_BUTTON_G,
-        CANCEL_FUNCTION_BUTTON_B,
-        MAIN_APP,
-        90.0,
-        10.0
-    );
+    button_manager.add_button(int(10.0 * AppManager::screen_width / 100.0), int(90.0 * AppManager::screen_height / 100.0), RADIUS_PLUS_BUTTON_WIDTH,
+        RADIUS_PLUS_BUTTON_HEIGHT, RADIUS_PLUS_BUTTON_R, RADIUS_PLUS_BUTTON_G, RADIUS_PLUS_BUTTON_B, MAIN_APP, 10.0, 90.0);
 
-    button_manager.add_button(
-        int(10.0 * AppManager::screen_width / 100.0),
-        int(90.0 * AppManager::screen_height / 100.0),
-        RADIUS_PLUS_BUTTON_WIDTH,
-        RADIUS_PLUS_BUTTON_HEIGHT,
-        RADIUS_PLUS_BUTTON_R,
-        RADIUS_PLUS_BUTTON_G,
-        RADIUS_PLUS_BUTTON_B,
-        MAIN_APP,
-        10.0,
-        90.0
-    );
+    button_manager.add_button(int(30.0 * AppManager::screen_width / 100.0), int(90.0 * AppManager::screen_height / 100.0), RADIUS_MINUS_BUTTON_WIDTH,
+        RADIUS_MINUS_BUTTON_HEIGHT, RADIUS_MINUS_BUTTON_R, RADIUS_MINUS_BUTTON_G, RADIUS_MINUS_BUTTON_B, MAIN_APP, 30.0, 90.0);
 
-    button_manager.add_button(
-        int(30.0 * AppManager::screen_width / 100.0),
-        int(90.0 * AppManager::screen_height / 100.0),
-        RADIUS_MINUS_BUTTON_WIDTH,
-        RADIUS_MINUS_BUTTON_HEIGHT,
-        RADIUS_MINUS_BUTTON_R,
-        RADIUS_MINUS_BUTTON_G,
-        RADIUS_MINUS_BUTTON_B,
-        MAIN_APP,
-        30.0,
-        90.0
-    );
+    button_manager.add_button(int(10.0 * AppManager::screen_width / 100.0), int(80.0 * AppManager::screen_height / 100.0), SIDES_PLUS_BUTTON_WIDTH,
+        SIDES_PLUS_BUTTON_HEIGHT, SIDES_PLUS_BUTTON_R, SIDES_PLUS_BUTTON_G, SIDES_PLUS_BUTTON_B, MAIN_APP, 10.0, 80.0);
 
-    button_manager.add_button(
-        int(10.0 * AppManager::screen_width / 100.0),
-        int(80.0 * AppManager::screen_height / 100.0),
-        SIDES_PLUS_BUTTON_WIDTH,
-        SIDES_PLUS_BUTTON_HEIGHT,
-        SIDES_PLUS_BUTTON_R,
-        SIDES_PLUS_BUTTON_G,
-        SIDES_PLUS_BUTTON_B,
-        MAIN_APP,
-        10.0,
-        80.0
-    );
+    button_manager.add_button(int(30.0 * AppManager::screen_width / 100.0), int(80.0 * AppManager::screen_height / 100.0), SIDES_MINUS_BUTTON_WIDTH,
+        SIDES_MINUS_BUTTON_HEIGHT, SIDES_MINUS_BUTTON_R, SIDES_MINUS_BUTTON_G, SIDES_MINUS_BUTTON_B, MAIN_APP, 30.0, 80.0);
 
-    button_manager.add_button(
-        int(30.0 * AppManager::screen_width / 100.0),
-        int(80.0 * AppManager::screen_height / 100.0),
-        SIDES_MINUS_BUTTON_WIDTH,
-        SIDES_MINUS_BUTTON_HEIGHT,
-        SIDES_MINUS_BUTTON_R,
-        SIDES_MINUS_BUTTON_G,
-        SIDES_MINUS_BUTTON_B,
-        MAIN_APP,
-        30.0,
-        80.0
-    );
 }
 
 
@@ -195,43 +115,66 @@ int find_figure(int x, int y) {
    return -1;
 }
 
-// verify button press
-void verify_buttons(int button, int x, int y){
-   // button delay
-   /*if (delay_bt > 0) return;
-   delay_bt = BUTTON_DELAY;
-   if (button == 0) {
-      if (AppManager::app_state == MENU) {
-         // start
-         if (check_button_position(x, y, start_button)) {
-            AppManager::app_state = MAIN_APP;
-         }
-      }
-      else if (AppManager::app_state == MAIN_APP) {
-         // deactivate function
-         if(check_button_position(x, y, cancel_function_button)) {
-           AppManager::current_function = FUNCTION_NONE;
-         }
+void button_callback(int id) {
+    if (id < 0) return;
 
-         if (AppManager::current_function == FUNCTION_NONE){
-            // draw circles button
-            if (check_button_position(x, y, draw_circles_button)){
-              AppManager::current_function = FUNCTION_DRAW;
-               figure_drawer.draw_delay = DRAW_FUNCTION_DELAY;
+    // button delay
+    if (delay_bt > 0) return;
+    delay_bt = BUTTON_DELAY;
+
+    // functions
+    if (id == 0) {
+        // start button
+        AppManager::app_state = MAIN_APP;
+    }
+    else if (id == 1) {
+        // color
+        // not implemented yet
+    }
+    else if (id == 2 && AppManager::current_function == FUNCTION_NONE) {
+        // draw function
+        AppManager::current_function = FUNCTION_DRAW;
+        figure_drawer.draw_delay = DRAW_FUNCTION_DELAY;
+    }
+    else if (id == 3) {
+        // cancel function
+        AppManager::current_function = FUNCTION_NONE;
+    }
+    else if (id == 4 && AppManager::current_function == FUNCTION_NONE) {
+        // radius +
+        figure_drawer.current_radius += RADIUS_INCREASE_DECREASE;
+    }
+    else if (id == 5 && AppManager::current_function == FUNCTION_NONE) {
+        // radius +
+        figure_drawer.current_radius -= RADIUS_INCREASE_DECREASE;
+    }
+    else if (id == 6 && AppManager::current_function == FUNCTION_NONE) {
+        figure_drawer.current_sides += SIDES_INCREASE_DECREASE;
+    }
+    else if (id == 7 && AppManager::current_function == FUNCTION_NONE) {
+        figure_drawer.current_sides -= SIDES_INCREASE_DECREASE;
+    }
+
+
+}
+
+// verify button press
+int verify_buttons(int button, int x, int y){
+    if (button == 0) {
+        for (int i = 0; i < button_manager.buttons.size(); i++) {
+            if (check_button_position(x, y, button_manager.buttons[i]) && button_manager.buttons[i].app == AppManager::app_state) {
+                printf("CLICOU BOTAO! %d \n", i);
+                return i;
             }
-            // radius configuration
-            else if (check_button_position(x, y, radius_size_plus)) {
-               figure_drawer.current_radius += RADIUS_INCREASE_DECREASE;
-            }
-            else if (check_button_position(x, y, radius_size_minus)) {
-               figure_drawer.current_radius -= RADIUS_INCREASE_DECREASE;
-            }
-            else if (check_button_position(x, y, sides_plus)) {
-               figure_drawer.current_sides += SIDES_INCREASE_DECREASE;
-            }
-            else if (check_button_position(x, y, sides_minus)) {
-               figure_drawer.current_sides -= SIDES_INCREASE_DECREASE;
-            }
+        }
+    }
+    return -1;
+}
+
+   /*
+
+        ESTOU AQUI
+
             else { // clicking on a figure or not
                int f = find_figure(x, y);
                if (f != -1) {
@@ -254,19 +197,14 @@ void verify_buttons(int button, int x, int y){
             }
          }
       }
-   }
-   else if (button == -2) {
-      // AQUI, HIGHLIGHT BUTTON
-      // for no manager, achou botao, atribui o sublinhado (idx) a variavel global, caso nao, -1
    }*/
-}
+
 
 // position = position percentage compared to the screen (50% would be central, 100% would be right) * screen / 100;
 void update_res() {
     // start button
     button_manager.buttons[0].x0 = (AppManager::screen_width - START_BUTTON_WIDTH) / 2;
     button_manager.buttons[0].y0 = (AppManager::screen_height - START_BUTTON_HEIGHT) / 2;
-
 
     for (int i = 1; i < button_manager.buttons.size(); i++) {
         button_manager.buttons[i].x0 = calc_position(button_manager.buttons[i].percentageW, 0, AppManager::screen_width, AppManager::screen_height);
@@ -275,30 +213,19 @@ void update_res() {
 }
 
 
+
+
 // mouse call back
 void mouse(int button, int state, int wheel, int direction, int x, int y)
 {
-   printf("\nmouse %d %d %d %d %d %d", button, state, wheel, direction,  x, y);
-
-   // mause coords
    mx = x;
    my = y;
-
-   verify_buttons(button, x, y);
+   if (button == 0) button_callback(verify_buttons(button, x, y));
 }
-
 // key down call back
-void keyboard(int key)
-{
-   printf("\nClicou Tecla: %d" , key);
-}
-
-
+void keyboard(int key){}
 // key up call back
-void keyboardUp(int key)
-{
-   printf("\nLiberou Tecla: %d" , key);
-}
+void keyboardUp(int key){}
 
 
 // draw delay
