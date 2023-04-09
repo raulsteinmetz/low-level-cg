@@ -3,6 +3,8 @@
 
 
 #define DRAW_FUNCTION_DELAY 100
+// figures
+#define CIRCLE 0
 
 class Figure {
    public:

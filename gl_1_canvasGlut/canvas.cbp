@@ -45,12 +45,17 @@
 		</Linker>
 		<Unit filename="include/GL/glut.h" />
 		<Unit filename="src/Vector2.h" />
+		<Unit filename="src/app_manager.h" />
 		<Unit filename="src/button.cpp" />
 		<Unit filename="src/button.h" />
+		<Unit filename="src/button_manager.cpp" />
+		<Unit filename="src/button_manager.h" />
 		<Unit filename="src/figure.cpp" />
 		<Unit filename="src/figure.h" />
 		<Unit filename="src/gl_canvas2d.cpp" />
 		<Unit filename="src/gl_canvas2d.h" />
+		<Unit filename="src/interface.cpp" />
+		<Unit filename="src/interface.h" />
 		<Unit filename="src/main.cpp" />
 		<Extensions>
 			<code_completion />

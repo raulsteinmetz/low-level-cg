@@ -3,6 +3,7 @@
 #include <GL/glut.h>
 #include <GL/freeglut_ext.h>
 
+
 // FIGURE
 
 Figure::Figure(){}

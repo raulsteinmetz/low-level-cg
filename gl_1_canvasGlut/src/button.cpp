@@ -5,7 +5,7 @@
 
 Button::Button() {}
 
-Button::Button(int x0, int y0, int width, int height, float r, float g, float b) {
+Button::Button(int x0, int y0, int width, int height, float r, float g, float b, int app, float percentageW, float percentageH) {
     this->x0 = x0;
     this->y0 = y0;
     this->width = width;
@@ -13,6 +13,9 @@ Button::Button(int x0, int y0, int width, int height, float r, float g, float b)
     this->colorR = r;
     this->colorG = g;
     this->colorB = b;
+    this->app = app;
+    this->percentageW = percentageW;
+    this->percentageH = percentageH;
 }
 
 void Button::draw() {
@@ -25,14 +28,4 @@ void Button::highlight(){
     CV::rectFill(this->x0 - HIGHLIGHT_FACTOR, this->y0 - HIGHLIGHT_FACTOR, this->x0 + this->width + HIGHLIGHT_FACTOR, this->y0 + this->height + HIGHLIGHT_FACTOR);
 }
 
-int check_button_position(int x, int y, Button b) {
-   if (x > b.x0 && y > b.y0 && x < b.x0 + b.width && y < b.y0 + b.height) {
-      return 1;
-   }
-   return 0;
-}
 
-
-ButtonManager::ButtonManager(){
-    this->n_buttons = 0;
-}

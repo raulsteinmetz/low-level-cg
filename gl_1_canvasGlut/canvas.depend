@@ -31,36 +31,55 @@
 
 1680117592 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\vector2.h
 
-1681048176 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\button.cpp
+1681062284 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\button.cpp
 	"button.h"
 	"gl_canvas2d.h"
 	<GL/glut.h>
 	<GL/freeglut_ext.h>
 
-1681048031 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\button.h
+1681062252 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\button.h
 
-1681050309 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\main.cpp
+1681063565 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\main.cpp
 	<GL/glut.h>
 	<GL/freeglut_ext.h>
-	<math.h>
 	<stdio.h>
 	<stdlib.h>
 	"gl_canvas2d.h"
-	<list>
 	"button.h"
+	"button_manager.h"
 	"figure.h"
 	"app_manager.h"
+	"interface.h"
+	"auxiliar_functions.h"
+	<list>
 
-1681047390 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\figure.h
+1681051070 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\figure.h
 
-1681047436 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\figure.cpp
+1681051064 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\figure.cpp
 	"figure.h"
 	"gl_canvas2d.h"
 	<GL/glut.h>
 	<GL/freeglut_ext.h>
 
-1681050023 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\app_manager.h
+1681062117 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\app_manager.h
 
 1681049172 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\app_manager.cpp
 	"app_manager.h"
+
+1681050860 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\interface.cpp
+
+1681062810 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\button_manager.cpp
+	"button_manager.h"
+
+1681062337 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\button_manager.h
+	<vector>
+	"button.h"
+
+1681051023 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\interface.h
+
+1681063558 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\auxiliar_functions.h
+
+1681063577 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\auxiliar_functions.cpp
+	"auxiliar_functions.h"
+	"math.h"
 
