@@ -1,2 +1,0 @@
-criar preview do desenho
-criar 3 barras que configuram a cor de desenho atual

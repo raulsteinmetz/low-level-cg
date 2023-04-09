@@ -5,6 +5,8 @@
 #include <stdlib.h>
 #include "gl_canvas2d.h"
 #include <list>
+#include "button.h"
+#include "figure.h"
 
 
 // screen
@@ -83,13 +85,6 @@
 #define FIGURE_SELECTED_G 0.8
 #define FIGURE_SELECTED_B 0.8
 
-// highlighting
-#define HIGHLIGHT_R 0.4
-#define HIGHLIGHT_G 0.7
-#define HIGHLIGHT_B 0.9
-#define HIGHLIGHT_FACTOR 5
-#define HIGHLIGHT_NONE -1
-
 
 // states
 #define MENU 0
@@ -101,7 +96,6 @@
 // functions
 #define FUNCTION_NONE 0
 #define FUNCTION_DRAW 1
-#define DRAW_FUNCTION_DELAY 100
 #define BUTTON_DELAY 10
 #define FUNCTION_MODIFY 2
 
@@ -128,121 +122,6 @@ int figure = -1;
 int mx, my;
 
 
-// classes
-
-// figures
-
-class Figure {
-   public:
-      int colorR;
-      int colorB;
-      int colorG;
-      Figure(){}
-      Figure(int r, int g, int b) {
-         this->colorR = r;
-         this->colorB = b;
-         this->colorG = g;
-      }
-      //virtual void draw() = 0;
-};
-
-// Circle class inherits from Figure
-class Circle : public Figure {
-   public:
-      int cX;
-      int cY;
-      int sides;
-      int radius;
-
-      Circle() {}
-      Circle(int cX, int cY, int sides, int radius, int r, int g, int b) : Figure(r, g, b), cX(cX), cY(cY), sides(sides), radius(radius) {}
-
-      void draw() { // implement draw() method
-         CV::color(colorR, colorG, colorB);
-         CV::circleFill(cX, cY, radius, sides);
-      }
-};
-
-
-class FigureDrawer {
-   public:
-      float current_color_red;
-      float current_color_green;
-      float current_color_blue;
-      float current_radius;
-      float current_sides;
-      Circle circles[10];
-      int n_circles;
-      int draw_delay;
-      FigureDrawer(float red, float green, float blue) {
-         this->current_color_red = red;
-         this->current_color_green = green;
-         this->current_color_blue = blue;
-         this->n_circles = 0;
-         this->current_radius = 20;
-         this->current_sides = 20;
-         this->draw_delay = DRAW_FUNCTION_DELAY;
-      }
-
-      void add_circle(int x, int y) {
-         if (n_circles == 20) {
-            n_circles = 0;
-         }
-         circles[n_circles].cX = x;
-         circles[n_circles].cY = y;
-         circles[n_circles].colorR = current_color_red;
-         circles[n_circles].colorG = current_color_green;
-         circles[n_circles].colorB = current_color_blue;
-         circles[n_circles].radius = current_radius;
-         circles[n_circles].sides = current_sides;
-         n_circles++;
-         draw_delay = DRAW_FUNCTION_DELAY;
-      }
-};
-
-
-class Button {
-   public:
-      int x0;
-      int y0;
-      int width;
-      int height;
-      float colorR;
-      float colorG;
-      float colorB;
-
-      Button(){}
-      // constructor
-      Button(int x0, int y0, int width, int height, float r, float g, float b) {
-         this->x0 = x0;
-         this->y0 = y0;
-         this->width = width;
-         this->height = height;
-         this->colorR = r;
-         this->colorG = g;
-         this->colorB = b;
-      }
-
-      void draw() {
-         CV::color(this->colorR, this->colorG, this->colorB);
-         CV::rectFill(this->x0, this->y0, this->x0 + this->width, this->y0 + this->height);
-      }
-
-      void highlight() {
-         CV::color(HIGHLIGHT_R, HIGHLIGHT_G, HIGHLIGHT_B);
-         CV::rectFill(this->x0 - HIGHLIGHT_FACTOR, this->y0 - HIGHLIGHT_FACTOR, this->x0 + this->width + HIGHLIGHT_FACTOR, this->y0 + this->height + HIGHLIGHT_FACTOR);
-      }
-};
-
-class ButtonManager {
-   public:
-      int n_buttons;
-      Button buttons[15];
-      ButtonManager(){
-         this->n_buttons = 0;
-      }
-};
-
 int calc_position(float percent, int w_h) {
    if (w_h == 0) {
       return int(percent * screenWidth / 100.0);
@@ -250,8 +129,6 @@ int calc_position(float percent, int w_h) {
    return int(percent * screenHeight / 100.0);
 }
 
-
-//ButtonManager button_manager();
 
 // entities
 FigureDrawer figure_drawer(0, 1, 0);
@@ -327,13 +204,6 @@ void main_app_render(int width, int height){
    preview.cY = calc_position(PREVIEW_Y_PERCENT, 1);
    preview.draw();
 
-}
-
-int check_button_position(int x, int y, Button b) {
-   if (x > b.x0 && y > b.y0 && x < b.x0 + b.width && y < b.y0 + b.height) {
-      return 1;
-   }
-   return 0;
 }
 
 int distance(int x0, int y0, int x1, int y1) {

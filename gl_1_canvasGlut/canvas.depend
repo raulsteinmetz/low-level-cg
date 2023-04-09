@@ -3,7 +3,7 @@
 	"gl_canvas2d.h"
 	<GL/glut.h>
 
-1680117594 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\gl_canvas2d.h
+1681046319 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\gl_canvas2d.h
 	<stdio.h>
 	<stdlib.h>
 	<math.h>
@@ -31,7 +31,15 @@
 
 1680117592 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\vector2.h
 
-1680117475 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\main.cpp
+1681048176 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\button.cpp
+	"button.h"
+	"gl_canvas2d.h"
+	<GL/glut.h>
+	<GL/freeglut_ext.h>
+
+1681048031 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\button.h
+
+1681047607 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\main.cpp
 	<GL/glut.h>
 	<GL/freeglut_ext.h>
 	<math.h>
@@ -39,19 +47,14 @@
 	<stdlib.h>
 	"gl_canvas2d.h"
 	<list>
+	"button.h"
+	"figure.h"
 
-1589214882 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\bola.h
+1681047390 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\figure.h
+
+1681047436 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\figure.cpp
+	"figure.h"
 	"gl_canvas2d.h"
-
-1193164156 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\relogio.h
-	"gl_canvas2d.h"
-
-1589214891 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\botao.h
-	"gl_canvas2d.h"
-
-1589218349 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\relogio.cpp
-	"Relogio.h"
-	<math.h>
-	<stdio.h>
-	<stdlib.h>
+	<GL/glut.h>
+	<GL/freeglut_ext.h>
 
