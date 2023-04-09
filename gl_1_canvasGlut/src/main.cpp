@@ -7,7 +7,7 @@
 #include <list>
 #include "button.h"
 #include "figure.h"
-
+#include "app_manager.h"
 
 // screen
 #define SCREENHEIGHT 800
@@ -86,32 +86,19 @@
 #define FIGURE_SELECTED_B 0.8
 
 
-// states
-#define MENU 0
-#define MAIN_APP 1
 
 // figures
-#define POLYGON 0
+#define CIRCLE 0
 
-// functions
-#define FUNCTION_NONE 0
-#define FUNCTION_DRAW 1
-#define BUTTON_DELAY 10
-#define FUNCTION_MODIFY 2
+
 
 
 // global
 
-// screen
-int screenWidth = SCREENWIDTH;
-int screenHeight = SCREENHEIGHT;
-// state
-int app_state = MENU;
-// function
-int function = FUNCTION_NONE;
+
 int delay_bt = BUTTON_DELAY;
 // current figure to be drawed
-int current_figure = POLYGON;
+int current_figure = CIRCLE;
 // current highlighted button
 int current_hightlight = HIGHLIGHT_NONE;
 // modifying figures
@@ -121,12 +108,15 @@ int figure = -1;
 // mouse coords
 int mx, my;
 
+// button manager
+ButtonManager button_manager();
+
 
 int calc_position(float percent, int w_h) {
    if (w_h == 0) {
-      return int(percent * screenWidth / 100.0);
+      return int(percent * AppManager::screen_width / 100.0);
    }
-   return int(percent * screenHeight / 100.0);
+   return int(percent * AppManager::screen_height / 100.0);
 }
 
 
@@ -136,24 +126,24 @@ FigureDrawer figure_drawer(0, 1, 0);
 // buttons
 
 // menu
-Button start_button((screenWidth - START_BUTTON_WIDTH) / 2, (screenHeight - START_BUTTON_HEIGHT) / 2, START_BUTTON_WIDTH, START_BUTTON_HEIGHT, 0, 1, 0);
+Button start_button((AppManager::screen_width - START_BUTTON_WIDTH) / 2, (AppManager::screen_height - START_BUTTON_HEIGHT) / 2, START_BUTTON_WIDTH, START_BUTTON_HEIGHT, 0, 1, 0);
 
 // main app
-Button collor_button(int(90.0 * screenWidth / 100.0), int(90.0 * screenHeight / 100.0), COLOR_BOTTON_WIDTH, COLOR_BOTTON_HEIGHT, figure_drawer.current_color_red, figure_drawer.current_color_green, figure_drawer.current_color_blue);
+Button collor_button(int(90.0 * AppManager::screen_width / 100.0), int(90.0 * AppManager::screen_height / 100.0), COLOR_BOTTON_WIDTH, COLOR_BOTTON_HEIGHT, figure_drawer.current_color_red, figure_drawer.current_color_green, figure_drawer.current_color_blue);
 
 // draw circles
-Button draw_circles_button(int(90.0 * screenWidth / 100.0), int(40.0 * screenHeight / 100.0), DRAW_CIRCLES_BUTTON_WIDTH, DRAW_CIRCLES_BUTTON_HEIGHT, DRAW_CIRCLES_BUTTON_COLOR_R, DRAW_CIRCLES_BUTTON_COLOR_G, DRAW_CIRCLES_BUTTON_COLOR_B);
+Button draw_circles_button(int(90.0 * AppManager::screen_width / 100.0), int(40.0 * AppManager::screen_height / 100.0), DRAW_CIRCLES_BUTTON_WIDTH, DRAW_CIRCLES_BUTTON_HEIGHT, DRAW_CIRCLES_BUTTON_COLOR_R, DRAW_CIRCLES_BUTTON_COLOR_G, DRAW_CIRCLES_BUTTON_COLOR_B);
 
 // cancel functions
-Button cancel_function_button(int(90.0 * screenWidth / 100.0), int(10.0 * screenHeight / 100.0), CANCEL_FUNCTION_BUTTON_WIDTH, CANCEL_FUNCTION_BUTTON_HEIGHT, CANCEL_FUNCTION_BUTTON_R, CANCEL_FUNCTION_BUTTON_G, CANCEL_FUNCTION_BUTTON_B);
+Button cancel_function_button(int(90.0 * AppManager::screen_width / 100.0), int(10.0 * AppManager::screen_height / 100.0), CANCEL_FUNCTION_BUTTON_WIDTH, CANCEL_FUNCTION_BUTTON_HEIGHT, CANCEL_FUNCTION_BUTTON_R, CANCEL_FUNCTION_BUTTON_G, CANCEL_FUNCTION_BUTTON_B);
 
 // radius size
-Button radius_size_plus(int(10.0 * screenWidth / 100.0), int(90.0 * screenHeight / 100.0), RADIUS_PLUS_BUTTON_WIDTH, RADIUS_PLUS_BUTTON_HEIGHT, RADIUS_PLUS_BUTTON_R, RADIUS_PLUS_BUTTON_G, RADIUS_PLUS_BUTTON_B);
-Button radius_size_minus(int(30.0 * screenWidth / 100.0), int(90.0 * screenHeight / 100.0), RADIUS_MINUS_BUTTON_WIDTH, RADIUS_MINUS_BUTTON_HEIGHT, RADIUS_MINUS_BUTTON_R, RADIUS_MINUS_BUTTON_G, RADIUS_MINUS_BUTTON_B);
+Button radius_size_plus(int(10.0 * AppManager::screen_width / 100.0), int(90.0 * AppManager::screen_height / 100.0), RADIUS_PLUS_BUTTON_WIDTH, RADIUS_PLUS_BUTTON_HEIGHT, RADIUS_PLUS_BUTTON_R, RADIUS_PLUS_BUTTON_G, RADIUS_PLUS_BUTTON_B);
+Button radius_size_minus(int(30.0 * AppManager::screen_width / 100.0), int(90.0 * AppManager::screen_height / 100.0), RADIUS_MINUS_BUTTON_WIDTH, RADIUS_MINUS_BUTTON_HEIGHT, RADIUS_MINUS_BUTTON_R, RADIUS_MINUS_BUTTON_G, RADIUS_MINUS_BUTTON_B);
 
 // sides size
-Button sides_plus(int(10.0 * screenWidth / 100.0), int(80.0 * screenHeight / 100.0), SIDES_PLUS_BUTTON_WIDTH, SIDES_PLUS_BUTTON_HEIGHT, SIDES_PLUS_BUTTON_R, SIDES_PLUS_BUTTON_G, SIDES_PLUS_BUTTON_B);
-Button sides_minus(int(30.0 * screenWidth / 100.0), int(80.0 * screenHeight / 100.0), SIDES_MINUS_BUTTON_WIDTH, SIDES_MINUS_BUTTON_HEIGHT, SIDES_MINUS_BUTTON_R, SIDES_MINUS_BUTTON_G, SIDES_MINUS_BUTTON_B);
+Button sides_plus(int(10.0 * AppManager::screen_width / 100.0), int(80.0 * AppManager::screen_height / 100.0), SIDES_PLUS_BUTTON_WIDTH, SIDES_PLUS_BUTTON_HEIGHT, SIDES_PLUS_BUTTON_R, SIDES_PLUS_BUTTON_G, SIDES_PLUS_BUTTON_B);
+Button sides_minus(int(30.0 * AppManager::screen_width / 100.0), int(80.0 * AppManager::screen_height / 100.0), SIDES_MINUS_BUTTON_WIDTH, SIDES_MINUS_BUTTON_HEIGHT, SIDES_MINUS_BUTTON_R, SIDES_MINUS_BUTTON_G, SIDES_MINUS_BUTTON_B);
 
 // funcoes auxiliares
 
@@ -225,22 +215,22 @@ void verify_buttons(int button, int x, int y){
    if (delay_bt > 0) return;
    delay_bt = BUTTON_DELAY;
    if (button == 0) {
-      if (app_state == MENU) {
+      if (AppManager::app_state == MENU) {
          // start
          if (check_button_position(x, y, start_button)) {
-            app_state = MAIN_APP;
+            AppManager::app_state = MAIN_APP;
          }
       }
-      else if (app_state == MAIN_APP) {
+      else if (AppManager::app_state == MAIN_APP) {
          // deactivate function
          if(check_button_position(x, y, cancel_function_button)) {
-            function = FUNCTION_NONE;
+           AppManager::current_function = FUNCTION_NONE;
          }
 
-         if (function == FUNCTION_NONE){
+         if (AppManager::current_function == FUNCTION_NONE){
             // draw circles button
             if (check_button_position(x, y, draw_circles_button)){
-               function = FUNCTION_DRAW;
+              AppManager::current_function = FUNCTION_DRAW;
                figure_drawer.draw_delay = DRAW_FUNCTION_DELAY;
             }
             // radius configuration
@@ -259,21 +249,21 @@ void verify_buttons(int button, int x, int y){
             else { // clicking on a figure or not
                int f = find_figure(x, y);
                if (f != -1) {
-                  function = FUNCTION_MODIFY;
+                 AppManager::current_function = FUNCTION_MODIFY;
                   figure = f;
                }
             }
          }
-         else if (function == FUNCTION_DRAW){
+         else if (AppManager::current_function == FUNCTION_DRAW){
             // draw circles activated
             if (figure_drawer.draw_delay <= 0) {
                figure_drawer.add_circle(x, y);
             }
          }
-         else if (function == FUNCTION_MODIFY) {
+         else if (AppManager::current_function == FUNCTION_MODIFY) {
             int f = find_figure(x, y);
             if (f == -1) {
-               function = FUNCTION_NONE;
+              AppManager::current_function = FUNCTION_NONE;
                figure = -1;
             }
          }
@@ -323,8 +313,8 @@ void delay_manager(){
 // pos = position percentage compared to the screen (50% would be central, 100% would be right) * screen / 100;
 void update_res() {
    // start button
-   start_button.x0 = (screenWidth - START_BUTTON_WIDTH) / 2;
-   start_button.y0 = (screenHeight - START_BUTTON_HEIGHT) / 2;
+   start_button.x0 = (AppManager::screen_width - START_BUTTON_WIDTH) / 2;
+   start_button.y0 = (AppManager::screen_height - START_BUTTON_HEIGHT) / 2;
 
    // color button
    collor_button.x0 = calc_position(90, 0);
@@ -354,11 +344,11 @@ void update_res() {
 // render
 void render()
 {
-   if (app_state == MENU) { // menu
-      menu_render(screenWidth, screenHeight);
+   if (AppManager::app_state == MENU) { // menu
+      menu_render(AppManager::screen_width, AppManager::screen_height);
    }
-   else if (app_state = MAIN_APP) { // main screen, no functions activated
-      main_app_render(screenWidth, screenHeight);
+   else if (AppManager::app_state = MAIN_APP) { // main screen, no functions activated
+      main_app_render(AppManager::screen_width, AppManager::screen_height);
    }
 
 
@@ -369,6 +359,6 @@ void render()
 
 int main(void)
 {
-   CV::init(&screenWidth, &screenHeight, "Canvas 2D");
+   CV::init(&AppManager::screen_width, &AppManager::screen_height, "Canvas 2D");
    CV::run();
 }
