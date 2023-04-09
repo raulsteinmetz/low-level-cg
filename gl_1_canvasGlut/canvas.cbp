@@ -46,6 +46,8 @@
 		<Unit filename="include/GL/glut.h" />
 		<Unit filename="src/Vector2.h" />
 		<Unit filename="src/app_manager.h" />
+		<Unit filename="src/auxiliar_functions.cpp" />
+		<Unit filename="src/auxiliar_functions.h" />
 		<Unit filename="src/button.cpp" />
 		<Unit filename="src/button.h" />
 		<Unit filename="src/button_manager.cpp" />

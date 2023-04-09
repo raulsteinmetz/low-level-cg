@@ -32,7 +32,6 @@ FigureDrawer figure_drawer(0, 1, 0);
 // button manager
 ButtonManager button_manager;
 
-
 void add_all_buttons() {
     button_manager.add_button(
         (AppManager::screen_width - START_BUTTON_WIDTH) / 2,
@@ -139,6 +138,7 @@ void add_all_buttons() {
         80.0
     );
 }
+
 
 
 

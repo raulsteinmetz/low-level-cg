@@ -23,4 +23,5 @@ public:
     void update_res();
 };
 
+
 #endif // BUTTON_MANAGER_H

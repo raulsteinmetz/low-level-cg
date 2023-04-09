@@ -37,9 +37,9 @@
 	<GL/glut.h>
 	<GL/freeglut_ext.h>
 
-1681062252 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\button.h
+1681065292 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\button.h
 
-1681063565 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\main.cpp
+1681064186 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\main.cpp
 	<GL/glut.h>
 	<GL/freeglut_ext.h>
 	<stdio.h>
@@ -68,10 +68,10 @@
 
 1681050860 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\interface.cpp
 
-1681062810 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\button_manager.cpp
+1681064766 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\button_manager.cpp
 	"button_manager.h"
 
-1681062337 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\button_manager.h
+1681064166 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\button_manager.h
 	<vector>
 	"button.h"
 

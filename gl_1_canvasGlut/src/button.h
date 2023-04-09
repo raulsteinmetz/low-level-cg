@@ -1,5 +1,5 @@
-#ifndef SAMPLE_H
-#define SAMPLE_H
+#ifndef BUTTON_H
+#define BUTTON_H
 
 // highlighting
 #define HIGHLIGHT_R 0.4
@@ -22,14 +22,18 @@ public:
     float colorB;
     float percentageW;
     float percentageH;
+    void (*callback)(void); // function pointer member variable
 
     Button();
     Button(int x0, int y0, int width, int height, float r, float g, float b, int app, float percentageW, float percentageH);
     void draw();
     void highlight();
+    void set_callback(void (*callback)(void)); // method to set the function pointer
+    void onClick();
 };
+
 
 int check_button_position(int x, int y, Button b);
 
 
-#endif // SAMPLE_H
+#endif // BUTTON_H
