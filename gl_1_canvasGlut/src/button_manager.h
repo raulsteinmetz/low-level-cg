@@ -21,6 +21,8 @@ public:
     void highlight_buttons(int x, int y, int state);
 
     void update_res();
+
+    void add_all_buttons();
 };
 
 

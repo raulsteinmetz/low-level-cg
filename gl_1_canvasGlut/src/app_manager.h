@@ -8,7 +8,7 @@
 // functions
 #define FUNCTION_NONE 0
 #define FUNCTION_DRAW 1
-#define BUTTON_DELAY 1000
+#define BUTTON_DELAY 100
 #define FUNCTION_MODIFY 2
 // screen
 #define SCREENHEIGHT 800

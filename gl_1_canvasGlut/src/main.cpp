@@ -12,6 +12,8 @@
 #include <list>
 
 
+int up_0_down_1 = 0;
+
 
 // global
 int delay_bt = BUTTON_DELAY;
@@ -24,7 +26,6 @@ int figure = -1;
 
 // mouse coordinates
 int mx, my;
-
 
 
 // figure drawer
@@ -115,47 +116,90 @@ int find_figure(int x, int y) {
    return -1;
 }
 
-void button_callback(int id) {
-    if (id < 0) return;
-
-    // button delay
-    if (delay_bt > 0) return;
+void button_callback(int id, int x, int y) {
+    if (delay_bt > 0) {
+        return; // Button delay is active, do nothing.
+    }
     delay_bt = BUTTON_DELAY;
 
-    // functions
-    if (id == 0) {
-        // start button
-        AppManager::app_state = MAIN_APP;
+    switch (id) {
+        case 0: { // Start button
+            AppManager::app_state = MAIN_APP;
+            break;
+        }
+        case 1: { // Color button
+            // Not implemented yet.
+            break;
+        }
+        case 2: { // Draw function button
+            if (AppManager::current_function == FUNCTION_NONE) {
+                AppManager::current_function = FUNCTION_DRAW;
+            }
+            break;
+        }
+        case 3: { // Cancel function button
+            if (AppManager::current_function == FUNCTION_DRAW || AppManager::current_function == FUNCTION_MODIFY) {
+                AppManager::current_function = FUNCTION_NONE;
+            }
+            break;
+        }
+        case 4: { // Increase radius button
+            if (AppManager::current_function == FUNCTION_NONE) {
+                figure_drawer.current_radius += RADIUS_INCREASE_DECREASE;
+            }
+            else if (AppManager::current_function == FUNCTION_MODIFY) {
+                figure_drawer.circles[figure].radius += RADIUS_INCREASE_DECREASE;
+            }
+            break;
+        }
+        case 5: { // Decrease radius button
+            if (AppManager::current_function == FUNCTION_NONE) {
+                figure_drawer.current_radius -= RADIUS_INCREASE_DECREASE;
+            }
+            else if (AppManager::current_function == FUNCTION_MODIFY) {
+                figure_drawer.circles[figure].radius -= RADIUS_INCREASE_DECREASE;
+            }
+            break;
+        }
+        case 6: { // Increase sides button
+            if (AppManager::current_function == FUNCTION_NONE) {
+                figure_drawer.current_sides += SIDES_INCREASE_DECREASE;
+            }
+            else if (AppManager::current_function == FUNCTION_MODIFY) {
+                figure_drawer.circles[figure].sides += SIDES_INCREASE_DECREASE;
+            }
+            break;
+        }
+        case 7: { // Decrease sides button
+            if (AppManager::current_function == FUNCTION_NONE) {
+                figure_drawer.current_sides -= SIDES_INCREASE_DECREASE;
+            }
+            else if (AppManager::current_function == FUNCTION_MODIFY) {
+                figure_drawer.circles[figure].sides -= SIDES_INCREASE_DECREASE;
+            }
+            break;
+        }
+        default: { // Figure selection or modification
+            if (AppManager::current_function == FUNCTION_NONE) {
+                int f = find_figure(x, y);
+                if (f != -1) {
+                    AppManager::current_function = FUNCTION_MODIFY;
+                    figure = f;
+                }
+            }
+            else if (AppManager::current_function == FUNCTION_DRAW) {
+                figure_drawer.add_circle(x, y);
+            }
+            else if (AppManager::current_function == FUNCTION_MODIFY) {
+                int f = find_figure(x, y);
+                if (f == figure) {
+                    AppManager::current_function = FUNCTION_NONE;
+                    figure = -1;
+                }
+            }
+            break;
+        }
     }
-    else if (id == 1) {
-        // color
-        // not implemented yet
-    }
-    else if (id == 2 && AppManager::current_function == FUNCTION_NONE) {
-        // draw function
-        AppManager::current_function = FUNCTION_DRAW;
-        figure_drawer.draw_delay = DRAW_FUNCTION_DELAY;
-    }
-    else if (id == 3) {
-        // cancel function
-        AppManager::current_function = FUNCTION_NONE;
-    }
-    else if (id == 4 && AppManager::current_function == FUNCTION_NONE) {
-        // radius +
-        figure_drawer.current_radius += RADIUS_INCREASE_DECREASE;
-    }
-    else if (id == 5 && AppManager::current_function == FUNCTION_NONE) {
-        // radius +
-        figure_drawer.current_radius -= RADIUS_INCREASE_DECREASE;
-    }
-    else if (id == 6 && AppManager::current_function == FUNCTION_NONE) {
-        figure_drawer.current_sides += SIDES_INCREASE_DECREASE;
-    }
-    else if (id == 7 && AppManager::current_function == FUNCTION_NONE) {
-        figure_drawer.current_sides -= SIDES_INCREASE_DECREASE;
-    }
-
-
 }
 
 // verify button press
@@ -170,35 +214,6 @@ int verify_buttons(int button, int x, int y){
     }
     return -1;
 }
-
-   /*
-
-        ESTOU AQUI
-
-            else { // clicking on a figure or not
-               int f = find_figure(x, y);
-               if (f != -1) {
-                 AppManager::current_function = FUNCTION_MODIFY;
-                  figure = f;
-               }
-            }
-         }
-         else if (AppManager::current_function == FUNCTION_DRAW){
-            // draw circles activated
-            if (figure_drawer.draw_delay <= 0) {
-               figure_drawer.add_circle(x, y);
-            }
-         }
-         else if (AppManager::current_function == FUNCTION_MODIFY) {
-            int f = find_figure(x, y);
-            if (f == -1) {
-              AppManager::current_function = FUNCTION_NONE;
-               figure = -1;
-            }
-         }
-      }
-   }*/
-
 
 // position = position percentage compared to the screen (50% would be central, 100% would be right) * screen / 100;
 void update_res() {
@@ -220,7 +235,18 @@ void mouse(int button, int state, int wheel, int direction, int x, int y)
 {
    mx = x;
    my = y;
-   if (button == 0) button_callback(verify_buttons(button, x, y));
+
+   if (button == 0) {
+    if (up_0_down_1 == 0){
+        up_0_down_1 = 1;
+    }
+    else {
+        up_0_down_1 = 0;
+        return;
+    }
+    button_callback(verify_buttons(button, x, y), x, y);
+
+   }
 }
 // key down call back
 void keyboard(int key){}
@@ -230,9 +256,6 @@ void keyboardUp(int key){}
 
 // draw delay
 void delay_manager(){
-   if (figure_drawer.draw_delay > 0) {
-      figure_drawer.draw_delay --;
-   }
    if (delay_bt > 0) {
       delay_bt --;
    }
