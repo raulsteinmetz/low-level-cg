@@ -11,9 +11,9 @@
 #include "auxiliar_functions.h"
 #include <list>
 #include <string>
+#include "slider.h"
 
 int up_0_down_1 = 0;
-
 
 // global
 int delay_bt = BUTTON_DELAY;
@@ -27,7 +27,7 @@ int figure = -1;
 // mouse coordinates
 int mx, my;
 
-
+Slider sl = Slider(400, 400, 100, 12, 10, 1, 0, 0);
 // figure drawer
 FigureDrawer figure_drawer(0, 1, 0);
 // button manager
@@ -111,6 +111,11 @@ void main_app_render(int width, int height){
    preview.cY = calc_position(PREVIEW_Y_PERCENT, 1, AppManager::screen_width, AppManager::screen_height);
    preview.draw();
 
+   sl.draw();
+    if (sl.being_modified) {
+        sl.highlight();
+        sl.updateCirclePosition(mx);
+   }
 }
 
 int find_figure(int x, int y) {
@@ -229,6 +234,13 @@ int verify_buttons(int button, int x, int y){
                 return i;
             }
         }
+        if (sl.being_modified == true){
+            sl.being_modified = false;
+        }
+        else if (sl.checkInteraction(x, y)) {
+            sl.being_modified = true;
+        }
+
     }
     return -1;
 }

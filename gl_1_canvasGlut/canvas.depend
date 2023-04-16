@@ -40,7 +40,7 @@
 1681646397 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\button.h
 	"string"
 
-1681647632 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\main.cpp
+1681661924 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\main.cpp
 	<GL/glut.h>
 	<GL/freeglut_ext.h>
 	<stdio.h>
@@ -54,6 +54,7 @@
 	"auxiliar_functions.h"
 	<list>
 	<string>
+	"slider.h"
 
 1681644234 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\figure.h
 	<string>
@@ -88,4 +89,10 @@
 1681063577 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\auxiliar_functions.cpp
 	"auxiliar_functions.h"
 	"math.h"
+
+1681662500 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\slider.h
+
+1681662488 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\slider.cpp
+	"slider.h"
+	"gl_canvas2d.h"
 
