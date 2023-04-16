@@ -9,11 +9,11 @@
 
 class Figure {
    public:
-      int colorR;
-      int colorB;
-      int colorG;
+      float colorR;
+      float colorB;
+      float colorG;
       Figure();
-      Figure(int r, int g, int b);
+      Figure(float r, float g, float b);
       //virtual void draw() = 0;
 };
 
@@ -26,7 +26,7 @@ class Circle : public Figure {
       int radius;
 
       Circle();
-      Circle(int cX, int cY, int sides, int radius, int r, int g, int b);
+      Circle(int cX, int cY, int sides, int radius, float r, float g, float b);
 
       void draw();
 };

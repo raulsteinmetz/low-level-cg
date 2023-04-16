@@ -10,7 +10,7 @@
 
 Slider::Slider(){}
 
-Slider::Slider(int x0, int y0, int bar_width, int bar_height, int circle_radius, float r, float g, float b){
+Slider::Slider(int x0, int y0, int bar_width, int bar_height, int circle_radius, float r, float g, float b, int app){
     this->x0 = x0;
     this->y0 = y0;
     this->bar_width = bar_width;
@@ -21,6 +21,7 @@ Slider::Slider(int x0, int y0, int bar_width, int bar_height, int circle_radius,
     this->colorB = b;
     this->value = 0.5;
     this->being_modified = false;
+    this->app = app;
 }
 
 void Slider::draw() {

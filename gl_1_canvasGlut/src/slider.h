@@ -15,9 +15,10 @@ public:
     float colorG;
     float colorB;
     bool being_modified;
+    int app;
 
     Slider();
-    Slider(int x0, int y0, int bar_width, int bar_height, int circle_radius, float r, float g, float b); // updated constructor
+    Slider(int x0, int y0, int bar_width, int bar_height, int circle_radius, float r, float g, float b, int app); // updated constructor
     void draw();
     void highlight();
     float getValueFromCircleX(float circle_x);

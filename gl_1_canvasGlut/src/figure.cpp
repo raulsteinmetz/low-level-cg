@@ -10,7 +10,7 @@
 
 Figure::Figure(){}
 
-Figure::Figure(int r, int g, int b){
+Figure::Figure(float r, float g, float b){
     this->colorR = r;
     this->colorB = b;
     this->colorG = g;
@@ -21,7 +21,7 @@ Figure::Figure(int r, int g, int b){
 
 Circle::Circle(){}
 
-Circle::Circle(int cX, int cY, int sides, int radius, int r, int g, int b) : Figure(r, g, b), cX(cX), cY(cY), sides(sides), radius(radius) {}
+Circle::Circle(int cX, int cY, int sides, int radius, float r, float g, float b) : Figure(r, g, b), cX(cX), cY(cY), sides(sides), radius(radius) {}
 
 void Circle::draw(){
     CV::color(colorR, colorG, colorB);
