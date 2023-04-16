@@ -3,9 +3,13 @@
 #include <GL/glut.h>
 #include <GL/freeglut_ext.h>
 
+#define TEXT_OFFSET_X 3
+#define TEXT_OFFSET_Y 12
+
+
 Button::Button() {}
 
-Button::Button(int x0, int y0, int width, int height, float r, float g, float b, int app, float percentageW, float percentageH) {
+Button::Button(int x0, int y0, int width, int height, float r, float g, float b, int app, float percentageW, float percentageH, const std::string& name) {
     this->x0 = x0;
     this->y0 = y0;
     this->width = width;
@@ -16,16 +20,20 @@ Button::Button(int x0, int y0, int width, int height, float r, float g, float b,
     this->app = app;
     this->percentageW = percentageW;
     this->percentageH = percentageH;
+    this->name = name; // initialize new member variable
 }
 
 void Button::draw() {
     CV::color(this->colorR, this->colorG, this->colorB);
     CV::rectFill(this->x0, this->y0, this->x0 + this->width, this->y0 + this->height);
+    CV::color(1, 1, 1);
+    CV::text(this->x0 + TEXT_OFFSET_X, this->y0 + TEXT_OFFSET_Y, this->name.c_str());
 }
 
 void Button::highlight(){
     CV::color(HIGHLIGHT_R, HIGHLIGHT_G, HIGHLIGHT_B);
     CV::rectFill(this->x0 - HIGHLIGHT_FACTOR, this->y0 - HIGHLIGHT_FACTOR, this->x0 + this->width + HIGHLIGHT_FACTOR, this->y0 + this->height + HIGHLIGHT_FACTOR);
+    draw();
 }
 
 

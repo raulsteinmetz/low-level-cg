@@ -52,6 +52,7 @@
 		<Unit filename="src/button.h" />
 		<Unit filename="src/button_manager.cpp" />
 		<Unit filename="src/button_manager.h" />
+		<Unit filename="src/circles.dat" />
 		<Unit filename="src/figure.cpp" />
 		<Unit filename="src/figure.h" />
 		<Unit filename="src/gl_canvas2d.cpp" />
@@ -59,6 +60,8 @@
 		<Unit filename="src/interface.cpp" />
 		<Unit filename="src/interface.h" />
 		<Unit filename="src/main.cpp" />
+		<Unit filename="src/slider.cpp" />
+		<Unit filename="src/slider.h" />
 		<Extensions>
 			<code_completion />
 			<debugger />

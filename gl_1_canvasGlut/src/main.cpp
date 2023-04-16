@@ -10,7 +10,7 @@
 #include "interface.h"
 #include "auxiliar_functions.h"
 #include <list>
-
+#include <string>
 
 int up_0_down_1 = 0;
 
@@ -34,29 +34,35 @@ FigureDrawer figure_drawer(0, 1, 0);
 ButtonManager button_manager;
 
 void add_all_buttons() {
-    button_manager.add_button((AppManager::screen_width - START_BUTTON_WIDTH) / 2, (AppManager::screen_height - START_BUTTON_HEIGHT) / 2, START_BUTTON_WIDTH,
-        START_BUTTON_HEIGHT, 0, 1, 0, MENU, 50, 50);
+    button_manager.add_button((AppManager::screen_width - BUTTON_WIDTH) / 2, (AppManager::screen_height - BUTTON_HEIGHT) / 2, BUTTON_WIDTH,
+        BUTTON_HEIGHT, BUTTON_COLOR_R, BUTTON_COLOR_G, BUTTON_COLOR_B, MENU, 50, 50, "START");
 
-    button_manager.add_button(int(90.0 * AppManager::screen_width / 100.0), int(90.0 * AppManager::screen_height / 100.0), COLOR_BOTTON_WIDTH, COLOR_BOTTON_HEIGHT,
-        figure_drawer.current_color_red, figure_drawer.current_color_green, figure_drawer.current_color_blue, MAIN_APP, 90.0, 90.0);
+    button_manager.add_button(int(90.0 * AppManager::screen_width / 100.0), int(90.0 * AppManager::screen_height / 100.0), BUTTON_WIDTH, BUTTON_HEIGHT,
+        figure_drawer.current_color_red, figure_drawer.current_color_green, figure_drawer.current_color_blue, MAIN_APP, 90.0, 90.0, "COLOR");
 
-    button_manager.add_button(int(90.0 * AppManager::screen_width / 100.0), int(40.0 * AppManager::screen_height / 100.0), DRAW_CIRCLES_BUTTON_WIDTH,
-        DRAW_CIRCLES_BUTTON_HEIGHT, DRAW_CIRCLES_BUTTON_COLOR_R, DRAW_CIRCLES_BUTTON_COLOR_G, DRAW_CIRCLES_BUTTON_COLOR_B, MAIN_APP, 90.0, 40.0);
+    button_manager.add_button(int(2.0 * AppManager::screen_width / 100.0), int(80.0 * AppManager::screen_height / 100.0), BUTTON_WIDTH,
+        BUTTON_HEIGHT, BUTTON_COLOR_R, BUTTON_COLOR_G, BUTTON_COLOR_B, MAIN_APP, 2.0, 80.0, "DRAW");
 
-    button_manager.add_button(int(90.0 * AppManager::screen_width / 100.0), int(10.0 * AppManager::screen_height / 100.0), CANCEL_FUNCTION_BUTTON_WIDTH,
-        CANCEL_FUNCTION_BUTTON_HEIGHT, CANCEL_FUNCTION_BUTTON_R, CANCEL_FUNCTION_BUTTON_G, CANCEL_FUNCTION_BUTTON_B, MAIN_APP, 90.0, 10.0);
+    button_manager.add_button(int(2.0 * AppManager::screen_width / 100.0), int(85.0 * AppManager::screen_height / 100.0), BUTTON_WIDTH,
+        BUTTON_HEIGHT, BUTTON_COLOR_R, BUTTON_COLOR_G, BUTTON_COLOR_B, MAIN_APP, 2.0, 85.0, "STOP");
 
-    button_manager.add_button(int(10.0 * AppManager::screen_width / 100.0), int(90.0 * AppManager::screen_height / 100.0), RADIUS_PLUS_BUTTON_WIDTH,
-        RADIUS_PLUS_BUTTON_HEIGHT, RADIUS_PLUS_BUTTON_R, RADIUS_PLUS_BUTTON_G, RADIUS_PLUS_BUTTON_B, MAIN_APP, 10.0, 90.0);
+    button_manager.add_button(int(2.0 * AppManager::screen_width / 100.0), int(90.0 * AppManager::screen_height / 100.0), BUTTON_WIDTH,
+        BUTTON_HEIGHT, BUTTON_COLOR_R, BUTTON_COLOR_G, BUTTON_COLOR_B, MAIN_APP, 2.0, 90.0, "RADIUS+");
 
-    button_manager.add_button(int(30.0 * AppManager::screen_width / 100.0), int(90.0 * AppManager::screen_height / 100.0), RADIUS_MINUS_BUTTON_WIDTH,
-        RADIUS_MINUS_BUTTON_HEIGHT, RADIUS_MINUS_BUTTON_R, RADIUS_MINUS_BUTTON_G, RADIUS_MINUS_BUTTON_B, MAIN_APP, 30.0, 90.0);
+    button_manager.add_button(int(12.0 * AppManager::screen_width / 100.0), int(90.0 * AppManager::screen_height / 100.0), BUTTON_WIDTH,
+        BUTTON_HEIGHT, BUTTON_COLOR_R, BUTTON_COLOR_G, BUTTON_COLOR_B, MAIN_APP, 12.0, 90.0, "RADIUS-");
 
-    button_manager.add_button(int(10.0 * AppManager::screen_width / 100.0), int(80.0 * AppManager::screen_height / 100.0), SIDES_PLUS_BUTTON_WIDTH,
-        SIDES_PLUS_BUTTON_HEIGHT, SIDES_PLUS_BUTTON_R, SIDES_PLUS_BUTTON_G, SIDES_PLUS_BUTTON_B, MAIN_APP, 10.0, 80.0);
+    button_manager.add_button(int(2.0 * AppManager::screen_width / 100.0), int(95.0 * AppManager::screen_height / 100.0), BUTTON_WIDTH,
+        BUTTON_HEIGHT, BUTTON_COLOR_R, BUTTON_COLOR_G, BUTTON_COLOR_B, MAIN_APP, 2.0, 95.0, "SIDES+");
 
-    button_manager.add_button(int(30.0 * AppManager::screen_width / 100.0), int(80.0 * AppManager::screen_height / 100.0), SIDES_MINUS_BUTTON_WIDTH,
-        SIDES_MINUS_BUTTON_HEIGHT, SIDES_MINUS_BUTTON_R, SIDES_MINUS_BUTTON_G, SIDES_MINUS_BUTTON_B, MAIN_APP, 30.0, 80.0);
+    button_manager.add_button(int(12.0 * AppManager::screen_width / 100.0), int(95.0 * AppManager::screen_height / 100.0), BUTTON_WIDTH,
+        BUTTON_HEIGHT, BUTTON_COLOR_R, BUTTON_COLOR_G, BUTTON_COLOR_B, MAIN_APP, 12.0, 95.0, "SIDES-");
+
+    button_manager.add_button(int(12.0 * AppManager::screen_width / 100.0), int(80.0 * AppManager::screen_height / 100.0), BUTTON_WIDTH,
+        BUTTON_HEIGHT, BUTTON_COLOR_R, BUTTON_COLOR_G, BUTTON_COLOR_B, MAIN_APP, 12.0, 80.0, "SAVE");
+
+    button_manager.add_button(int(12.0 * AppManager::screen_width / 100.0), int(85.0 * AppManager::screen_height / 100.0), BUTTON_WIDTH,
+        BUTTON_HEIGHT, BUTTON_COLOR_R, BUTTON_COLOR_G, BUTTON_COLOR_B, MAIN_APP, 12.0, 85.0, "LOAD");
 
 }
 
@@ -79,9 +85,6 @@ void main_app_render(int width, int height){
    CV::color(MAIN_APP_RED, MAIN_APP_GREEN, MAIN_APP_BLUE);
    CV::rectFill(0, 0, width, height);
 
-   button_manager.draw_buttons(AppManager::app_state);
-   button_manager.highlight_buttons(mx, my, AppManager::app_state);
-
 
    // figures
    for (int i = 0; i < figure_drawer.n_circles; i++) {
@@ -93,6 +96,9 @@ void main_app_render(int width, int height){
       }
       figure_drawer.circles[i].draw();
    }
+
+   button_manager.draw_buttons(AppManager::app_state);
+   button_manager.highlight_buttons(mx, my, AppManager::app_state);
 
    // preview
    Circle preview;
@@ -176,6 +182,18 @@ void button_callback(int id, int x, int y) {
             }
             else if (AppManager::current_function == FUNCTION_MODIFY) {
                 figure_drawer.circles[figure].sides -= SIDES_INCREASE_DECREASE;
+            }
+            break;
+        }
+        case 8: {
+            if (AppManager::current_function == FUNCTION_NONE) {
+                figure_drawer.save_circles_to_file("circles.dat");
+            }
+            break;
+        }
+        case 9: {
+            if (AppManager::current_function == FUNCTION_NONE) {
+                figure_drawer.load_circles_from_file("circles.dat");
             }
             break;
         }

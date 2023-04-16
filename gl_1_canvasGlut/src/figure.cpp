@@ -2,7 +2,9 @@
 #include "gl_canvas2d.h"
 #include <GL/glut.h>
 #include <GL/freeglut_ext.h>
-
+#include <string> // Add this line
+#include <fstream>
+#include <iostream>
 
 // FIGURE
 
@@ -51,4 +53,48 @@ void FigureDrawer::add_circle(int x, int y){
      circles[n_circles].radius = current_radius;
      circles[n_circles].sides = current_sides;
      n_circles++;
+}
+
+void FigureDrawer::save_circles_to_file(const std::string& file_name) {
+  std::ofstream file(file_name, std::ios::trunc);
+
+  if (!file) {
+    std::cerr << "Error: could not open file " << file_name << " for writing" << std::endl;
+    return;
+  }
+
+  file << n_circles << std::endl;
+
+  for (int i = 0; i < n_circles; i++) {
+    Circle circle = circles[i];
+
+    file << circle.cX << " " << circle.cY << " "
+         << circle.sides << " " << circle.radius << " "
+         << circle.colorR << " " << circle.colorG << " " << circle.colorB << std::endl;
+  }
+
+  file.close();
+  printf("Circles Saved");
+}
+
+void FigureDrawer::load_circles_from_file(const std::string& file_name) {
+  std::ifstream file(file_name);
+
+  if (!file) {
+    std::cerr << "Error: could not open file " << file_name << " for reading" << std::endl;
+    return;
+  }
+
+  file >> n_circles;
+
+  for (int i = 0; i < n_circles; i++) {
+    int cX, cY, sides, radius, r, g, b;
+
+    file >> cX >> cY >> sides >> radius >> r >> g >> b;
+
+    circles[i] = Circle(cX, cY, sides, radius, r, g, b);
+  }
+
+  file.close();
+  printf("Circles Loaded");
 }

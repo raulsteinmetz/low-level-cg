@@ -1,6 +1,7 @@
 #ifndef FIGURE_H
 #define FIGURE_H
 
+#include <string> // Add this line
 
 #define DRAW_FUNCTION_DELAY 500
 // figures
@@ -45,6 +46,8 @@ class FigureDrawer {
       int draw_delay;
       FigureDrawer(float red, float green, float blue);
       void add_circle(int x, int y);
+      void save_circles_to_file(const std::string& file_name);
+      void load_circles_from_file(const std::string& file_name);
 };
 
 

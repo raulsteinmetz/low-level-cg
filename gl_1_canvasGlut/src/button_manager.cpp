@@ -2,8 +2,8 @@
 
 ButtonManager::ButtonManager() {}
 
-void ButtonManager::add_button(int x0, int y0, int width, int height, float r, float g, float b, int app, float percentageW, float percentageH) {
-    buttons.push_back(Button(x0, y0, width, height, r, g, b, app, percentageW, percentageH));
+void ButtonManager::add_button(int x0, int y0, int width, int height, float r, float g, float b, int app, float percentageW, float percentageH, const std::string& name) {
+    buttons.push_back(Button(x0, y0, width, height, r, g, b, app, percentageW, percentageH, name));
 }
 
 void ButtonManager::remove_button(int index) {
