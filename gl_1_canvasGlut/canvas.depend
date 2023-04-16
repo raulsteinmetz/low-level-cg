@@ -60,7 +60,7 @@
 1681668645 c:\users\rauls\onedrive\Área de trabalho\compgrafica\gl_1_canvasglut\src\figure.h
 	<string>
 
-1681668689 source:c:\users\rauls\onedrive\Área de trabalho\compgrafica\gl_1_canvasglut\src\figure.cpp
+1681669073 source:c:\users\rauls\onedrive\Área de trabalho\compgrafica\gl_1_canvasglut\src\figure.cpp
 	"figure.h"
 	"gl_canvas2d.h"
 	<GL/glut.h>

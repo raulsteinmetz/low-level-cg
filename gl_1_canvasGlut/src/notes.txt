@@ -1,0 +1,4 @@
+sistema de carregar e salvar com problema do nada
+falta colorir as figuras ja desenhadas
+falta poder mover imagens
+falta rotar
