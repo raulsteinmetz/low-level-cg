@@ -1,4 +1,3 @@
 sistema de carregar e salvar com problema do nada
-falta colorir as figuras ja desenhadas
 falta poder mover imagens
-falta rotar
+falta poder apagar o quadro e figuras separadas

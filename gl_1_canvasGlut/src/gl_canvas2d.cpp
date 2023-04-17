@@ -145,9 +145,9 @@ void CV::clear(float r, float g, float b)
    glClearColor( r, g, b, 1 );
 }
 
-void CV::circle( float x, float y, float radius, int div )
+void CV::circle( float x, float y, float radius, int div, float angle)
 {
-   float ang = 0, x1, y1;
+   float ang = angle, x1, y1;
    float inc = PI_2/div;
    glBegin(GL_LINE_LOOP);
       for(int lado = 1; lado <= div; lado++) //GL_LINE_LOOP desenha um poligono fechado. Liga automaticamente o primeiro e ultimio vertices.
@@ -160,9 +160,9 @@ void CV::circle( float x, float y, float radius, int div )
    glEnd();
 }
 
-void CV::circleFill( float x, float y, float radius, int div )
+void CV::circleFill( float x, float y, float radius, int div, float angle)
 {
-   float ang = 0, x1, y1;
+   float ang = angle, x1, y1;
    float inc = PI_2/div;
    glBegin(GL_POLYGON);
       for(int lado = 1; lado <= div; lado++) //GL_POLYGON desenha um poligono CONVEXO preenchido.

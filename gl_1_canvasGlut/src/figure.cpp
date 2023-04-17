@@ -21,11 +21,11 @@ Figure::Figure(float r, float g, float b){
 
 Circle::Circle(){}
 
-Circle::Circle(int cX, int cY, int sides, int radius, float r, float g, float b) : Figure(r, g, b), cX(cX), cY(cY), sides(sides), radius(radius) {}
+Circle::Circle(int cX, int cY, int sides, int radius, float r, float g, float b, float angle) : Figure(r, g, b), cX(cX), cY(cY), sides(sides), radius(radius), angle(angle) {}
 
 void Circle::draw(){
     CV::color(colorR, colorG, colorB);
-    CV::circleFill(cX, cY, radius, sides);
+    CV::circleFill(cX, cY, radius, sides, angle);
 }
 
 
@@ -38,6 +38,7 @@ FigureDrawer::FigureDrawer(float red, float green, float blue){
          this->n_circles = 0;
          this->current_radius = 20;
          this->current_sides = 20;
+         this->angle = 0;
 }
 
 
@@ -52,49 +53,8 @@ void FigureDrawer::add_circle(int x, int y){
      circles[n_circles].colorB = current_color_blue;
      circles[n_circles].radius = current_radius;
      circles[n_circles].sides = current_sides;
+     circles[n_circles].angle = angle;
      n_circles++;
 }
 
-void FigureDrawer::save_circles_to_file(const std::string& file_name) {
-  std::ofstream file(file_name, std::ios::trunc);
 
-  if (!file) {
-    std::cerr << "Error: could not open file " << file_name << " for writing" << std::endl;
-    return;
-  }
-
-  file << n_circles << std::endl;
-
-  for (int i = 0; i < n_circles; i++) {
-    Circle circle = circles[i];
-
-    file << circle.cX << " " << circle.cY << " "
-         << circle.sides << " " << circle.radius << " "
-         << circle.colorR << " " << circle.colorG << " " << circle.colorB << std::endl;
-  }
-
-  file.close();
-  printf("Circles Saved");
-}
-
-void FigureDrawer::load_circles_from_file(const std::string& file_name) {
-  std::ifstream file(file_name);
-
-  if (!file) {
-    std::cerr << "Error: could not open file " << file_name << " for reading" << std::endl;
-    return;
-  }
-
-  file >> n_circles;
-
-  for (int i = 0; i < n_circles; i++) {
-    int cX, cY, sides, radius, r, g, b;
-
-    file >> cX >> cY >> sides >> radius >> r >> g >> b;
-
-    circles[i] = Circle(cX, cY, sides, radius, r, g, b);
-  }
-
-  file.close();
-  printf("Circles Loaded");
-}

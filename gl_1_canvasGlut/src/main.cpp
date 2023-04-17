@@ -66,12 +66,20 @@ void add_all_buttons() {
     button_manager.add_button(int(12.0 * AppManager::screen_width / 100.0), int(85.0 * AppManager::screen_height / 100.0), BUTTON_WIDTH,
         BUTTON_HEIGHT, BUTTON_COLOR_R, BUTTON_COLOR_G, BUTTON_COLOR_B, MAIN_APP, 12.0, 85.0, "LOAD");
 
+    button_manager.add_button(int(36.0 * AppManager::screen_width / 100.0), int(85.0 * AppManager::screen_height / 100.0), BUTTON_WIDTH,
+        BUTTON_HEIGHT, BUTTON_COLOR_R, BUTTON_COLOR_G, BUTTON_COLOR_B, MAIN_APP, 36.0, 85.0, "ANGLE");
+
+    button_manager.add_button(int(50.0 * AppManager::screen_width / 100.0), int(85.0 * AppManager::screen_height / 100.0), BUTTON_WIDTH,
+        BUTTON_HEIGHT, BUTTON_COLOR_R, BUTTON_COLOR_G, BUTTON_COLOR_B, MAIN_APP, 50.0, 85.0, "MOVE");
+
+
 }
 
 void add_all_sliders() {
     slider_manager.add_slider(400, 650, 100, 12, 10, 1, 0, 0, MAIN_APP);
     slider_manager.add_slider(400, 700, 100, 12, 10, 1, 0, 0, MAIN_APP);
     slider_manager.add_slider(400, 750, 100, 12, 10, 1, 0, 0, MAIN_APP);
+    slider_manager.add_slider(650, 700, 100, 12, 10, 1, 0, 0, MAIN_APP);
 }
 
 
@@ -98,7 +106,7 @@ void main_app_render(int width, int height){
       if (figure != -1) {
          if (figure == i) {
             CV::color(FIGURE_SELECTED_R, FIGURE_SELECTED_G, FIGURE_SELECTED_B);
-            CV::circleFill(figure_drawer.circles[i].cX, figure_drawer.circles[i].cY, figure_drawer.circles[i].radius + 10, figure_drawer.circles[i].sides);
+            CV::circleFill(figure_drawer.circles[i].cX, figure_drawer.circles[i].cY, figure_drawer.circles[i].radius + 10, figure_drawer.circles[i].sides, figure_drawer.circles[i].angle);
          }
       }
       figure_drawer.circles[i].draw();
@@ -114,19 +122,13 @@ void main_app_render(int width, int height){
    preview.colorR = figure_drawer.current_color_red;
    preview.colorG = figure_drawer.current_color_green;
    preview.colorB = figure_drawer.current_color_blue;
+   preview.angle = figure_drawer.angle;
    preview.cX = calc_position(PREVIEW_X_PERCENT, 0, AppManager::screen_width, AppManager::screen_height);
    preview.cY = calc_position(PREVIEW_Y_PERCENT, 1, AppManager::screen_width, AppManager::screen_height);
    preview.draw();
 
    slider_manager.draw_sliders(AppManager::app_state);
    slider_manager.handle_move(mx, my, AppManager::app_state);
-
-   button_manager.buttons[1].colorR = slider_manager.sliders[0].value;
-   figure_drawer.current_color_red = slider_manager.sliders[0].value;
-   button_manager.buttons[1].colorG = slider_manager.sliders[1].value;
-   figure_drawer.current_color_green = slider_manager.sliders[1].value;
-   button_manager.buttons[1].colorB = slider_manager.sliders[2].value;
-   figure_drawer.current_color_blue = slider_manager.sliders[2].value;
 }
 
 int find_figure(int x, int y) {
@@ -143,6 +145,14 @@ void button_callback(int id, int x, int y) {
         return; // Button delay is active, do nothing.
     }
     delay_bt = BUTTON_DELAY;
+
+    if (AppManager::current_function == FUNCTION_MOVE) {
+        printf("should have moved\n");
+        figure_drawer.circles[figure].cX = x;
+        figure_drawer.circles[figure].cY = y;
+        AppManager::current_function = FUNCTION_MODIFY;
+        return;
+    }
 
     switch (id) {
         case 0: { // Start button
@@ -203,13 +213,19 @@ void button_callback(int id, int x, int y) {
         }
         case 8: {
             if (AppManager::current_function == FUNCTION_NONE) {
-                figure_drawer.save_circles_to_file("circles.dat");
+                //figure_drawer.save_circles_to_file("./circles.dat");
             }
             break;
         }
         case 9: {
             if (AppManager::current_function == FUNCTION_NONE) {
-                figure_drawer.load_circles_from_file("circles.dat");
+                //figure_drawer.load_circles_from_file("./circles.dat");
+            }
+            break;
+        }
+        case 11: {
+            if (AppManager::current_function == FUNCTION_MODIFY) {
+                AppManager::current_function = FUNCTION_MOVE;
             }
             break;
         }
@@ -219,6 +235,10 @@ void button_callback(int id, int x, int y) {
                 if (f != -1) {
                     AppManager::current_function = FUNCTION_MODIFY;
                     figure = f;
+                    slider_manager.sliders[0].value = figure_drawer.circles[figure].colorR;
+                    slider_manager.sliders[1].value = figure_drawer.circles[figure].colorG;
+                    slider_manager.sliders[2].value = figure_drawer.circles[figure].colorB;
+                    slider_manager.sliders[3].value = figure_drawer.circles[figure].angle / 4;
                 }
             }
             else if (AppManager::current_function == FUNCTION_DRAW) {
@@ -233,6 +253,24 @@ void button_callback(int id, int x, int y) {
             }
             break;
         }
+    }
+
+    if(AppManager::current_function == FUNCTION_NONE) {
+        button_manager.buttons[1].colorR = slider_manager.sliders[0].value;
+        figure_drawer.current_color_red = slider_manager.sliders[0].value;
+        button_manager.buttons[1].colorG = slider_manager.sliders[1].value;
+        figure_drawer.current_color_green = slider_manager.sliders[1].value;
+        button_manager.buttons[1].colorB = slider_manager.sliders[2].value;
+        figure_drawer.current_color_blue = slider_manager.sliders[2].value;
+        figure_drawer.angle = slider_manager.sliders[3].value * 4;
+    }
+
+    if (AppManager::current_function == FUNCTION_MODIFY) {
+        figure_drawer.circles[figure].colorR = slider_manager.sliders[0].value;
+        figure_drawer.circles[figure].colorG = slider_manager.sliders[1].value;
+        figure_drawer.circles[figure].colorB = slider_manager.sliders[2].value;
+        figure_drawer.circles[figure].angle = slider_manager.sliders[3].value * 4;
+
     }
 }
 

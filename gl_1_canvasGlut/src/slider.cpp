@@ -30,13 +30,13 @@ void Slider::draw() {
     CV::color(0, 0, 0);
     this->circle_x = getCircleXFromValue();
     this->circle_y = this->y0 + this->circle_radius + CIRCLE_OFFSET_Y;
-    CV::circleFill(this->circle_x, this->circle_y, this->circle_radius, SIDES);
+    CV::circleFill(this->circle_x, this->circle_y, this->circle_radius, SIDES, 0);
     CV::color(1, 1, 1);
 }
 
 void Slider::highlight(){
     CV::color(HIGHLIGHT_R, HIGHLIGHT_G, HIGHLIGHT_B);
-    CV::circleFill(this->circle_x, this->circle_y, this->circle_radius + HIGHLIGHT_FACTOR , SIDES);
+    CV::circleFill(this->circle_x, this->circle_y, this->circle_radius + HIGHLIGHT_FACTOR , SIDES, 0);
     draw();
 }
 

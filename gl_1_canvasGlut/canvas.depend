@@ -1,9 +1,9 @@
 # depslib dependency file v1.0
-1626955631 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\gl_canvas2d.cpp
+1681733955 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\gl_canvas2d.cpp
 	"gl_canvas2d.h"
 	<GL/glut.h>
 
-1681046319 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\gl_canvas2d.h
+1681734170 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\gl_canvas2d.h
 	<stdio.h>
 	<stdlib.h>
 	<math.h>
@@ -40,7 +40,7 @@
 1681646397 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\button.h
 	"string"
 
-1681668541 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\main.cpp
+1681736635 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\main.cpp
 	<GL/glut.h>
 	<GL/freeglut_ext.h>
 	<stdio.h>
@@ -57,10 +57,10 @@
 	"slider.h"
 	"slider_manager.h"
 
-1681668645 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\figure.h
+1681736254 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\figure.h
 	<string>
 
-1681669073 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\figure.cpp
+1681736837 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\figure.cpp
 	"figure.h"
 	"gl_canvas2d.h"
 	<GL/glut.h>
@@ -69,7 +69,7 @@
 	<fstream>
 	<iostream>
 
-1681092563 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\app_manager.h
+1681735639 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\app_manager.h
 
 1681049172 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\app_manager.cpp
 	"app_manager.h"
@@ -93,7 +93,7 @@
 
 1681665827 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\slider.h
 
-1681665843 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\slider.cpp
+1681734204 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\slider.cpp
 	"slider.h"
 	"gl_canvas2d.h"
 

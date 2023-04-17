@@ -24,9 +24,10 @@ class Circle : public Figure {
       int cY;
       int sides;
       int radius;
+      float angle;
 
       Circle();
-      Circle(int cX, int cY, int sides, int radius, float r, float g, float b);
+      Circle(int cX, int cY, int sides, int radius, float r, float g, float b, float angle);
 
       void draw();
 };
@@ -41,6 +42,7 @@ class FigureDrawer {
       float current_color_blue;
       float current_radius;
       float current_sides;
+      float angle;
       Circle circles[20];
       int n_circles;
       int draw_delay;

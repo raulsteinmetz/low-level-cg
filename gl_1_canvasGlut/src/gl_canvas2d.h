@@ -38,11 +38,11 @@ public:
     static void polygonFill(float vx[], float vy[], int n_elems);
 
     //centro e raio do circulo
-    static void circle( float x, float y, float radius, int div );
-    static void circle( Vector2 pos, float radius, int div );
+    static void circle( float x, float y, float radius, int div, float angle);
+    static void circle( Vector2 pos, float radius, int div, float angle);
 
-    static void circleFill( float x, float y, float radius, int div );
-    static void circleFill( Vector2 pos, float radius, int div );
+    static void circleFill( float x, float y, float radius, int div, float angle);
+    static void circleFill( Vector2 pos, float radius, int div, float angle);
 
     //especifica a cor de desenho e de limpeza de tela
     static void color(float r, float g, float b);
