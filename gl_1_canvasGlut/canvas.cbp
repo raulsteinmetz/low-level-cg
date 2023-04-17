@@ -44,6 +44,7 @@
 			<Add library="../lib/freeglut.lib" />
 		</Linker>
 		<Unit filename="include/GL/glut.h" />
+		<Unit filename="src/Frames.h" />
 		<Unit filename="src/Vector2.h" />
 		<Unit filename="src/app_manager.h" />
 		<Unit filename="src/auxiliar_functions.cpp" />
