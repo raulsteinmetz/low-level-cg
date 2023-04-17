@@ -12,8 +12,8 @@
 #define FUNCTION_MODIFY 2
 #define FUNCTION_MOVE 3
 // screen
-#define SCREENHEIGHT 1536
-#define SCREENWIDTH 1536
+#define SCREENHEIGHT 800
+#define SCREENWIDTH 1000
 
 class AppManager {
 public:

@@ -9,7 +9,7 @@
 
 Button::Button() {}
 
-Button::Button(int x0, int y0, int width, int height, float r, float g, float b, int app, float percentageW, float percentageH, const std::string& name) {
+Button::Button(int x0, int y0, int width, int height, float r, float g, float b, int app, const std::string& name) {
     this->x0 = x0;
     this->y0 = y0;
     this->width = width;
@@ -18,8 +18,6 @@ Button::Button(int x0, int y0, int width, int height, float r, float g, float b,
     this->colorG = g;
     this->colorB = b;
     this->app = app;
-    this->percentageW = percentageW;
-    this->percentageH = percentageH;
     this->name = name; // initialize new member variable
 }
 

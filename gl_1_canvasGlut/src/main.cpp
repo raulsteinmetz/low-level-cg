@@ -37,49 +37,49 @@ ButtonManager button_manager;
 SliderManager slider_manager;
 void add_all_buttons() {
     button_manager.add_button((AppManager::screen_width - BUTTON_WIDTH) / 2, (AppManager::screen_height - BUTTON_HEIGHT) / 2, BUTTON_WIDTH,
-        BUTTON_HEIGHT, BUTTON_COLOR_R, BUTTON_COLOR_G, BUTTON_COLOR_B, MENU, 50, 50, "START");
+        BUTTON_HEIGHT, BUTTON_COLOR_R, BUTTON_COLOR_G, BUTTON_COLOR_B, MENU, "START");
 
-    button_manager.add_button(int(20.0 * AppManager::screen_width / 100.0), int(85.0 * AppManager::screen_height / 100.0), BUTTON_WIDTH, BUTTON_HEIGHT,
-        figure_drawer.current_color_red, figure_drawer.current_color_green, figure_drawer.current_color_blue, MAIN_APP, 20.0, 85.0, "COLOR");
+    button_manager.add_button(int(25.0 * AppManager::screen_width / 100.0), int(85.0 * AppManager::screen_height / 100.0), BUTTON_WIDTH, BUTTON_HEIGHT,
+        figure_drawer.current_color_red, figure_drawer.current_color_green, figure_drawer.current_color_blue, MAIN_APP, "COLOR");
 
     button_manager.add_button(int(2.0 * AppManager::screen_width / 100.0), int(80.0 * AppManager::screen_height / 100.0), BUTTON_WIDTH,
-        BUTTON_HEIGHT, BUTTON_COLOR_R, BUTTON_COLOR_G, BUTTON_COLOR_B, MAIN_APP, 2.0, 80.0, "DRAW");
+        BUTTON_HEIGHT, BUTTON_COLOR_R, BUTTON_COLOR_G, BUTTON_COLOR_B, MAIN_APP, "DRAW");
 
     button_manager.add_button(int(2.0 * AppManager::screen_width / 100.0), int(85.0 * AppManager::screen_height / 100.0), BUTTON_WIDTH,
-        BUTTON_HEIGHT, BUTTON_COLOR_R, BUTTON_COLOR_G, BUTTON_COLOR_B, MAIN_APP, 2.0, 85.0, "STOP");
+        BUTTON_HEIGHT, BUTTON_COLOR_R, BUTTON_COLOR_G, BUTTON_COLOR_B, MAIN_APP, "STOP");
 
     button_manager.add_button(int(2.0 * AppManager::screen_width / 100.0), int(90.0 * AppManager::screen_height / 100.0), BUTTON_WIDTH,
-        BUTTON_HEIGHT, BUTTON_COLOR_R, BUTTON_COLOR_G, BUTTON_COLOR_B, MAIN_APP, 2.0, 90.0, "RADIUS+");
+        BUTTON_HEIGHT, BUTTON_COLOR_R, BUTTON_COLOR_G, BUTTON_COLOR_B, MAIN_APP, "RADIUS+");
 
     button_manager.add_button(int(12.0 * AppManager::screen_width / 100.0), int(90.0 * AppManager::screen_height / 100.0), BUTTON_WIDTH,
-        BUTTON_HEIGHT, BUTTON_COLOR_R, BUTTON_COLOR_G, BUTTON_COLOR_B, MAIN_APP, 12.0, 90.0, "RADIUS-");
+        BUTTON_HEIGHT, BUTTON_COLOR_R, BUTTON_COLOR_G, BUTTON_COLOR_B, MAIN_APP, "RADIUS-");
 
     button_manager.add_button(int(2.0 * AppManager::screen_width / 100.0), int(95.0 * AppManager::screen_height / 100.0), BUTTON_WIDTH,
-        BUTTON_HEIGHT, BUTTON_COLOR_R, BUTTON_COLOR_G, BUTTON_COLOR_B, MAIN_APP, 2.0, 95.0, "SIDES+");
+        BUTTON_HEIGHT, BUTTON_COLOR_R, BUTTON_COLOR_G, BUTTON_COLOR_B, MAIN_APP, "SIDES+");
 
     button_manager.add_button(int(12.0 * AppManager::screen_width / 100.0), int(95.0 * AppManager::screen_height / 100.0), BUTTON_WIDTH,
-        BUTTON_HEIGHT, BUTTON_COLOR_R, BUTTON_COLOR_G, BUTTON_COLOR_B, MAIN_APP, 12.0, 95.0, "SIDES-");
+        BUTTON_HEIGHT, BUTTON_COLOR_R, BUTTON_COLOR_G, BUTTON_COLOR_B, MAIN_APP, "SIDES-");
 
     button_manager.add_button(int(12.0 * AppManager::screen_width / 100.0), int(80.0 * AppManager::screen_height / 100.0), BUTTON_WIDTH,
-        BUTTON_HEIGHT, BUTTON_COLOR_R, BUTTON_COLOR_G, BUTTON_COLOR_B, MAIN_APP, 12.0, 80.0, "SAVE");
+        BUTTON_HEIGHT, BUTTON_COLOR_R, BUTTON_COLOR_G, BUTTON_COLOR_B, MAIN_APP, "SAVE");
 
     button_manager.add_button(int(12.0 * AppManager::screen_width / 100.0), int(85.0 * AppManager::screen_height / 100.0), BUTTON_WIDTH,
-        BUTTON_HEIGHT, BUTTON_COLOR_R, BUTTON_COLOR_G, BUTTON_COLOR_B, MAIN_APP, 12.0, 85.0, "LOAD");
-
-    button_manager.add_button(int(36.0 * AppManager::screen_width / 100.0), int(85.0 * AppManager::screen_height / 100.0), BUTTON_WIDTH,
-        BUTTON_HEIGHT, BUTTON_COLOR_R, BUTTON_COLOR_G, BUTTON_COLOR_B, MAIN_APP, 36.0, 85.0, "ANGLE");
+        BUTTON_HEIGHT, BUTTON_COLOR_R, BUTTON_COLOR_G, BUTTON_COLOR_B, MAIN_APP,  "LOAD");
 
     button_manager.add_button(int(50.0 * AppManager::screen_width / 100.0), int(85.0 * AppManager::screen_height / 100.0), BUTTON_WIDTH,
-        BUTTON_HEIGHT, BUTTON_COLOR_R, BUTTON_COLOR_G, BUTTON_COLOR_B, MAIN_APP, 50.0, 85.0, "MOVE");
+        BUTTON_HEIGHT, BUTTON_COLOR_R, BUTTON_COLOR_G, BUTTON_COLOR_B, MAIN_APP, "ANGLE");
+
+    button_manager.add_button(int(72.0 * AppManager::screen_width / 100.0), int(85.0 * AppManager::screen_height / 100.0), BUTTON_WIDTH,
+        BUTTON_HEIGHT, BUTTON_COLOR_R, BUTTON_COLOR_G, BUTTON_COLOR_B, MAIN_APP, "MOVE");
 
 
 }
 
 void add_all_sliders() {
-    slider_manager.add_slider(400, 650, 100, 12, 10, 1, 0, 0, MAIN_APP);
-    slider_manager.add_slider(400, 700, 100, 12, 10, 1, 0, 0, MAIN_APP);
-    slider_manager.add_slider(400, 750, 100, 12, 10, 1, 0, 0, MAIN_APP);
-    slider_manager.add_slider(650, 700, 100, 12, 10, 1, 0, 0, MAIN_APP);
+    slider_manager.add_slider(350, 650, 100, 12, 10, 1, 0, 0, MAIN_APP);
+    slider_manager.add_slider(350, 700, 100, 12, 10, 1, 0, 0, MAIN_APP);
+    slider_manager.add_slider(350, 750, 100, 12, 10, 1, 0, 0, MAIN_APP);
+    slider_manager.add_slider(600, 700, 100, 12, 10, 1, 0, 0, MAIN_APP);
 }
 
 
@@ -290,18 +290,6 @@ int verify_buttons(int button, int x, int y){
     return -1;
 }
 
-// position = position percentage compared to the screen (50% would be central, 100% would be right) * screen / 100;
-void update_res() {
-    // start button
-    button_manager.buttons[0].x0 = (AppManager::screen_width - START_BUTTON_WIDTH) / 2;
-    button_manager.buttons[0].y0 = (AppManager::screen_height - START_BUTTON_HEIGHT) / 2;
-
-    for (int i = 1; i < button_manager.buttons.size(); i++) {
-        button_manager.buttons[i].x0 = calc_position(button_manager.buttons[i].percentageW, 0, AppManager::screen_width, AppManager::screen_height);
-        button_manager.buttons[i].y0 = calc_position(button_manager.buttons[i].percentageH, 1, AppManager::screen_width, AppManager::screen_height);
-    }
-}
-
 
 
 
@@ -348,7 +336,6 @@ void render()
    }
 
 
-   update_res();
    delay_manager();
 }
 

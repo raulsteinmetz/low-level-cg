@@ -10,7 +10,7 @@ public:
     ButtonManager();
 
     // Add a new button to the list
-    void add_button(int x0, int y0, int width, int height, float r, float g, float b, int app, float percentageW, float percentageH, const std::string& name);
+    void add_button(int x0, int y0, int width, int height, float r, float g, float b, int app, const std::string& name);
 
     // Remove a button from the list
     void remove_button(int index);
