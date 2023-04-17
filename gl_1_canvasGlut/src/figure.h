@@ -1,7 +1,10 @@
 #ifndef FIGURE_H
 #define FIGURE_H
 
-#include <string> // Add this line
+#include <string>
+#include <iostream>
+#include <fstream>
+#include <string>
 
 #define DRAW_FUNCTION_DELAY 500
 // figures
@@ -37,20 +40,34 @@ class Circle : public Figure {
 
 
 class FigureDrawer {
-   public:
-      float current_color_red;
-      float current_color_green;
-      float current_color_blue;
-      float current_radius;
-      float current_sides;
-      float angle;
-      Circle circles[MAX_CIRCLES];
-      int n_circles;
-      int draw_delay;
-      FigureDrawer(float red, float green, float blue);
-      void add_circle(int x, int y);
-      void save_circles_to_file(const std::string& file_name);
-      void load_circles_from_file(const std::string& file_name);
+    public:
+        float current_color_red;
+        float current_color_green;
+        float current_color_blue;
+        float current_radius;
+        float current_sides;
+        float angle;
+        Circle circles[MAX_CIRCLES];
+        int n_circles;
+        int draw_delay;
+        FigureDrawer(float red, float green, float blue);
+        void add_circle(int x, int y);
+
+        void save_to_file(const std::string& file_name) {
+            std::ofstream file(file_name, std::ios::binary);
+            if (file.is_open()) {
+                file.write(reinterpret_cast<char*>(this), sizeof(FigureDrawer));
+                file.close();
+            }
+        }
+
+        void load_from_file(const std::string& file_name) {
+            std::ifstream file(file_name, std::ios::binary);
+            if (file.is_open()) {
+                file.read(reinterpret_cast<char*>(this), sizeof(FigureDrawer));
+                file.close();
+            }
+        }
 };
 
 

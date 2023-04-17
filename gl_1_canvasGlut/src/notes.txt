@@ -1,3 +1,2 @@
 sistema de carregar e salvar com problema do nada
 limpar o codigo
-ajeitar fps

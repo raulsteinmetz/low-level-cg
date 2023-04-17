@@ -222,13 +222,13 @@ void button_callback(int id, int x, int y) {
         }
         case 8: {
             if (AppManager::current_function == FUNCTION_NONE) {
-                //figure_drawer.save_circles_to_file("./circles.dat");
+                figure_drawer.save_to_file("./alunos.dat");
             }
             break;
         }
         case 9: {
             if (AppManager::current_function == FUNCTION_NONE) {
-                //figure_drawer.load_circles_from_file("./circles.dat");
+                figure_drawer.load_from_file("./alunos.dat");
             }
             break;
         }
