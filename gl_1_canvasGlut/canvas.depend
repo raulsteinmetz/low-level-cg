@@ -40,7 +40,7 @@
 1681740849 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\button.h
 	"string"
 
-1681759796 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\main.cpp
+1681749953 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\main.cpp
 	<GL/glut.h>
 	<GL/freeglut_ext.h>
 	<stdio.h>
@@ -58,7 +58,7 @@
 	"slider_manager.h"
 	"Frames.h"
 
-1681759858 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\figure.h
+1681749921 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\figure.h
 	<string>
 	<iostream>
 	<fstream>

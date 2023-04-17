@@ -53,23 +53,41 @@ class FigureDrawer {
         FigureDrawer(float red, float green, float blue);
         void add_circle(int x, int y);
 
-        void save_to_file(const std::string& file_name) {
+        void save_to_file(const std::string& file_name, const std::string& key) {
             std::ofstream file(file_name, std::ios::binary);
             if (file.is_open()) {
-                file.write(reinterpret_cast<char*>(this), sizeof(FigureDrawer));
+                // XOR encryption
+                std::string data(reinterpret_cast<char*>(this), sizeof(FigureDrawer));
+                for (size_t i = 0; i < data.length(); i++) {
+                    data[i] ^= key[i % key.length()];
+                }
+                file << data;
                 file.close();
             }
         }
 
-        void load_from_file(const std::string& file_name) {
+        void load_from_file(const std::string& file_name, const std::string& key) {
             std::ifstream file(file_name, std::ios::binary);
             if (file.is_open()) {
-                file.read(reinterpret_cast<char*>(this), sizeof(FigureDrawer));
+                // Read the encrypted data into a string
+                std::string encrypted_data;
+                file.seekg(0, std::ios::end);
+                encrypted_data.resize(file.tellg());
+                file.seekg(0, std::ios::beg);
+                file.read(&encrypted_data[0], encrypted_data.size());
+
+                // Decrypt the data using the key
+                std::string data;
+                data.resize(encrypted_data.length());
+                for (size_t i = 0; i < encrypted_data.length(); i++) {
+                    data[i] = encrypted_data[i] ^ key[i % key.length()];
+                }
+
+                // Copy the decrypted data to this object
+                memcpy(reinterpret_cast<char*>(this), data.c_str(), sizeof(FigureDrawer));
                 file.close();
             }
         }
 };
-
-
 
 #endif // FIGURE_H
