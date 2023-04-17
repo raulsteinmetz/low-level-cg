@@ -13,6 +13,7 @@
 #include <string>
 #include "slider.h"
 #include "slider_manager.h"
+#include "Frames.h"
 
 
 int up_0_down_1 = 0;
@@ -29,12 +30,17 @@ int figure = -1;
 // mouse coordinates
 int mx, my;
 
+int fps;
+
 // figure drawer
 FigureDrawer figure_drawer(0, 1, 0);
 // button manager
 ButtonManager button_manager;
 // slider manager
 SliderManager slider_manager;
+
+Frames frames;
+
 void add_all_buttons() {
     button_manager.add_button((AppManager::screen_width - BUTTON_WIDTH) / 2, (AppManager::screen_height - BUTTON_HEIGHT) / 2, BUTTON_WIDTH,
         BUTTON_HEIGHT, BUTTON_COLOR_R, BUTTON_COLOR_G, BUTTON_COLOR_B, MENU, "START");
@@ -147,7 +153,7 @@ void button_callback(int id, int x, int y) {
     if (delay_bt > 0) {
         return; // Button delay is active, do nothing.
     }
-    delay_bt = BUTTON_DELAY;
+    delay_bt = int(fps / 6);
 
     if (AppManager::current_function == FUNCTION_MOVE) {
         printf("should have moved\n");
@@ -356,7 +362,7 @@ void render()
    else if (AppManager::app_state = MAIN_APP) { // main screen, no functions activated
       main_app_render(AppManager::screen_width, AppManager::screen_height);
    }
-
+    fps = frames.getFrames();
 
    delay_manager();
 }
