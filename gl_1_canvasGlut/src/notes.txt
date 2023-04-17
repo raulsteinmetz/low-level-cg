@@ -1,4 +1,3 @@
 sistema de carregar e salvar com problema do nada
-falta poder apagar o quadro e figuras separadas
-deixar tudo estatico e nao responsivo
 limpar o codigo
+ajeitar fps

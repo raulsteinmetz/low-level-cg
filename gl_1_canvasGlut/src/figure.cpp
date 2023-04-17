@@ -43,7 +43,7 @@ FigureDrawer::FigureDrawer(float red, float green, float blue){
 
 
 void FigureDrawer::add_circle(int x, int y){
-    if (n_circles == 20) {
+    if (n_circles == MAX_CIRCLES) {
             n_circles = 0;
     }
      circles[n_circles].cX = x;

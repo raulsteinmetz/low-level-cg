@@ -6,6 +6,7 @@
 #define DRAW_FUNCTION_DELAY 500
 // figures
 #define CIRCLE 0
+#define MAX_CIRCLES 100
 
 class Figure {
    public:
@@ -43,7 +44,7 @@ class FigureDrawer {
       float current_radius;
       float current_sides;
       float angle;
-      Circle circles[20];
+      Circle circles[MAX_CIRCLES];
       int n_circles;
       int draw_delay;
       FigureDrawer(float red, float green, float blue);

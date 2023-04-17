@@ -72,6 +72,9 @@ void add_all_buttons() {
     button_manager.add_button(int(72.0 * AppManager::screen_width / 100.0), int(85.0 * AppManager::screen_height / 100.0), BUTTON_WIDTH,
         BUTTON_HEIGHT, BUTTON_COLOR_R, BUTTON_COLOR_G, BUTTON_COLOR_B, MAIN_APP, "MOVE");
 
+    button_manager.add_button(int(82.0 * AppManager::screen_width / 100.0), int(85.0 * AppManager::screen_height / 100.0), BUTTON_WIDTH,
+        BUTTON_HEIGHT, BUTTON_COLOR_R, BUTTON_COLOR_G, BUTTON_COLOR_B, MAIN_APP, "CLEAN");
+
 
 }
 
@@ -118,7 +121,7 @@ void main_app_render(int width, int height){
    // preview
    Circle preview;
    preview.sides = figure_drawer.current_sides;
-   preview.radius = int (figure_drawer.current_radius / PREVIEW_RADIUS_DIV);
+   preview.radius = figure_drawer.current_radius;
    preview.colorR = figure_drawer.current_color_red;
    preview.colorG = figure_drawer.current_color_green;
    preview.colorB = figure_drawer.current_color_blue;
@@ -228,6 +231,25 @@ void button_callback(int id, int x, int y) {
                 AppManager::current_function = FUNCTION_MOVE;
             }
             break;
+        }
+        case 12: {
+            if (AppManager::current_function == FUNCTION_NONE) {
+                figure_drawer.n_circles = 0;
+            } else if (AppManager::current_function == FUNCTION_MODIFY) {
+                for (int i = figure; i < figure_drawer.n_circles; i++) {
+                    figure_drawer.circles[i].colorB = figure_drawer.circles[i + 1].colorB;
+                    figure_drawer.circles[i].colorR = figure_drawer.circles[i + 1].colorR;
+                    figure_drawer.circles[i].colorG = figure_drawer.circles[i + 1].colorG;
+                    figure_drawer.circles[i].angle = figure_drawer.circles[i + 1].angle;
+                    figure_drawer.circles[i].radius = figure_drawer.circles[i + 1].radius;
+                    figure_drawer.circles[i].cX = figure_drawer.circles[i + 1].cX;
+                    figure_drawer.circles[i].cY = figure_drawer.circles[i + 1].cY;
+                    figure_drawer.circles[i].sides = figure_drawer.circles[i + 1].sides;
+                }
+                figure_drawer.n_circles -= 1;
+                figure = -1;
+                AppManager::current_function = FUNCTION_NONE;
+            }
         }
         default: { // Figure selection or modification
             if (AppManager::current_function == FUNCTION_NONE) {
