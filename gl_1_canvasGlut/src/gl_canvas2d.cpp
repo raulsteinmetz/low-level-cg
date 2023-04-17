@@ -16,6 +16,7 @@
 #include "gl_canvas2d.h"
 #include <GL/glut.h>
 
+
 int *scrWidth, *scrHeight; //guarda referencia para as variaveis de altura e largura da main()
 
 //conjunto de cores predefinidas. Pode-se adicionar mais cores.

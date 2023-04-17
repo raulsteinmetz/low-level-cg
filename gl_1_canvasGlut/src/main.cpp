@@ -238,7 +238,7 @@ void button_callback(int id, int x, int y) {
                     slider_manager.sliders[0].value = figure_drawer.circles[figure].colorR;
                     slider_manager.sliders[1].value = figure_drawer.circles[figure].colorG;
                     slider_manager.sliders[2].value = figure_drawer.circles[figure].colorB;
-                    slider_manager.sliders[3].value = figure_drawer.circles[figure].angle / 4;
+                    slider_manager.sliders[3].value = figure_drawer.circles[figure].angle / 3;
                 }
             }
             else if (AppManager::current_function == FUNCTION_DRAW) {
@@ -262,14 +262,14 @@ void button_callback(int id, int x, int y) {
         figure_drawer.current_color_green = slider_manager.sliders[1].value;
         button_manager.buttons[1].colorB = slider_manager.sliders[2].value;
         figure_drawer.current_color_blue = slider_manager.sliders[2].value;
-        figure_drawer.angle = slider_manager.sliders[3].value * 4;
+        figure_drawer.angle = slider_manager.sliders[3].value * 3;
     }
 
     if (AppManager::current_function == FUNCTION_MODIFY) {
         figure_drawer.circles[figure].colorR = slider_manager.sliders[0].value;
         figure_drawer.circles[figure].colorG = slider_manager.sliders[1].value;
         figure_drawer.circles[figure].colorB = slider_manager.sliders[2].value;
-        figure_drawer.circles[figure].angle = slider_manager.sliders[3].value * 4;
+        figure_drawer.circles[figure].angle = slider_manager.sliders[3].value * 3;
 
     }
 }

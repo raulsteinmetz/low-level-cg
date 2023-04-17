@@ -40,7 +40,7 @@
 1681646397 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\button.h
 	"string"
 
-1681736635 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\main.cpp
+1681740006 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\main.cpp
 	<GL/glut.h>
 	<GL/freeglut_ext.h>
 	<stdio.h>
@@ -69,7 +69,7 @@
 	<fstream>
 	<iostream>
 
-1681735639 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\app_manager.h
+1681737199 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\app_manager.h
 
 1681049172 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\app_manager.cpp
 	"app_manager.h"
