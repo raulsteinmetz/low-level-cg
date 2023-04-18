@@ -25,7 +25,12 @@ Circle::Circle(int cX, int cY, int sides, int radius, float r, float g, float b,
 
 void Circle::draw(){
     CV::color(colorR, colorG, colorB);
-    CV::circleFill(cX, cY, radius, sides, angle);
+    if (this->filled == 1) {
+        CV::circleFill(cX, cY, radius, sides, angle);
+    }
+    else {
+        CV::circle(cX, cY, radius, sides, angle);
+    }
 }
 
 
@@ -39,6 +44,7 @@ FigureDrawer::FigureDrawer(float red, float green, float blue){
          this->current_radius = 20;
          this->current_sides = 20;
          this->angle = 0;
+         this->fill = 0;
 }
 
 
@@ -54,6 +60,7 @@ void FigureDrawer::add_circle(int x, int y){
      circles[n_circles].radius = current_radius;
      circles[n_circles].sides = current_sides;
      circles[n_circles].angle = angle;
+     circles[n_circles].filled = this->fill;
      n_circles++;
 }
 

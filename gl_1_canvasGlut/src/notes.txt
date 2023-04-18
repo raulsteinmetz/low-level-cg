@@ -1,2 +1,3 @@
-sistema de carregar e salvar com problema do nada
+fill
+uma figura ir pra frente (reverter print das figuras, n_circles -> zero) (adicionar função que poe a figura que está sendo modificada em ultimo da lista de circulos)
 limpar o codigo

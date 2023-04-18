@@ -1,9 +1,9 @@
 # depslib dependency file v1.0
-1681740012 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\gl_canvas2d.cpp
+1681850672 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\gl_canvas2d.cpp
 	"gl_canvas2d.h"
 	<GL/glut.h>
 
-1681734170 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\gl_canvas2d.h
+1681850672 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\gl_canvas2d.h
 	<stdio.h>
 	<stdlib.h>
 	<math.h>
@@ -12,10 +12,10 @@
 	<GL/freeglut_ext.h>
 	"Vector2.h"
 
-1426372440 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\include\gl\glut.h
+1681850672 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\include\gl\glut.h
 	"freeglut_std.h"
 
-1437579942 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\include\gl\freeglut_std.h
+1681850672 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\include\gl\freeglut_std.h
 	<windows.h>
 	<EGL/egl.h>
 	<GLES/gl.h>
@@ -26,21 +26,21 @@
 	<GL/glu.h>
 	<stdlib.h>
 
-1426372440 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\include\gl\freeglut_ext.h
+1681850672 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\include\gl\freeglut_ext.h
 	<stdarg.h>
 
-1680117592 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\vector2.h
+1681850672 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\vector2.h
 
-1681740869 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\button.cpp
+1681850672 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\button.cpp
 	"button.h"
 	"gl_canvas2d.h"
 	<GL/glut.h>
 	<GL/freeglut_ext.h>
 
-1681740849 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\button.h
+1681850672 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\button.h
 	"string"
 
-1681749953 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\main.cpp
+1681844416 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\main.cpp
 	<GL/glut.h>
 	<GL/freeglut_ext.h>
 	<stdio.h>
@@ -58,13 +58,14 @@
 	"slider_manager.h"
 	"Frames.h"
 
-1681749921 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\figure.h
+1681843671 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\figure.h
 	<string>
 	<iostream>
 	<fstream>
 	<string>
+	<cstring>
 
-1681756268 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\figure.cpp
+1681843773 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\figure.cpp
 	"figure.h"
 	"gl_canvas2d.h"
 	<GL/glut.h>
@@ -73,43 +74,43 @@
 	<fstream>
 	<iostream>
 
-1681741184 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\app_manager.h
+1681843879 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\app_manager.h
 
 1681049172 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\app_manager.cpp
 	"app_manager.h"
 
-1681096717 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\interface.cpp
+1681850672 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\interface.cpp
 
-1681740893 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\button_manager.cpp
+1681850672 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\button_manager.cpp
 	"button_manager.h"
 
-1681740911 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\button_manager.h
+1681850672 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\button_manager.h
 	<vector>
 	"button.h"
 
-1681647335 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\interface.h
+1681850672 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\interface.h
 
-1681063558 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\auxiliar_functions.h
+1681850672 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\auxiliar_functions.h
 
-1681063577 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\auxiliar_functions.cpp
+1681850672 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\auxiliar_functions.cpp
 	"auxiliar_functions.h"
 	"math.h"
 
-1681665827 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\slider.h
+1681850672 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\slider.h
 
-1681734204 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\slider.cpp
+1681850672 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\slider.cpp
 	"slider.h"
 	"gl_canvas2d.h"
 
-1681667813 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\slider_manager.cpp
+1681850672 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\slider_manager.cpp
 	"slider_manager.h"
 	"slider.h"
 
-1681667633 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\slider_manager.h
+1681850672 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\slider_manager.h
 	"Slider.h"
 	<vector>
 
-1531759395 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\frames.h
+1681850672 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\frames.h
 	<stdio.h>
 	<time.h>
 

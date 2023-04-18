@@ -45,7 +45,7 @@ void add_all_buttons() {
     button_manager.add_button((AppManager::screen_width - BUTTON_WIDTH) / 2, (AppManager::screen_height - BUTTON_HEIGHT) / 2, BUTTON_WIDTH,
         BUTTON_HEIGHT, BUTTON_COLOR_R, BUTTON_COLOR_G, BUTTON_COLOR_B, MENU, "START");
 
-    button_manager.add_button(int(25.0 * AppManager::screen_width / 100.0), int(85.0 * AppManager::screen_height / 100.0), BUTTON_WIDTH, BUTTON_HEIGHT,
+    button_manager.add_button(int(22.0 * AppManager::screen_width / 100.0), int(85.0 * AppManager::screen_height / 100.0), BUTTON_WIDTH, BUTTON_HEIGHT,
         figure_drawer.current_color_red, figure_drawer.current_color_green, figure_drawer.current_color_blue, MAIN_APP, "COLOR");
 
     button_manager.add_button(int(2.0 * AppManager::screen_width / 100.0), int(80.0 * AppManager::screen_height / 100.0), BUTTON_WIDTH,
@@ -72,14 +72,17 @@ void add_all_buttons() {
     button_manager.add_button(int(12.0 * AppManager::screen_width / 100.0), int(85.0 * AppManager::screen_height / 100.0), BUTTON_WIDTH,
         BUTTON_HEIGHT, BUTTON_COLOR_R, BUTTON_COLOR_G, BUTTON_COLOR_B, MAIN_APP,  "LOAD");
 
-    button_manager.add_button(int(50.0 * AppManager::screen_width / 100.0), int(85.0 * AppManager::screen_height / 100.0), BUTTON_WIDTH,
+    button_manager.add_button(int(42.0 * AppManager::screen_width / 100.0), int(85.0 * AppManager::screen_height / 100.0), BUTTON_WIDTH,
         BUTTON_HEIGHT, BUTTON_COLOR_R, BUTTON_COLOR_G, BUTTON_COLOR_B, MAIN_APP, "ANGLE");
 
-    button_manager.add_button(int(72.0 * AppManager::screen_width / 100.0), int(85.0 * AppManager::screen_height / 100.0), BUTTON_WIDTH,
+    button_manager.add_button(int(60.0 * AppManager::screen_width / 100.0), int(85.0 * AppManager::screen_height / 100.0), BUTTON_WIDTH,
         BUTTON_HEIGHT, BUTTON_COLOR_R, BUTTON_COLOR_G, BUTTON_COLOR_B, MAIN_APP, "MOVE");
 
-    button_manager.add_button(int(82.0 * AppManager::screen_width / 100.0), int(85.0 * AppManager::screen_height / 100.0), BUTTON_WIDTH,
+    button_manager.add_button(int(70.0 * AppManager::screen_width / 100.0), int(85.0 * AppManager::screen_height / 100.0), BUTTON_WIDTH,
         BUTTON_HEIGHT, BUTTON_COLOR_R, BUTTON_COLOR_G, BUTTON_COLOR_B, MAIN_APP, "CLEAN");
+
+    button_manager.add_button(int(80.0 * AppManager::screen_width / 100.0), int(85.0 * AppManager::screen_height / 100.0), BUTTON_WIDTH * 1.7,
+        BUTTON_HEIGHT, BUTTON_COLOR_R, BUTTON_COLOR_G, BUTTON_COLOR_B, MAIN_APP, "FILL/UNFILL");
 
 
 }
@@ -134,6 +137,7 @@ void main_app_render(int width, int height){
    preview.angle = figure_drawer.angle;
    preview.cX = calc_position(PREVIEW_X_PERCENT, 0, AppManager::screen_width, AppManager::screen_height);
    preview.cY = calc_position(PREVIEW_Y_PERCENT, 1, AppManager::screen_width, AppManager::screen_height);
+   preview.filled = figure_drawer.fill;
    preview.draw();
 
    slider_manager.draw_sliders(AppManager::app_state);
@@ -251,10 +255,26 @@ void button_callback(int id, int x, int y) {
                     figure_drawer.circles[i].cX = figure_drawer.circles[i + 1].cX;
                     figure_drawer.circles[i].cY = figure_drawer.circles[i + 1].cY;
                     figure_drawer.circles[i].sides = figure_drawer.circles[i + 1].sides;
+                    figure_drawer.circles[i].filled = figure_drawer.circles[i + 1].filled;
                 }
                 figure_drawer.n_circles -= 1;
                 figure = -1;
                 AppManager::current_function = FUNCTION_NONE;
+            }
+        }
+        case 13: {
+            if (AppManager::current_function == FUNCTION_NONE) {
+                if (figure_drawer.fill == 1) {
+                    figure_drawer.fill = 0;
+                } else {
+                    figure_drawer.fill = 1;
+                }
+            } else if (AppManager::current_function == FUNCTION_MODIFY) {
+                if(figure_drawer.circles[figure].filled == 1){
+                    figure_drawer.circles[figure].filled = 0;
+                } else {
+                    figure_drawer.circles[figure].filled = 1;
+                }
             }
         }
         default: { // Figure selection or modification

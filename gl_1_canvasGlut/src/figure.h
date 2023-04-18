@@ -5,6 +5,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <cstring>
 
 #define DRAW_FUNCTION_DELAY 500
 // figures
@@ -29,6 +30,7 @@ class Circle : public Figure {
       int sides;
       int radius;
       float angle;
+      int filled;
 
       Circle();
       Circle(int cX, int cY, int sides, int radius, float r, float g, float b, float angle);
@@ -47,6 +49,7 @@ class FigureDrawer {
         float current_radius;
         float current_sides;
         float angle;
+        int fill;
         Circle circles[MAX_CIRCLES];
         int n_circles;
         int draw_delay;
