@@ -84,6 +84,9 @@ void add_all_buttons() {
     button_manager.add_button(int(80.0 * AppManager::screen_width / 100.0), int(85.0 * AppManager::screen_height / 100.0), BUTTON_WIDTH * 1.7,
         BUTTON_HEIGHT, BUTTON_COLOR_R, BUTTON_COLOR_G, BUTTON_COLOR_B, MAIN_APP, "FILL/UNFILL");
 
+    button_manager.add_button(int(70.0 * AppManager::screen_width / 100.0), int(90.0 * AppManager::screen_height / 100.0), BUTTON_WIDTH,
+        BUTTON_HEIGHT, BUTTON_COLOR_R, BUTTON_COLOR_G, BUTTON_COLOR_B, MAIN_APP, "UP");
+
 
 }
 
@@ -275,6 +278,43 @@ void button_callback(int id, int x, int y) {
                 } else {
                     figure_drawer.circles[figure].filled = 1;
                 }
+            }
+        }
+        case 14: {
+            if (AppManager::current_function == FUNCTION_MODIFY) {
+                printf("HERE");
+                Circle aux(0, 0, 0, 0, 0, 0, 0, 0);
+                aux.colorR = figure_drawer.circles[figure].colorR;
+                aux.colorB = figure_drawer.circles[figure].colorB;
+                aux.colorG = figure_drawer.circles[figure].colorG;
+                aux.angle = figure_drawer.circles[figure].angle;
+                aux.radius = figure_drawer.circles[figure].radius;
+                aux.cX = figure_drawer.circles[figure].cX;
+                aux.cY = figure_drawer.circles[figure].cY;
+                aux.sides = figure_drawer.circles[figure].sides;
+                aux.filled = figure_drawer.circles[figure].filled;
+
+                for (int i = figure; i < figure_drawer.n_circles; i++) {
+                    figure_drawer.circles[i].colorB = figure_drawer.circles[i + 1].colorB;
+                    figure_drawer.circles[i].colorR = figure_drawer.circles[i + 1].colorR;
+                    figure_drawer.circles[i].colorG = figure_drawer.circles[i + 1].colorG;
+                    figure_drawer.circles[i].angle = figure_drawer.circles[i + 1].angle;
+                    figure_drawer.circles[i].radius = figure_drawer.circles[i + 1].radius;
+                    figure_drawer.circles[i].cX = figure_drawer.circles[i + 1].cX;
+                    figure_drawer.circles[i].cY = figure_drawer.circles[i + 1].cY;
+                    figure_drawer.circles[i].sides = figure_drawer.circles[i + 1].sides;
+                    figure_drawer.circles[i].filled = figure_drawer.circles[i + 1].filled;
+                }
+                figure_drawer.circles[figure_drawer.n_circles].colorB = aux.colorB;
+                figure_drawer.circles[figure_drawer.n_circles - 1].colorR = aux.colorR;
+                figure_drawer.circles[figure_drawer.n_circles - 1].colorG = aux.colorG;
+                figure_drawer.circles[figure_drawer.n_circles - 1].angle = aux.angle;
+                figure_drawer.circles[figure_drawer.n_circles - 1].radius = aux.radius;
+                figure_drawer.circles[figure_drawer.n_circles - 1].cX = aux.cX;
+                figure_drawer.circles[figure_drawer.n_circles - 1].cY = aux.cY;
+                figure_drawer.circles[figure_drawer.n_circles - 1].sides = aux.sides;
+                figure_drawer.circles[figure_drawer.n_circles - 1].filled = aux.filled;
+                figure = figure_drawer.n_circles - 1;
             }
         }
         default: { // Figure selection or modification
