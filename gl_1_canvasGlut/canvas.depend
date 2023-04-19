@@ -58,7 +58,7 @@
 	"slider_manager.h"
 	"Frames.h"
 
-1681843671 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\figure.h
+1681934546 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\figure.h
 	<string>
 	<iostream>
 	<fstream>
@@ -106,7 +106,7 @@
 	"slider_manager.h"
 	"slider.h"
 
-1681850672 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\slider_manager.h
+1681934322 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_1_canvasglut\src\slider_manager.h
 	"Slider.h"
 	<vector>
 

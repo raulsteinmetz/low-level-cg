@@ -22,12 +22,12 @@ public:
     float colorR;
     float colorG;
     float colorB;
-    std::string name; // new member variable
+    std::string name;
 
     Button();
     Button(int x0, int y0, int width, int height, float r, float g, float b, int app, const std::string& name); // updated constructor
-    void draw();
-    void highlight();
+    void draw(); // desenhar botao
+    void highlight(); // indicar botao selecionado
 };
 
 

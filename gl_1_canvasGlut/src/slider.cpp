@@ -8,8 +8,11 @@
 #define HIGHLIGHT_FACTOR 2
 #define CIRCLE_OFFSET_Y -4
 
-Slider::Slider(){}
 
+// Classe Slider
+
+// Construtor
+Slider::Slider(){}
 Slider::Slider(int x0, int y0, int bar_width, int bar_height, int circle_radius, float r, float g, float b, int app){
     this->x0 = x0;
     this->y0 = y0;
@@ -24,6 +27,7 @@ Slider::Slider(int x0, int y0, int bar_width, int bar_height, int circle_radius,
     this->app = app;
 }
 
+// Desenha o Slider
 void Slider::draw() {
     CV::color(this->colorR, this->colorG, this->colorB);
     CV::rectFill(this->x0, this->y0, this->x0 + this->bar_width, this->y0 + this->bar_height);
@@ -34,32 +38,34 @@ void Slider::draw() {
     CV::color(1, 1, 1);
 }
 
+// Sinaliza o Slider quando o mouse passa em cima
 void Slider::highlight(){
     CV::color(HIGHLIGHT_R, HIGHLIGHT_G, HIGHLIGHT_B);
     CV::circleFill(this->circle_x, this->circle_y, this->circle_radius + HIGHLIGHT_FACTOR , SIDES, 0);
     draw();
 }
 
+// Descobrir porcentagem do slider a partir da coordenada
 float Slider::getValueFromCircleX(float circle_x) {
     float slider_range = this->bar_width - (2 * this->circle_radius);
     float value = (circle_x - this->x0 - this->circle_radius) / slider_range;
     return value;
 }
 
+// Descobrir coordenada a partir da porcentagem do Slider
 float Slider::getCircleXFromValue() {
     float slider_range = this->bar_width - (2 * this->circle_radius);
     float circle_x = this->x0 + this->circle_radius + (this->value * slider_range);
     return circle_x;
 }
 
+// Verifica se o mouse click foi no slider
 bool Slider::checkInteraction(int x, int y) {
-    // Calculate the distance from the (x, y) point to the center of the circle
     float dx = x - this->circle_x;
     float dy = y - this->y0;
 
     float distance = sqrt(dx * dx + dy * dy);
 
-    // Check if the distance is less than or equal to the radius of the circle
     if (distance <= this->circle_radius) {
         return true;
     } else {
@@ -67,21 +73,18 @@ bool Slider::checkInteraction(int x, int y) {
     }
 }
 
+// Atualiza posicao do slider
 void Slider::updateCirclePosition(int mx) {
-    // Calculate the new position of the circle based on the mouse x coordinate
     int new_circle_x = mx - this->circle_radius;
 
-    // Make sure the circle does not go beyond the bounds of the slider bar
     if (new_circle_x < this->x0 + this->circle_radius) {
         new_circle_x = this->x0 + this->circle_radius;
     } else if (new_circle_x > this->x0 + this->bar_width - this->circle_radius) {
         new_circle_x = this->x0 + this->bar_width - this->circle_radius;
     }
 
-    // Update the position of the circle
     this->circle_x = new_circle_x;
 
-    // Update the value of the slider based on the new position of the circle
     float slider_range = this->bar_width - (2 * this->circle_radius);
     this->value = getValueFromCircleX(new_circle_x);
 }

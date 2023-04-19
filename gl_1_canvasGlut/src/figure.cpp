@@ -2,14 +2,15 @@
 #include "gl_canvas2d.h"
 #include <GL/glut.h>
 #include <GL/freeglut_ext.h>
-#include <string> // Add this line
+#include <string>
 #include <fstream>
 #include <iostream>
 
-// FIGURE
 
+// Figure, Circle, Figure Manager
+
+// Classe mae das figuras
 Figure::Figure(){}
-
 Figure::Figure(float r, float g, float b){
     this->colorR = r;
     this->colorB = b;
@@ -17,12 +18,10 @@ Figure::Figure(float r, float g, float b){
 }
 
 
-// CIRCLE
-
+// Classe circulo
 Circle::Circle(){}
-
 Circle::Circle(int cX, int cY, int sides, int radius, float r, float g, float b, float angle) : Figure(r, g, b), cX(cX), cY(cY), sides(sides), radius(radius), angle(angle) {}
-
+// Desenhar o circulo
 void Circle::draw(){
     CV::color(colorR, colorG, colorB);
     if (this->filled == 1) {
@@ -34,8 +33,7 @@ void Circle::draw(){
 }
 
 
-// FIGURE DRAWER
-
+// Figure Manager
 FigureDrawer::FigureDrawer(float red, float green, float blue){
          this->current_color_red = red;
          this->current_color_green = green;
@@ -48,6 +46,7 @@ FigureDrawer::FigureDrawer(float red, float green, float blue){
 }
 
 
+// Adicionar Circulo no Manager de Figuras
 void FigureDrawer::add_circle(int x, int y){
     if (n_circles == MAX_CIRCLES) {
             n_circles = 0;
@@ -63,5 +62,4 @@ void FigureDrawer::add_circle(int x, int y){
      circles[n_circles].filled = this->fill;
      n_circles++;
 }
-
 

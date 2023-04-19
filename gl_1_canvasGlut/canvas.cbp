@@ -59,7 +59,6 @@
 		<Unit filename="src/figure.h" />
 		<Unit filename="src/gl_canvas2d.cpp" />
 		<Unit filename="src/gl_canvas2d.h" />
-		<Unit filename="src/interface.cpp" />
 		<Unit filename="src/interface.h" />
 		<Unit filename="src/main.cpp" />
 		<Unit filename="src/slider.cpp" />

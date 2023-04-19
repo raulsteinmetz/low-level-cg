@@ -17,17 +17,17 @@
 
 class AppManager {
 public:
-    // state
+    // estado da aplicacao
     static int app_state;
-    // function
+    // funcao de botao atual
     static int current_function;
-    // screen width
+    // largura da tela
     static int screen_width;
-    // screen height
+    // altura da tela
     static int screen_height;
 };
 
-// initialization of static class members
+// iniacializacao dos membros da classe estatica
 int AppManager::app_state = MENU;
 int AppManager::current_function = FUNCTION_NONE;
 int AppManager::screen_width = SCREENWIDTH;

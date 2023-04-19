@@ -9,19 +9,22 @@ public:
     std::vector<Button> buttons;
     ButtonManager();
 
-    // Add a new button to the list
+    // adiciona botao
     void add_button(int x0, int y0, int width, int height, float r, float g, float b, int app, const std::string& name);
 
-    // Remove a button from the list
+    // remove botao
     void remove_button(int index);
 
-    // Draw all buttons
+    // desenha todos os botoes
     void draw_buttons(int state);
 
+    // indicar botao selecionado
     void highlight_buttons(int x, int y, int state);
 
+    // responsividade, foi retirada
     void update_res();
 
+    // adicionar botoes
     void add_all_buttons();
 };
 
