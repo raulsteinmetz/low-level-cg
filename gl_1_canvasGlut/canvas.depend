@@ -40,7 +40,7 @@
 1681850672 c:\users\rauls\onedrive\Área de trabalho\compgrafica\gl_1_canvasglut\src\button.h
 	"string"
 
-1681898721 source:c:\users\rauls\onedrive\Área de trabalho\compgrafica\gl_1_canvasglut\src\main.cpp
+1681900040 source:c:\users\rauls\onedrive\Área de trabalho\compgrafica\gl_1_canvasglut\src\main.cpp
 	<GL/glut.h>
 	<GL/freeglut_ext.h>
 	<stdio.h>

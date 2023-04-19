@@ -16,6 +16,28 @@
 #include "Frames.h"
 
 
+
+/* REQUISITOS PREENCHIDOS NO TRABALHO
+
+Basicos:
+  inserir/excluir figura
+  cor da figura
+  preenchimento da figura
+  tamanho da figura
+  orientacao da figura (90 graus)
+  enviar para frente/traz
+  salvar e carregar em arquivo
+
+Extras
+  sinalizar qual figura esta selecionada
+  rotacionar a figura em qualquer angulo
+  permitir poligonos quais quer, desde que regulares e equilateros
+  criptografia no arquivo
+  sliders
+  mover figura
+*/
+
+
 int up_0_down_1 = 0;
 
 // global
@@ -229,13 +251,13 @@ void button_callback(int id, int x, int y) {
         }
         case 8: {
             if (AppManager::current_function == FUNCTION_NONE) {
-                figure_drawer.save_to_file("./alunos.dat", "key1");
+                figure_drawer.save_to_file("./figuras.gr", "key1");
             }
             break;
         }
         case 9: {
             if (AppManager::current_function == FUNCTION_NONE) {
-                figure_drawer.load_from_file("./alunos.dat", "key1");
+                figure_drawer.load_from_file("./figuras.gr", "key1");
             }
             break;
         }

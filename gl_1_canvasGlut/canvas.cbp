@@ -54,6 +54,7 @@
 		<Unit filename="src/button_manager.cpp" />
 		<Unit filename="src/button_manager.h" />
 		<Unit filename="src/circles.dat" />
+		<Unit filename="src/figuras.gr" />
 		<Unit filename="src/figure.cpp" />
 		<Unit filename="src/figure.h" />
 		<Unit filename="src/gl_canvas2d.cpp" />
