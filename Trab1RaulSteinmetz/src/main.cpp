@@ -31,114 +31,41 @@ Basicos:
 Extras
   sinalizar qual figura esta selecionada
   rotacionar a figura em qualquer angulo
-  permitir poligonos quais quer, desde que regulares e equilateros
+  permitir poligonos quaisquer, desde que regulares e equilateros
   criptografia no arquivo
   sliders
   mover figura
 */
 
+// VARIAVEIS GLOBAIS
 
-int up_0_down_1 = 0;
-
-// global
-int delay_bt = BUTTON_DELAY;
-// current figure to be drawed
-int current_figure = CIRCLE;
-// current highlighted button
-int current_hightlight = HIGHLIGHT_NONE;
-// modifying figures
-int figure = -1;
-
-// mouse coordinates
-int mx, my;
-
-int fps;
-
-// figure drawer
-FigureDrawer figure_drawer(0, 1, 0);
-// button manager
-ButtonManager button_manager;
-// slider manager
-SliderManager slider_manager;
-
-Frames frames;
-
-void add_all_buttons() {
-    button_manager.add_button((AppManager::screen_width - BUTTON_WIDTH) / 2, (AppManager::screen_height - BUTTON_HEIGHT) / 2, BUTTON_WIDTH,
-        BUTTON_HEIGHT, BUTTON_COLOR_R, BUTTON_COLOR_G, BUTTON_COLOR_B, MENU, "START");
-
-    button_manager.add_button(int(22.0 * AppManager::screen_width / 100.0), int(85.0 * AppManager::screen_height / 100.0), BUTTON_WIDTH, BUTTON_HEIGHT,
-        figure_drawer.current_color_red, figure_drawer.current_color_green, figure_drawer.current_color_blue, MAIN_APP, "COLOR");
-
-    button_manager.add_button(int(2.0 * AppManager::screen_width / 100.0), int(80.0 * AppManager::screen_height / 100.0), BUTTON_WIDTH,
-        BUTTON_HEIGHT, BUTTON_COLOR_R, BUTTON_COLOR_G, BUTTON_COLOR_B, MAIN_APP, "DRAW");
-
-    button_manager.add_button(int(2.0 * AppManager::screen_width / 100.0), int(85.0 * AppManager::screen_height / 100.0), BUTTON_WIDTH,
-        BUTTON_HEIGHT, BUTTON_COLOR_R, BUTTON_COLOR_G, BUTTON_COLOR_B, MAIN_APP, "STOP");
-
-    button_manager.add_button(int(2.0 * AppManager::screen_width / 100.0), int(90.0 * AppManager::screen_height / 100.0), BUTTON_WIDTH,
-        BUTTON_HEIGHT, BUTTON_COLOR_R, BUTTON_COLOR_G, BUTTON_COLOR_B, MAIN_APP, "RADIUS+");
-
-    button_manager.add_button(int(12.0 * AppManager::screen_width / 100.0), int(90.0 * AppManager::screen_height / 100.0), BUTTON_WIDTH,
-        BUTTON_HEIGHT, BUTTON_COLOR_R, BUTTON_COLOR_G, BUTTON_COLOR_B, MAIN_APP, "RADIUS-");
-
-    button_manager.add_button(int(2.0 * AppManager::screen_width / 100.0), int(95.0 * AppManager::screen_height / 100.0), BUTTON_WIDTH,
-        BUTTON_HEIGHT, BUTTON_COLOR_R, BUTTON_COLOR_G, BUTTON_COLOR_B, MAIN_APP, "SIDES+");
-
-    button_manager.add_button(int(12.0 * AppManager::screen_width / 100.0), int(95.0 * AppManager::screen_height / 100.0), BUTTON_WIDTH,
-        BUTTON_HEIGHT, BUTTON_COLOR_R, BUTTON_COLOR_G, BUTTON_COLOR_B, MAIN_APP, "SIDES-");
-
-    button_manager.add_button(int(12.0 * AppManager::screen_width / 100.0), int(80.0 * AppManager::screen_height / 100.0), BUTTON_WIDTH,
-        BUTTON_HEIGHT, BUTTON_COLOR_R, BUTTON_COLOR_G, BUTTON_COLOR_B, MAIN_APP, "SAVE");
-
-    button_manager.add_button(int(12.0 * AppManager::screen_width / 100.0), int(85.0 * AppManager::screen_height / 100.0), BUTTON_WIDTH,
-        BUTTON_HEIGHT, BUTTON_COLOR_R, BUTTON_COLOR_G, BUTTON_COLOR_B, MAIN_APP,  "LOAD");
-
-    button_manager.add_button(int(42.0 * AppManager::screen_width / 100.0), int(85.0 * AppManager::screen_height / 100.0), BUTTON_WIDTH,
-        BUTTON_HEIGHT, BUTTON_COLOR_R, BUTTON_COLOR_G, BUTTON_COLOR_B, MAIN_APP, "ANGLE");
-
-    button_manager.add_button(int(60.0 * AppManager::screen_width / 100.0), int(85.0 * AppManager::screen_height / 100.0), BUTTON_WIDTH,
-        BUTTON_HEIGHT, BUTTON_COLOR_R, BUTTON_COLOR_G, BUTTON_COLOR_B, MAIN_APP, "MOVE");
-
-    button_manager.add_button(int(70.0 * AppManager::screen_width / 100.0), int(85.0 * AppManager::screen_height / 100.0), BUTTON_WIDTH,
-        BUTTON_HEIGHT, BUTTON_COLOR_R, BUTTON_COLOR_G, BUTTON_COLOR_B, MAIN_APP, "CLEAN");
-
-    button_manager.add_button(int(80.0 * AppManager::screen_width / 100.0), int(85.0 * AppManager::screen_height / 100.0), BUTTON_WIDTH * 1.7,
-        BUTTON_HEIGHT, BUTTON_COLOR_R, BUTTON_COLOR_G, BUTTON_COLOR_B, MAIN_APP, "FILL/UNFILL");
-
-    button_manager.add_button(int(70.0 * AppManager::screen_width / 100.0), int(90.0 * AppManager::screen_height / 100.0), BUTTON_WIDTH,
-        BUTTON_HEIGHT, BUTTON_COLOR_R, BUTTON_COLOR_G, BUTTON_COLOR_B, MAIN_APP, "UP");
-
-
-}
-
-void add_all_sliders() {
-    slider_manager.add_slider(350, 650, 100, 12, 10, 1, 0, 0, MAIN_APP);
-    slider_manager.add_slider(350, 700, 100, 12, 10, 1, 0, 0, MAIN_APP);
-    slider_manager.add_slider(350, 750, 100, 12, 10, 1, 0, 0, MAIN_APP);
-    slider_manager.add_slider(600, 700, 100, 12, 10, 1, 0, 0, MAIN_APP);
-}
+int up_0_down_1 = 0; // variavel para saber se o botao foi pressionado ou solto
+int delay_bt = 0; // variavel que controla delays de mouse click na aplicacao
+int current_figure = CIRCLE; // figura a ser desenhada
+int current_hightlight = HIGHLIGHT_NONE; // botao indicado (o que o mouse esta em cima)
+int figure = -1; // figura sendo modificada
+int mx, my; // coordenadas do mouse
+int fps; // fps da aplicacao
+FigureDrawer figure_drawer(0, 1, 0); // manager de figuras
+ButtonManager button_manager; // manager de botoes
+SliderManager slider_manager; // manager de sliders
+Frames frames; // controle de fps
 
 
 
+// render menu
 void menu_render(int width, int height) {
-    // paint screen
     CV::color(MENU_RED, MENU_GREEN, MENU_BLUE);
     CV::rectFill(0, 0, width, height);
-
-    // draw start button
     button_manager.draw_buttons(AppManager::app_state);
     button_manager.highlight_buttons(mx, my, AppManager::app_state);
 
 }
 
+// render aplicacao
 void main_app_render(int width, int height){
-   // paint screen
    CV::color(MAIN_APP_RED, MAIN_APP_GREEN, MAIN_APP_BLUE);
    CV::rectFill(0, 0, width, height);
-
-
-   // figures
    for (int i = 0; i < figure_drawer.n_circles; i++) {
       if (figure != -1) {
          if (figure == i) {
@@ -148,11 +75,10 @@ void main_app_render(int width, int height){
       }
       figure_drawer.circles[i].draw();
    }
-
    button_manager.draw_buttons(AppManager::app_state);
    button_manager.highlight_buttons(mx, my, AppManager::app_state);
 
-   // preview
+   // preview da figura a ser desenhada
    Circle preview;
    preview.sides = figure_drawer.current_sides;
    preview.radius = figure_drawer.current_radius;
@@ -169,6 +95,7 @@ void main_app_render(int width, int height){
    slider_manager.handle_move(mx, my, AppManager::app_state);
 }
 
+// encontrar figura selecionada
 int find_figure(int x, int y) {
    for (int i = 0; i < figure_drawer.n_circles; i++) {
       if (distance(x, y, figure_drawer.circles[i].cX, figure_drawer.circles[i].cY) < figure_drawer.circles[i].radius) {
@@ -178,14 +105,14 @@ int find_figure(int x, int y) {
    return -1;
 }
 
+// funcionalidades dos botoes
 void button_callback(int id, int x, int y) {
     if (delay_bt > 0) {
-        return; // Button delay is active, do nothing.
+        return;
     }
     delay_bt = int(fps / 6);
 
     if (AppManager::current_function == FUNCTION_MOVE) {
-        printf("should have moved\n");
         figure_drawer.circles[figure].cX = x;
         figure_drawer.circles[figure].cY = y;
         AppManager::current_function = FUNCTION_MODIFY;
@@ -198,7 +125,6 @@ void button_callback(int id, int x, int y) {
             break;
         }
         case 1: { // Color button
-            // Not implemented yet.
             break;
         }
         case 2: { // Draw function button
@@ -249,25 +175,25 @@ void button_callback(int id, int x, int y) {
             }
             break;
         }
-        case 8: {
+        case 8: { // Save Button
             if (AppManager::current_function == FUNCTION_NONE) {
                 figure_drawer.save_to_file("./figuras.gr", "key1");
             }
             break;
         }
-        case 9: {
+        case 9: { // Load Button
             if (AppManager::current_function == FUNCTION_NONE) {
                 figure_drawer.load_from_file("./figuras.gr", "key1");
             }
             break;
         }
-        case 11: {
+        case 11: { // Angle button, does nothing really
             if (AppManager::current_function == FUNCTION_MODIFY) {
                 AppManager::current_function = FUNCTION_MOVE;
             }
             break;
         }
-        case 12: {
+        case 12: { // Clean Button
             if (AppManager::current_function == FUNCTION_NONE) {
                 figure_drawer.n_circles = 0;
             } else if (AppManager::current_function == FUNCTION_MODIFY) {
@@ -287,7 +213,7 @@ void button_callback(int id, int x, int y) {
                 AppManager::current_function = FUNCTION_NONE;
             }
         }
-        case 13: {
+        case 13: { // Fill button
             if (AppManager::current_function == FUNCTION_NONE) {
                 if (figure_drawer.fill == 1) {
                     figure_drawer.fill = 0;
@@ -302,9 +228,8 @@ void button_callback(int id, int x, int y) {
                 }
             }
         }
-        case 14: {
+        case 14: { // Up
             if (AppManager::current_function == FUNCTION_MODIFY) {
-                printf("HERE");
                 Circle aux(0, 0, 0, 0, 0, 0, 0, 0);
                 aux.colorR = figure_drawer.circles[figure].colorR;
                 aux.colorB = figure_drawer.circles[figure].colorB;
@@ -365,6 +290,7 @@ void button_callback(int id, int x, int y) {
         }
     }
 
+    // controle dos sliders
     if(AppManager::current_function == FUNCTION_NONE) {
         button_manager.buttons[1].colorR = slider_manager.sliders[0].value;
         figure_drawer.current_color_red = slider_manager.sliders[0].value;
@@ -384,12 +310,11 @@ void button_callback(int id, int x, int y) {
     }
 }
 
-// verify button press
+// verifica se botao foi pressionado
 int verify_buttons(int button, int x, int y){
     if (button == 0) {
         for (int i = 0; i < button_manager.buttons.size(); i++) {
             if (check_button_position(x, y, button_manager.buttons[i]) && button_manager.buttons[i].app == AppManager::app_state) {
-                printf("CLICOU BOTAO! %d \n", i);
                 return i;
             }
         }
@@ -399,9 +324,6 @@ int verify_buttons(int button, int x, int y){
     }
     return -1;
 }
-
-
-
 
 // mouse call back
 void mouse(int button, int state, int wheel, int direction, int x, int y)
@@ -452,8 +374,8 @@ void render()
 // main
 int main(void)
 {
-    add_all_buttons();
-    add_all_sliders();
+    button_manager.add_all_buttons(AppManager::screen_width, AppManager::screen_height, MENU, MAIN_APP);
+    slider_manager.add_all_sliders(MAIN_APP);
     CV::init(&AppManager::screen_width, &AppManager::screen_height, "Canvas 2D");
     CV::run();
 }

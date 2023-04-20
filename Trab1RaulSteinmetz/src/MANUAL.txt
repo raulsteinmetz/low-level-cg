@@ -1,0 +1,39 @@
+Manual Trabalho 1 - Raul Steinmetz
+
+REQUISITOS PREENCHIDOS NO TRABALHO
+
+Basicos:
+  inserir/excluir figura
+  cor da figura
+  preenchimento da figura
+  tamanho da figura
+  orientacao da figura (90 graus)
+  enviar para frente/traz
+  salvar e carregar em arquivo
+
+Extras
+  sinalizar qual figura esta selecionada
+  rotacionar a figura em qualquer angulo
+  permitir poligonos quaisquer, desde que regulares e equilateros
+  criptografia no arquivo
+  sliders
+  mover figura
+
+
+- Ao iniciar, clique no botão start, ele irá te levar para a aplicação principal
+- Para carregar o arquivo salvo, clique em LOAD
+- Para salvar um desenho, clique em SAVE
+- Para desenhar, clique em DRAW
+- Para parar de desenhar, clique em STOP
+- Para selecionar uma figura, a aplicação não pode estar em modo desenho (clique o STOP antes) depois disso, eh so clicar na figura
+- Os botoes RADIUS+ e RADIUS- controlam o tamanho das figuras, se nao tiver uma figura selecionada, ele modificara a figura
+que sera desenhada a seguir, esta pode ser vista no canto esquerdo em cima, tem uma preview do desenho
+- Os botoes SIDES+ e SIDES- controlam o formato da figura, e seguem a mesma logica que os botoes de tamanho
+- O botao MOVE move uma figura, para utilizar, selecione uma figura, clique em move uma vez, e clique no lugar da tela onde voce deseja
+que a figura esteja
+- O botao UP, traz uma figura para cima, se ela estiver em baixo de outra por exemplo, lembre, alguma figura deve estar selecionada
+- O botao FILL/UNFILL controla o preenchimanto da figura, segue a mesma logica que os botoes de tamanho e forma
+- O botao CLEAN, quando existe uma figura selecionada, apaga essa figura, caso contrario, apaga todas as figuras ("limpa o quadro")
+- Os sliders servem para alterar a cor e o angulo, seguem a mesma logica dos botoes de preenchimento, tamanho, forma. Para usar,
+clique na bolinha uma vez (nao arraste), ela movera junto com seu mouse, quando clicar novamente, o slider ira parar de mover,
+e o valor será modificado

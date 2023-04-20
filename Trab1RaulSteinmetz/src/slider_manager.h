@@ -31,6 +31,7 @@ public:
     void update_slider_circle_position(int mx);
     void handle_click(int x, int y, int state);
     void handle_move(int x, int y, int state);
+    void add_all_sliders(int main_app);
 };
 
 #endif // SLIDER_MANAGER_H

@@ -53,3 +53,10 @@ void SliderManager::handle_move(int x, int y, int state) {
     }
 }
 
+void SliderManager::add_all_sliders(int main_app) {
+    add_slider(350, 650, 100, 12, 10, 1, 0, 0, main_app);
+    add_slider(350, 700, 100, 12, 10, 1, 0, 0, main_app);
+    add_slider(350, 750, 100, 12, 10, 1, 0, 0, main_app);
+    add_slider(600, 700, 100, 12, 10, 1, 0, 0, main_app);
+}
+

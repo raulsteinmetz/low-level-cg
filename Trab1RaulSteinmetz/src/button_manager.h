@@ -25,7 +25,7 @@ public:
     void update_res();
 
     // adicionar botoes
-    void add_all_buttons();
+    void add_all_buttons(int screenWidth, int screenHeight, int state_menu, int state_app);
 };
 
 
