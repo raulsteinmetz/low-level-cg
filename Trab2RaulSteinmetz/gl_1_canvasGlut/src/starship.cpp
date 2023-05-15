@@ -9,12 +9,15 @@ Starship::Starship(double max_speed, double current_speed, int missile_delay,
                    int bullet_delay, int bullet_power, int missile_power, int hp, float px, float py, float radius)
                    : max_speed(max_speed), current_speed(current_speed), missile_delay(missile_delay),
                      bullet_delay(bullet_delay), bullet_power(bullet_power), missile_power(missile_power),
-                     hp(hp), radius(radius)
+                     hp(hp), radius(radius), px(px), py(py)
 {
     angle = 270.0;
+    updatePos();
+}
+
+void Starship::updatePos() {
     float rad = angle_to_radians(angle);
     float spacing = 360.0 / 3.0;
-
 
     for (int i = 0; i < 3; i++) {
         polygon_x[i] = px + radius * cos(rad);
@@ -22,9 +25,14 @@ Starship::Starship(double max_speed, double current_speed, int missile_delay,
         rad += angle_to_radians(spacing);
     }
 
+    gun_x = polygon_x[0];
+    gun_y = polygon_y[0];
 }
 
-void Starship::updatePos(float angle) {
+void Starship::aim(float x, float y) {
+    Vector2 direction(x - px, y - py);
+    float rad = atan2(direction.y, direction.x);
+    angle = radians_to_angle(rad);
 
 }
 
@@ -118,4 +126,6 @@ void Starship::setColor_b(int color_b) {
 void Starship::draw() {
     CV::color(0, 0, 0);
     CV::polygon(this->polygon_x, this->polygon_y, 3);
+    CV::color(0.5, 0.5, 0.5);
+    CV::circle(gun_x, gun_y, 5, 20);
 }

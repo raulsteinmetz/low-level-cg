@@ -12,7 +12,7 @@
 int screenWidth = 500, screenHeight = 500;
 int mouseX, mouseY;
 
-Starship starship(10.0, 5.0, 2, 1, 50, 100, 100, 300, 300, 20);
+Starship starship(10.0, 5.0, 2, 1, 50, 100, 100, 200, 200, 20);
 
 void setup() {
 
@@ -22,6 +22,8 @@ void setup() {
 void render()
 {
     starship.draw();
+    starship.aim(mouseX, mouseY);
+    starship.updatePos();
 }
 
 
@@ -41,8 +43,6 @@ void mouse(int button, int state, int wheel, int direction, int x, int y)
 {
    mouseX = x;
    mouseY = y;
-
-   // printf("\nmouse %d %d %d %d %d %d", button, state, wheel, direction,  x, y);
 
    if( state == 0 )
    {

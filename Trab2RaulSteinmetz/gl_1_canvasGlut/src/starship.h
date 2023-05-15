@@ -14,17 +14,15 @@ private:
     int hp;
     int bullet_power;
     int missile_power;
-
     int color_r;
     int color_g;
     int color_b;
-
     float polygon_x[3];
     float polygon_y[3];
-
     float angle;
-
     float radius;
+    float gun_x;
+    float gun_y;
 
 
 
@@ -47,6 +45,9 @@ public:
     int getColor_g();
     int getColor_b();
 
+    float px;
+    float py;
+
 
 
     // Setter methods
@@ -64,7 +65,8 @@ public:
 
 
     void draw();
-    void updatePos(float angle);
+    void updatePos();
+    void aim(float x, float y);
 
 };
 
