@@ -3,70 +3,70 @@
 
 
 #include <string>
+#include "Vector2.h"
+#include "gun.h"
+
+#define MOVE_FORWARD 119
+#define MOVE_BACKWARDS 115
+#define MOVE_RIGHT 100
+#define MOVE_LEFT 97
+
+#define SHOOT_BUTTON 0
+
+
+
+#define MAX_SPEED 400
+
 
 class Starship {
 private:
     // attributes
-    double max_speed;
-    double current_speed;
+    double max_speed_factor;
+    double current_speed_factor;
+    double true_speed;
     int missile_delay;
     int bullet_delay;
     int hp;
     int bullet_power;
     int missile_power;
+    float angle;
+    float radius;
+    Vector2 position;
+    Gun gun;
+
+
+    // render
     int color_r;
     int color_g;
     int color_b;
     float polygon_x[3];
     float polygon_y[3];
-    float angle;
-    float radius;
-    float gun_x;
-    float gun_y;
 
+    // movement
+    bool go_forward;
+    bool go_left;
+    bool go_right;
+    bool go_backwards;
+
+    // shooting
+    bool is_shooting;
+
+    void movePos (float angle_);
 
 
 
 public:
     // Constructor
-    Starship(double max_speed, double current_speed, int missile_delay,
-             int bullet_delay, int bullet_power, int missile_power, int hp,
-             float px, float py, float radius);
+    Starship(double max_speed_factor, double current_speed_factor, int hp, float px, float py, float radius);
 
-    // Getter methods
-    double getMaxSpeed();
-    double getCurrentSpeed();
-    int getMissileDelay();
-    int getBulletDelay();
-    int getHP();
-    int getBulletPower();
-    int getMissilePower();
-    int getColor_r();
-    int getColor_g();
-    int getColor_b();
-
-    float px;
-    float py;
-
-
-
-    // Setter methods
-    void setMaxSpeed(double max_speed);
-    void setCurrentSpeed(double current_speed);
-    void setMissileDelay(int missile_delay);
-    void setBulletDelay(int bullet_delay);
-    void setHP(int hp);
-    void setBulletPower(int bullet_power);
-    void setMissilePower(int missile_power);
-    void setColor_r(int color_r);
-    void setColor_g(int color_g);
-    void setColor_b(int color_b);
-
-
-
+    void update_parameters(int fps);
     void draw();
     void updatePos();
     void aim(float x, float y);
+    void handleKeyboard(int command, int up);
+    void handleMouse(int button, int state);
+    void movePos();
+    void shoot();
 
 };
 

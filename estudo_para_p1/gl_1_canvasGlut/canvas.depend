@@ -89,3 +89,11 @@
 
 1589217858 c:\users\rauls\onedrive\Área de trabalho\compgrafica\estudo_para_p1\gl_1_canvasglut\src\vector2.h
 
+1684242770 source:c:\users\rauls\onedrive\Área de trabalho\compgrafica\estudo_para_p1\gl_1_canvasglut\src\main.cpp
+	<GL/glut.h>
+	<GL/freeglut_ext.h>
+	<math.h>
+	<stdio.h>
+	<stdlib.h>
+	"gl_canvas2d.h"
+
