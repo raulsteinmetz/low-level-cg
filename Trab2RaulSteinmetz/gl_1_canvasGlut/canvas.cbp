@@ -53,7 +53,6 @@
 		<Unit filename="src/main.cpp" />
 		<Unit filename="src/starship.cpp" />
 		<Unit filename="src/starship.h" />
-		<Unit filename="src/util.h" />
 		<Extensions>
 			<code_completion />
 			<debugger />

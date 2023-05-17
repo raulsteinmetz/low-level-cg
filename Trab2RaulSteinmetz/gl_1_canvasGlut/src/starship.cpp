@@ -1,12 +1,18 @@
 #include "starship.h"
-#include "gl_canvas2d.h"
-
-#include "util.h"
-#include "stdio.h"
 
 # define BULLET_DELAY 50
-# define INITIAL_BULLET_SPEED_FACTOR 100
-# define MAX_BULLET_SPEED_FACTOR 400
+# define INITIAL_BULLET_SPEED_FACTOR 0.00001
+# define MAX_BULLET_SPEED_FACTOR 0.0001
+
+#define PI_ 3.1415
+
+float angle_to_radians(float angle) {
+    return angle * PI_ / 180.0;
+}
+
+float radians_to_angle(float rad) {
+    return rad * 180 / PI_;
+}
 
 // Constructor
 Starship::Starship(double max_speed_factor, double current_speed_factor, int hp, float px, float py, float radius)
@@ -65,14 +71,17 @@ void Starship::update_parameters(int fps) {
     max_speed_factor = MAX_SPEED / fps;
     true_speed = current_speed_factor / fps;
     gun.updateDelay();
+    gun.updateAngle(angle);
     gun.app_fps = fps;
+
 }
 
 void Starship::draw() {
+    // drawing ship
     CV::color(0, 0, 0);
     CV::polygon(this->polygon_x, this->polygon_y, 3);
-    CV::color(0.5, 0.5, 0.5);
-    CV::circle(gun.position.x, gun.position.y, 5, 20);
+    // drawing gun
+    gun.draw();
 }
 
 void Starship::movePos() {

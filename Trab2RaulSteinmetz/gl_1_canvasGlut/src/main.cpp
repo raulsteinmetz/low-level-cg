@@ -34,6 +34,7 @@ void render()
     starship.movePos();
     starship.updatePos();
     starship.shoot();
+    starship.gun.updateBullets();
     fps = frames.getFrames();
     starship.update_parameters(fps);
 }

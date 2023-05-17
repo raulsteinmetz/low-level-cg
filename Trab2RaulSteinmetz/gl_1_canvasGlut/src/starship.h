@@ -5,6 +5,8 @@
 #include <string>
 #include "Vector2.h"
 #include "gun.h"
+#include "gl_canvas2d.h"
+#include "util.h"
 
 #define MOVE_FORWARD 119
 #define MOVE_BACKWARDS 115
@@ -32,7 +34,6 @@ private:
     float angle;
     float radius;
     Vector2 position;
-    Gun gun;
 
 
     // render
@@ -56,6 +57,7 @@ private:
 
 
 public:
+    Gun gun;
     // Constructor
     Starship(double max_speed_factor, double current_speed_factor, int hp, float px, float py, float radius);
 
