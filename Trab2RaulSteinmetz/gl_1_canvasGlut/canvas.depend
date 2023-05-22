@@ -89,7 +89,7 @@
 
 1589217858 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\estudo_para_p1\gl_1_canvasglut\src\vector2.h
 
-1626955631 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab2raulsteinmetz\gl_1_canvasglut\src\gl_canvas2d.cpp
+1684779425 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab2raulsteinmetz\gl_1_canvasglut\src\gl_canvas2d.cpp
 	"gl_canvas2d.h"
 	<GL/glut.h>
 
@@ -122,7 +122,7 @@
 1684338367 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab2raulsteinmetz\gl_1_canvasglut\src\vector2.h
 	<math.h>
 
-1684761687 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab2raulsteinmetz\gl_1_canvasglut\src\main.cpp
+1684779681 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab2raulsteinmetz\gl_1_canvasglut\src\main.cpp
 	<GL/glut.h>
 	<GL/freeglut_ext.h>
 	<math.h>
@@ -132,6 +132,7 @@
 	"starship.h"
 	"frames.h"
 	"environment.h"
+	"enemy.h"
 
 1589214882 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab2raulsteinmetz\gl_1_canvasglut\src\bola.h
 	"gl_canvas2d.h"
@@ -142,10 +143,10 @@
 1589214891 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab2raulsteinmetz\gl_1_canvasglut\src\botao.h
 	"gl_canvas2d.h"
 
-1684752155 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab2raulsteinmetz\gl_1_canvasglut\src\starship.cpp
+1684780287 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab2raulsteinmetz\gl_1_canvasglut\src\starship.cpp
 	"starship.h"
 
-1684756167 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab2raulsteinmetz\gl_1_canvasglut\src\starship.h
+1684777970 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab2raulsteinmetz\gl_1_canvasglut\src\starship.h
 	<string>
 	"Vector2.h"
 	"gun.h"
@@ -153,27 +154,34 @@
 
 1684344200 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab2raulsteinmetz\gl_1_canvasglut\src\util.h
 
-1684344434 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab2raulsteinmetz\gl_1_canvasglut\src\gun.cpp
+1684780554 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab2raulsteinmetz\gl_1_canvasglut\src\gun.cpp
 	"gun.h"
 
 1684336945 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab2raulsteinmetz\gl_1_canvasglut\src\frames.h
 	<stdio.h>
 	<time.h>
 
-1684344351 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab2raulsteinmetz\gl_1_canvasglut\src\gun.h
+1684780272 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab2raulsteinmetz\gl_1_canvasglut\src\gun.h
 	"Vector2.h"
 	<list>
 	"stdio.h"
 	"gl_canvas2d.h"
 
-1684761582 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab2raulsteinmetz\gl_1_canvasglut\src\environment.cpp
+1684762912 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab2raulsteinmetz\gl_1_canvasglut\src\environment.cpp
 	"environment.h"
 	<stdio.h>
 
-1684761380 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab2raulsteinmetz\gl_1_canvasglut\src\environment.h
+1684762112 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab2raulsteinmetz\gl_1_canvasglut\src\environment.h
 	<string>
 	"Vector2.h"
 	"gun.h"
 	"gl_canvas2d.h"
 	<list>
+
+1684779751 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab2raulsteinmetz\gl_1_canvasglut\src\enemy.h
+	"vector2.h"
+	"gun.h"
+
+1684779799 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab2raulsteinmetz\gl_1_canvasglut\src\enemy.cpp
+	"enemy.h"
 

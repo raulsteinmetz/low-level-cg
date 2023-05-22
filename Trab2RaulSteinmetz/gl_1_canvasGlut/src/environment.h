@@ -33,7 +33,7 @@ class Map {
 
         Map();
         Map(int point_resolution, int n_screens, int screen_height, int screen_width);
-        void render();
+        void render(int player_x, int player_y);
 };
 
 

@@ -115,11 +115,25 @@ Map::Map(int point_resolution, int n_screens, int screen_height, int screen_widt
     }
 }
 
-void Map::render(){
+void Map::render(int player_x, int player_y) {
+    // identifying what curves are visible
     for (auto it = left_boundary.begin(); it != left_boundary.end(); it++) {
-        it->draw();
+        if (it->points[3].y <= (player_y + float (screen_height / 2))
+            && it->points[3].y >= (player_y - float (screen_height / 2))
+            || it->points[0].y <= (player_y + float (screen_height / 2))
+            ||it->points[0].y >= (player_y - float (screen_height / 2)))
+        {
+            it->draw();
+        }
     }
+
     for (auto it = right_boundary.begin(); it != right_boundary.end(); it++) {
-        it->draw();
+        if (it->points[3].y <= (player_y + float (screen_height / 2))
+            && it->points[3].y >= (player_y - float (screen_height / 2))
+            || it->points[0].y <= (player_y + float (screen_height / 2))
+            ||it->points[0].y >= (player_y - float (screen_height / 2)))
+        {
+            it->draw();
+        }
     }
 }

@@ -1,8 +1,8 @@
 #include "starship.h"
 
 # define BULLET_DELAY 50
-# define INITIAL_BULLET_SPEED_FACTOR 0.00001
-# define MAX_BULLET_SPEED_FACTOR 0.0001
+# define INITIAL_BULLET_SPEED_FACTOR 0.001
+# define MAX_BULLET_SPEED_FACTOR 0.01
 
 #define PI_ 3.1415
 
@@ -34,7 +34,13 @@ Starship::Starship(double max_speed_factor, double current_speed_factor, int hp,
     // gun initialization
     gun = Gun(Vector2(0, 0), BULLET_DELAY, angle, INITIAL_BULLET_SPEED_FACTOR, MAX_BULLET_SPEED_FACTOR);
 
-    updatePos();
+    update_pos();
+}
+
+
+// getters
+Vector2 Starship::get_position() {
+    return position;
 }
 
 
@@ -44,16 +50,17 @@ void Starship::render(int fps, int  mouseX, int mouseY) {
     draw();
     aim(mouseX, mouseY);
     movePos();
-    updatePos();
+    update_pos();
     shoot();
-    gun.updateBullets();
     update_parameters(fps);
+    gun.render(angle, fps);
+    //printf("Position: %f, %f\n", position.x, position.y);
 }
 
 
 // methods
 
-void Starship::updatePos() {
+void Starship::update_pos() {
     float rad = angle_to_radians(angle);
     float spacing = 360.0 / 3.0;
 
@@ -77,10 +84,6 @@ void Starship::aim(float x, float y) {
 void Starship::update_parameters(int fps) {
     max_speed_factor = MAX_SPEED / fps;
     true_speed = current_speed_factor / fps;
-    gun.updateDelay();
-    gun.updateAngle(angle);
-    gun.app_fps = fps;
-
 }
 
 void Starship::draw() {
@@ -111,7 +114,7 @@ void Starship::movePos() {
 }
 
 void Starship::shoot() {
-    if (is_shooting == true) {;
+    if (is_shooting == true) {
         gun.shoot();
     }
 }

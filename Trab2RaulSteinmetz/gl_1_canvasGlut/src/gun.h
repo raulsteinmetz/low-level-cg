@@ -42,7 +42,7 @@ public:
     void draw();
     void updateBullets();
     void updateAngle(float new_angle);
-
+    void render(float new_angle, int fps);
 };
 
 

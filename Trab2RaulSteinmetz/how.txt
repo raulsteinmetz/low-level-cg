@@ -1,0 +1,4 @@
+fazer vetores x e y do poligono render, tipo polygon_render_x
+dai na parte do draw desenha com o y cravado
+a render do mapa deve ser orientada a posição do jogador, tipo: curva_de_bezier[0] % screen width if
+curva_de_bezier[0] esta no campo de visao

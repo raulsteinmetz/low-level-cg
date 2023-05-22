@@ -27,7 +27,11 @@ void Bullet::draw() {
 Gun::Gun(){}
 Gun::Gun(Vector2 position, int delay_factor, float angle, float current_bullet_speed_factor, float max_bullet_speed_factor)
     : position(position), delay(delay), angle(angle), current_bullet_speed_factor(current_bullet_speed_factor),
-      max_bullet_speed_factor(max_bullet_speed_factor){}
+      max_bullet_speed_factor(max_bullet_speed_factor)
+    {
+        app_fps = 0;
+        delay = 0;
+    }
 
 // gun methods
 void Gun::shoot()
@@ -43,6 +47,7 @@ void Gun::shoot()
 }
 void Gun::updateDelay() {
     delay -= 1;
+    printf("%d\n", delay);
 }
 
 
@@ -69,4 +74,13 @@ void Gun::draw() {
 
 void Gun::updateAngle(float new_angle) {
     angle = new_angle;
+}
+
+
+void Gun::render(float new_angle, int fps) {
+    draw();
+    updateBullets();
+    updateDelay();
+    updateAngle(new_angle);
+    app_fps = fps;
 }

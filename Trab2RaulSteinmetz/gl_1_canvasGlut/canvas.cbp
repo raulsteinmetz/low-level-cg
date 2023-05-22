@@ -45,6 +45,10 @@
 		</Linker>
 		<Unit filename="include/GL/glut.h" />
 		<Unit filename="src/Vector2.h" />
+		<Unit filename="src/enemy.cpp" />
+		<Unit filename="src/enemy.h" />
+		<Unit filename="src/environment.cpp" />
+		<Unit filename="src/environment.h" />
 		<Unit filename="src/frames.h" />
 		<Unit filename="src/gl_canvas2d.cpp" />
 		<Unit filename="src/gl_canvas2d.h" />
