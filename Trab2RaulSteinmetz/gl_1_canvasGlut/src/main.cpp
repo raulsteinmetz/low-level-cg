@@ -8,6 +8,7 @@
 #include "gl_canvas2d.h"
 #include "starship.h"
 #include "frames.h"
+#include "environment.h"
 
 // fps control
 int fps = 0;
@@ -17,10 +18,12 @@ Frames frames;
 
 
 
-int screenWidth = 500, screenHeight = 500;
+int screenWidth = 800, screenHeight = 600;
 int mouseX, mouseY;
 
+Map map(50, 1, screenHeight, screenWidth);
 Starship starship(400, 400, 3, 100, 100, 30);
+CubicBezierCurve a(100, Vector2(200.0, 200.0), Vector2(250.0, 250.0), Vector2(300.0, 150.0), Vector2(350.0, 350.0));
 
 void setup() {
 
@@ -29,14 +32,10 @@ void setup() {
 
 void render()
 {
-    starship.draw();
-    starship.aim(mouseX, mouseY);
-    starship.movePos();
-    starship.updatePos();
-    starship.shoot();
-    starship.gun.updateBullets();
     fps = frames.getFrames();
-    starship.update_parameters(fps);
+    starship.render(fps, mouseX, mouseY);
+    map.render();
+    //a.draw();
 }
 
 

@@ -122,7 +122,7 @@
 1684338367 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab2raulsteinmetz\gl_1_canvasglut\src\vector2.h
 	<math.h>
 
-1684343153 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab2raulsteinmetz\gl_1_canvasglut\src\main.cpp
+1684761687 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab2raulsteinmetz\gl_1_canvasglut\src\main.cpp
 	<GL/glut.h>
 	<GL/freeglut_ext.h>
 	<math.h>
@@ -131,6 +131,7 @@
 	"gl_canvas2d.h"
 	"starship.h"
 	"frames.h"
+	"environment.h"
 
 1589214882 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab2raulsteinmetz\gl_1_canvasglut\src\bola.h
 	"gl_canvas2d.h"
@@ -141,19 +142,18 @@
 1589214891 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab2raulsteinmetz\gl_1_canvasglut\src\botao.h
 	"gl_canvas2d.h"
 
-1684344307 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab2raulsteinmetz\gl_1_canvasglut\src\starship.cpp
+1684752155 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab2raulsteinmetz\gl_1_canvasglut\src\starship.cpp
 	"starship.h"
 
-1684343990 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab2raulsteinmetz\gl_1_canvasglut\src\starship.h
+1684756167 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab2raulsteinmetz\gl_1_canvasglut\src\starship.h
 	<string>
 	"Vector2.h"
 	"gun.h"
 	"gl_canvas2d.h"
-	"util.h"
 
 1684344200 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab2raulsteinmetz\gl_1_canvasglut\src\util.h
 
-1684344151 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab2raulsteinmetz\gl_1_canvasglut\src\gun.cpp
+1684344434 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab2raulsteinmetz\gl_1_canvasglut\src\gun.cpp
 	"gun.h"
 
 1684336945 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab2raulsteinmetz\gl_1_canvasglut\src\frames.h
@@ -165,4 +165,15 @@
 	<list>
 	"stdio.h"
 	"gl_canvas2d.h"
+
+1684761582 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab2raulsteinmetz\gl_1_canvasglut\src\environment.cpp
+	"environment.h"
+	<stdio.h>
+
+1684761380 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab2raulsteinmetz\gl_1_canvasglut\src\environment.h
+	<string>
+	"Vector2.h"
+	"gun.h"
+	"gl_canvas2d.h"
+	<list>
 

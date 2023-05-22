@@ -6,7 +6,6 @@
 #include "Vector2.h"
 #include "gun.h"
 #include "gl_canvas2d.h"
-#include "util.h"
 
 #define MOVE_FORWARD 119
 #define MOVE_BACKWARDS 115
@@ -61,6 +60,7 @@ public:
     // Constructor
     Starship(double max_speed_factor, double current_speed_factor, int hp, float px, float py, float radius);
 
+    void render(int fps, int mouseX, int mouseY);
     void update_parameters(int fps);
     void draw();
     void updatePos();

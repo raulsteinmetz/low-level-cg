@@ -39,9 +39,16 @@ Starship::Starship(double max_speed_factor, double current_speed_factor, int hp,
 
 
 
-// Getter implementations
-
-// Setter implementations
+// render
+void Starship::render(int fps, int  mouseX, int mouseY) {
+    draw();
+    aim(mouseX, mouseY);
+    movePos();
+    updatePos();
+    shoot();
+    gun.updateBullets();
+    update_parameters(fps);
+}
 
 
 // methods
