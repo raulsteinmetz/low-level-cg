@@ -54,6 +54,8 @@
 		<Unit filename="src/gl_canvas2d.h" />
 		<Unit filename="src/gun.cpp" />
 		<Unit filename="src/gun.h" />
+		<Unit filename="src/level.cpp" />
+		<Unit filename="src/level.h" />
 		<Unit filename="src/main.cpp" />
 		<Unit filename="src/starship.cpp" />
 		<Unit filename="src/starship.h" />

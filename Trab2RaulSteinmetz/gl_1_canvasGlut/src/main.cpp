@@ -26,6 +26,7 @@ CubicBezierCurve a(100, Vector2(200.0, 200.0), Vector2(250.0, 250.0), Vector2(30
 // test enemy
 Enemy enemy(100, 100, 100, 100, 30);
 
+
 void setup() {
 
 }
@@ -37,7 +38,6 @@ void render()
     starship.render(fps, mouseX, mouseY);
     map.render(starship.get_position().x, starship.get_position().y);
     enemy.render();
-    //a.draw();
 }
 
 

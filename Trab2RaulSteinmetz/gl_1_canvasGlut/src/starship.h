@@ -60,6 +60,8 @@ class Starship {
 
         void movePos (float angle_);
 
+        void take_damage(int damage);
+
 
 
     public:

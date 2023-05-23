@@ -158,3 +158,7 @@ void Starship::handleMouse(int button, int state) {
     }
 }
 
+void Starship::take_damage(int damage) {
+    hp -= damage;
+}
+

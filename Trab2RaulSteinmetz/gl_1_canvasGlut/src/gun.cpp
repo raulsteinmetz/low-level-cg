@@ -58,6 +58,7 @@ void Gun::updateBullets() {
         bullet.position.x += (bullet.speed_factor * float(app_fps)) * cos(rad);
         bullet.position.y += (bullet.speed_factor * float(app_fps)) * sin(rad);
     }
+    
 }
 
 

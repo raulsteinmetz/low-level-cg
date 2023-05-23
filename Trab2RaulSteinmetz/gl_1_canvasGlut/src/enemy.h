@@ -22,6 +22,7 @@ class Enemy {
         void update_pos();
         void draw();
         void render();
+        void take_damage(int damage);
 };
 
 

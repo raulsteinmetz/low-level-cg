@@ -45,9 +45,14 @@ void Enemy::draw(){
     gun.draw();
 }
 
+void Enemy::take_damage(int damage) {
+    hp -= power;
+}
+
 
 void Enemy::render() {
     update_pos();
     draw();
     gun.updateBullets();
+
 }

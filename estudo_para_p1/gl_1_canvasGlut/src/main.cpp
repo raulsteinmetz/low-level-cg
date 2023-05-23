@@ -12,82 +12,12 @@
 int screenWidth = 500, screenHeight = 500;
 int mouseX, mouseY;
 
-
-// CG_5_COR
-
-#define MIN(a,b) ((a)<(b)?(a):(b))
-#define MAX(a,b) ((a)>(b)?(a):(b))
-
-void RGBtoHLS(float r, float g, float b, float *h, float *s, float *l) {
-    r /= 255;
-    g /= 255;
-    b /= 255;
-
-    float max_ = MAX(MAX(r, g), b);
-    float min_ = MIN(MIN(r, g), b);
-
-    *h = *s = *l = (max_ + min_) / 2;
-
-    if (max_ == min_) *h = *s = 0; // gray
-    else {
-        float d = max_ - min_;
-        *s = (*l > 0.5) ? d / (2 - max_ - min_) : d / (max_ + min_);
-
-        if (max_ == r) {
-          *h = (g - b) / d + (g < b ? 6 : 0);
-        }
-        else if (max_ == g) {
-          *h = (b - r) / d + 2;
-        }
-        else if (max_ == b) {
-          *h = (r - g) / d + 4;
-        }
-
-        *h /= 6;
-    }
-}
-
-
-
-void render_cor()
-{
-    float h, l, s;
-    int r = 50, g = 30, b = 150;
-    RGBtoHLS(r, g, b, &h, &l, &s);
-    printf("Converting RGB (50, 30, 150) to HLS: (%f, %f, %f)\n", h, l, s);
-
-}
+// Curvas de Bezier
 
 #define ORIGIN_X 100
 #define ORIGIN_Y 100
 
 #define AXIS_SIZE 300
-
-float p1(float t) {
-   return (1 - t) * (1 - t) * (1 - t);
-}
-
-float p2(float t) {
-   return 3 * t * (1 - t) * (1 - t);
-}
-
-float p3(float t) {
-   return 3 * t * t * (1 - t);
-}
-float p4(float t) {
-   return t * t * t;
-}
-
-void testing_blending_funcs() {
-for (float t = 0; t <= 1; t += 0.0001)
-    {
-        CV::color(0.5, 0.5, 0.5);
-        CV::point(t * AXIS_SIZE + ORIGIN_X, p1(t) * AXIS_SIZE + ORIGIN_Y );
-        CV::point(t * AXIS_SIZE + ORIGIN_X, p2(t) * AXIS_SIZE + ORIGIN_Y);
-        CV::point(t * AXIS_SIZE + ORIGIN_X, p3(t)* AXIS_SIZE + ORIGIN_Y);
-        CV::point(t * AXIS_SIZE + ORIGIN_X, p4(t) * AXIS_SIZE + ORIGIN_Y);
-    }
-}
 
 void curvas_besier() {
     // origin
@@ -119,7 +49,7 @@ void curvas_besier() {
     float p2_x = mouseX - 100;
     float p2_y = mouseY - 100;
 
-    // Calculate the curve points using the cubic B�zier equation
+    // Calculate the curve points using the cubic B�zier equation
     for (float t = 0; t <= 1.0; t += 0.001)
     {
         float u = 1 - t;
@@ -135,15 +65,123 @@ void curvas_besier() {
     CV::line(p1_x, p1_y, p2_x, p2_y);
     CV::line(p2_x, p2_y, p3_x, p3_y);
 
-
-
-
 }
 
 
-void render()
-{
-    curvas_besier();
+// PROVA 1 2022
+
+#define DRAW_ORIGIN 200
+
+void multiplyMatrices(float mat1[2][2], float mat2[2][2], float result[2][2]) {
+    for (int i = 0; i < 2; i++) {
+        for (int j = 0; j < 2; j++) {
+            result[i][j] = 0;
+            for (int k = 0; k < 2; k++) {
+                result[i][j] += mat1[i][k] * mat2[k][j];
+            }
+        }
+    }
+}
+
+class P1_2022 {
+    public:
+        double rotate_var;
+
+        P1_2022() {
+            rotate_var = 4 * PI;
+        }
+
+        void questao_3 () {
+
+            /*  Implemente em C/pseudocodigo a função render()
+                da canvas2D de modo que seja gerado uma figura
+                em forma de caracol. Este caracol deve estar 
+                girando em sentido horário (animado). Pode-se 
+                definir variáveis globais. Utilize a função 
+                point() da canvas2D para desenho  */
+
+            CV::color(0);
+            float radius = 200;
+
+            for (float rad = rotate_var; rad < 4 * PI + rotate_var; rad += 0.001, radius -= 200 / ((4 * PI) / 0.001)) {
+                float x = radius * cos(rad) + DRAW_ORIGIN;
+                float y = radius * sin(rad) + DRAW_ORIGIN;
+                CV::point(x, y);
+            }
+
+            rotate_var -= 0.001;
+            if (rotate_var == 0) {
+                rotate_var = 4 * PI;
+            }
+            
+        }
+
+        static void questao_4() {
+            // desenhando eixos
+            Vector2 x_axe(ORIGIN_X + AXIS_SIZE, ORIGIN_Y);
+            Vector2 y_axe(ORIGIN_X, ORIGIN_Y + AXIS_SIZE);
+            CV::color(0);
+            CV::line(ORIGIN_X, ORIGIN_Y, x_axe.x, x_axe.y);
+            CV::line(ORIGIN_X, ORIGIN_Y, y_axe.x, y_axe.y);
+
+            // ramp
+            float ramp[4];
+            ramp[0] = ORIGIN_X;
+            ramp[1] = y_axe.y;
+            ramp[2] = x_axe.x * 0.8;
+            ramp[3] = ORIGIN_Y;
+            CV::line(ramp[0], ramp[1], ramp[2], ramp[3]);
+
+            // initial rect 
+            float rect[4];
+            rect[0] = ORIGIN_X;
+            rect[1] = ORIGIN_Y;
+            rect[2] = ORIGIN_X - 50;
+            rect[3] = ORIGIN_Y - 50;
+            // initial line
+            float line[4];
+            line[0] = ORIGIN_X - 50;
+            line[1] = ORIGIN_Y - 10;
+            line[2] = ORIGIN_X;
+            line[3] = ORIGIN_Y - 10;
+
+            CV::rect(rect[0], rect[1], rect[2], rect[3]);
+            CV::line(line[0], line[1], line[2], line[3]);
+
+
+            // rotation and scaling matrix
+
+            // first we find out the angle of the ramp
+            // we formulate the vector that represents the ramp
+            // then we apply arc tangent to find the angle
+            float rad = atan2(ramp[3] - ramp[1], ramp[2] - ramp[0]);
+            // then we set scaling factor (1/4)
+            float scaling_factor = 0.25;
+            // now we set up the matrix
+
+            // scaling matrix
+            float scaling_matrix[2][2] = {
+                {scaling_factor, 0},
+                {0, scaling_factor}
+            };
+
+            // rotation matrix
+            float rotation_matrix[2][2] = {
+                {cos(rad), -sin(rad)},
+                {sin(rad), cos(rad)}
+            };
+
+
+        }
+};
+
+P1_2022 p1_2022 = P1_2022();
+
+void render() {
+    //curvas_besier();
+    // P1 2022
+    //p1_2022.questao_3();
+    p1_2022.questao_4();
 }
 
 

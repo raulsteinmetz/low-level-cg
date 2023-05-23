@@ -4,7 +4,7 @@
 #include "Vector2.h"
 #include <list>
 #include "stdio.h"
-#include "gl_canvas2d.h";
+#include "gl_canvas2d.h"
 
 
 #define BULLET_RADIUS 5
@@ -40,6 +40,7 @@ public:
     void shoot();
     void updateDelay();
     void draw();
+    // bullet update, shot enemy?
     void updateBullets();
     void updateAngle(float new_angle);
     void render(float new_angle, int fps);
