@@ -19,8 +19,8 @@ Frames frames;
 int screenWidth = 800, screenHeight = 600;
 int mouseX, mouseY;
 
-Map map(50, 1, screenHeight, screenWidth);
-Starship starship(400, 400, 3, 100, 100, 30);
+Map map(50, 10, screenHeight, screenWidth);
+Starship player(250, 100, screenWidth/2, screenHeight*0.8, 20);
 CubicBezierCurve a(100, Vector2(200.0, 200.0), Vector2(250.0, 250.0), Vector2(300.0, 150.0), Vector2(350.0, 350.0));
 
 // test enemy
@@ -35,22 +35,22 @@ void setup() {
 void render()
 {
     fps = frames.getFrames();
-    starship.render(fps, mouseX, mouseY);
-    map.render(starship.get_position().x, starship.get_position().y);
-    enemy.render();
+    player.render(fps, mouseX, mouseY);
+    map.render(player.get_position().x, player.get_position().y, float(player.get_velocity()), float(fps));
+    enemy.render(fps);
 }
 
 
 void keyboard(int key)
 {
     // printf("Pressed: %d\n", key);
-    starship.handleKeyboard(key, 0);
+    player.handleKeyboard(key, 0);
 }
 
 
 void keyboardUp(int key)
 {
-    starship.handleKeyboard(key, 1);
+    player.handleKeyboard(key, 1);
 }
 
 
@@ -63,7 +63,7 @@ void mouse(int button, int state, int wheel, int direction, int x, int y)
    // 0 1 solta
 
    //printf("button - %d, state - %d\n", button, state);
-   starship.handleMouse(button, state);
+   player.handleMouse(button, state);
 }
 
 int main(void)

@@ -62,8 +62,8 @@ float generateRandomFloat(float minValue, float maxValue) {
 
 Map::Map() {}
 
-Map::Map(int point_resolution, int n_screens, int screen_height, int screen_width) {
-    this->n_screens = n_screens;
+Map::Map(int point_resolution, int n_curves, int screen_height, int screen_width) {
+    this->n_curves = n_curves;
     this->screen_height = screen_height;
     this->screen_width = screen_width;
     this->point_resolution = point_resolution;
@@ -71,18 +71,18 @@ Map::Map(int point_resolution, int n_screens, int screen_height, int screen_widt
     // right boundary
     Vector2 last_finish_pointR(float(screen_width * 0.7), float(screen_height));
     Vector2 last_finish_pointL(float(screen_width * 0.3), float(screen_height));
-    for (int i = 0; i < n_screens; i++) {
+    for (int i = 0; i < n_curves; i++) {
         left_boundary.push_back(
             CubicBezierCurve(
                 this->point_resolution,
                 last_finish_pointL,
                 Vector2(
                     generateRandomFloat(float(screen_width * 0.2), float(screen_width * 0.4)),
-                    (float) (screen_height * 0.3)
+                    last_finish_pointL.y - (float) (screen_height * 0.3)
                 ),
                 Vector2(
                     generateRandomFloat(float(screen_width * 0.2), float(screen_width * 0.4)),
-                    (float) (screen_height * 0.7)
+                    last_finish_pointL.y - (float) (screen_height * 0.7)
                 ),
                 Vector2(
                     float(screen_width * 0.3),
@@ -96,11 +96,11 @@ Map::Map(int point_resolution, int n_screens, int screen_height, int screen_widt
                 last_finish_pointR,
                 Vector2(
                     generateRandomFloat(float(screen_width * 0.6), float(screen_width * 0.8)),
-                    (float) (screen_height * 0.3)
+                    last_finish_pointR.y - (float) (screen_height * 0.3)
                 ),
                 Vector2(
                     generateRandomFloat(float(screen_width * 0.6), float(screen_width * 0.8)),
-                    (float) (screen_height * 0.7)
+                    last_finish_pointR.y - (float) (screen_height * 0.7)
                 ),
                 Vector2(
                     float(screen_width * 0.7),
@@ -115,25 +115,80 @@ Map::Map(int point_resolution, int n_screens, int screen_height, int screen_widt
     }
 }
 
-void Map::render(int player_x, int player_y) {
-    // identifying what curves are visible
+
+void Map::infiniteGeneration() {
+    // check if the curve in curves [n-1]'s last point is greater then 0
+    // if it is, generate a new curve and push it to the end of the vector
+    if (left_boundary.back().points[3].y > 0 - screen_height) {
+        left_boundary.push_back(
+            CubicBezierCurve(
+                this->point_resolution,
+                left_boundary.back().points[3],
+                Vector2(
+                    generateRandomFloat(float(screen_width * 0.2), float(screen_width * 0.4)),
+                    left_boundary.back().points[3].y - (float) (screen_height * 0.3)
+                ),
+                Vector2(
+                    generateRandomFloat(float(screen_width * 0.2), float(screen_width * 0.4)),
+                    left_boundary.back().points[3].y - (float) (screen_height * 0.7)
+                ),
+                Vector2(
+                    float(screen_width * 0.3),
+                    float(left_boundary.back().points[3].y - screen_height)
+                )
+            )
+        );
+        right_boundary.push_back(
+            CubicBezierCurve(
+                this->point_resolution,
+                right_boundary.back().points[3],
+                Vector2(
+                    generateRandomFloat(float(screen_width * 0.6), float(screen_width * 0.8)),
+                    right_boundary.back().points[3].y - (float) (screen_height * 0.3)
+                ),
+                Vector2(
+                    generateRandomFloat(float(screen_width * 0.6), float(screen_width * 0.8)),
+                    right_boundary.back().points[3].y - (float) (screen_height * 0.7)
+                ),
+                Vector2(
+                    float(screen_width * 0.7),
+                    float(right_boundary.back().points[3].y - screen_height)
+                )
+            )
+        );
+
+        // pop the first curve
+        left_boundary.erase(left_boundary.begin());
+        right_boundary.erase(right_boundary.begin());
+        
+    }
+}
+
+void Map::render(int player_x, int player_y, float player_velocity, float fps) {
+
+    // reducing y on all curves
     for (auto it = left_boundary.begin(); it != left_boundary.end(); it++) {
-        if (it->points[3].y <= (player_y + float (screen_height / 2))
-            && it->points[3].y >= (player_y - float (screen_height / 2))
-            || it->points[0].y <= (player_y + float (screen_height / 2))
-            ||it->points[0].y >= (player_y - float (screen_height / 2)))
-        {
-            it->draw();
+        for (int i = 0; i < 4; i++) {
+            it->points[i].y += player_velocity / fps;
         }
     }
 
     for (auto it = right_boundary.begin(); it != right_boundary.end(); it++) {
-        if (it->points[3].y <= (player_y + float (screen_height / 2))
-            && it->points[3].y >= (player_y - float (screen_height / 2))
-            || it->points[0].y <= (player_y + float (screen_height / 2))
-            ||it->points[0].y >= (player_y - float (screen_height / 2)))
-        {
-            it->draw();
+        for (int i = 0; i < 4; i++) {
+            it->points[i].y += player_velocity / fps;
         }
     }
+
+    int how_many_cuves = 0;
+    // drawing curves
+    for (auto it = left_boundary.begin(); it != left_boundary.end(); it++) {
+        how_many_cuves++;
+        it->draw();
+    }
+
+    for (auto it = right_boundary.begin(); it != right_boundary.end(); it++) {
+        it->draw();
+    }
+
+    infiniteGeneration();
 }

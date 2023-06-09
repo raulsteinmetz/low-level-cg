@@ -1,7 +1,7 @@
 #include "enemy.h"
 
-#define Y_SPEED 0.1
-#define X_SPEED 0.1
+#define Y_SPEED 100
+#define X_SPEED 1
 
 #define DEFAULT_ANGLE 90
 #define PI_ 3.1415
@@ -17,7 +17,7 @@ Enemy::Enemy(int hp, int power, float px, float py, float radius) {
     this->radius = radius;
     this->speed_factor.x = X_SPEED;
     this->speed_factor.y = Y_SPEED;
-    gun = Gun(Vector2(0, 0), 50, (float) DEFAULT_ANGLE, 0.0001, 0.001);
+    gun = Gun(Vector2(0, 0), 50, (float) DEFAULT_ANGLE, 0.0001);
 
     update_pos();
 }
@@ -50,9 +50,15 @@ void Enemy::take_damage(int damage) {
 }
 
 
-void Enemy::render() {
+void Enemy::render(int fps) {
     update_pos();
     draw();
     gun.updateBullets();
+    moveY(fps);
 
+
+}
+
+void Enemy::moveY(int fps) {
+    position.y += speed_factor.y / fps;
 }

@@ -22,16 +22,13 @@
 class Starship {
     private:
         // attributes
-        double max_speed_factor;
-        double current_speed_factor;
-        double true_speed;
-        int missile_delay;
+        double speed_factor;
         int bullet_delay;
         int hp;
         int bullet_power;
-        int missile_power;
         float angle;
         float radius;
+        float fps;
         Vector2 position;
 
 
@@ -42,9 +39,6 @@ class Starship {
 
 
         // render
-        float fixed_y;
-        float fixed_polygon_x[3];
-        float fixed_polygon_y[3];
         int color_r;
         int color_g;
         int color_b;
@@ -67,13 +61,15 @@ class Starship {
     public:
         Gun gun;
         // Constructor
-        Starship(double max_speed_factor, double current_speed_factor, int hp, float px, float py, float radius);
+        Starship(double speed_factor, int hp, float px, float py, float radius);
 
         // getters
         Vector2 get_position();
+        double get_velocity();
+
 
         void render(int fps, int mouseX, int mouseY);
-        void update_parameters(int fps);
+        void update_parameters(float fps);
         void draw();
         void update_pos();
         void aim(float x, float y);

@@ -21,8 +21,9 @@ class Enemy {
         Enemy(int hp, int power, float px, float py, float radius);
         void update_pos();
         void draw();
-        void render();
+        void render(int fps);
         void take_damage(int damage);
+        void moveY(int fps);
 };
 
 

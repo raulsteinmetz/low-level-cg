@@ -17,7 +17,6 @@ public:
     float radius;
     Vector2 position;
 
-
     Bullet(Vector2 position, float speed_factor, float angle, float radius);
     void draw();
 
@@ -31,19 +30,18 @@ public:
     int delay;
     float angle;
     float current_bullet_speed_factor;
-    float max_bullet_speed_factor;
     float app_fps;
 
 
     Gun();
-    Gun(Vector2 position, int delay, float angle, float current_bullet_speed_factor, float max_bullet_speed_factor);
+    Gun(Vector2 position, int delay, float angle, float current_bullet_speed_factor);
     void shoot();
     void updateDelay();
     void draw();
-    // bullet update, shot enemy?
     void updateBullets();
     void updateAngle(float new_angle);
-    void render(float new_angle, int fps);
+    void render(float new_angle, float fps);
+    void updateParameters(int fps);
 };
 
 

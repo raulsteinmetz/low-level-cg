@@ -25,7 +25,7 @@ class CubicBezierCurve {
 class Map {
     public:
         int point_resolution;
-        int n_screens;
+        int n_curves;
         int screen_height;
         int screen_width;
         std::list<CubicBezierCurve> right_boundary;
@@ -33,7 +33,8 @@ class Map {
 
         Map();
         Map(int point_resolution, int n_screens, int screen_height, int screen_width);
-        void render(int player_x, int player_y);
+        void render(int player_x, int player_y, float player_velocity, float fps);
+        void infiniteGeneration(); 
 };
 
 

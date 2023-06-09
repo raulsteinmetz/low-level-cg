@@ -1,8 +1,7 @@
 #include "starship.h"
 
 # define BULLET_DELAY 50
-# define INITIAL_BULLET_SPEED_FACTOR 0.001
-# define MAX_BULLET_SPEED_FACTOR 0.01
+# define INITIAL_BULLET_SPEED_FACTOR 100
 
 #define PI_ 3.1415
 
@@ -15,14 +14,14 @@ float radians_to_angle(float rad) {
 }
 
 // Constructor
-Starship::Starship(double max_speed_factor, double current_speed_factor, int hp, float px, float py, float radius)
-    : max_speed_factor(max_speed_factor), current_speed_factor(current_speed_factor), hp(hp), radius(radius)
+Starship::Starship(double speed_factor, int hp, float px, float py, float radius)
+    : speed_factor(speed_factor), hp(hp), radius(radius)
 {
     // movement
-    go_forward = false;
-    go_backwards = false;
     go_right = false;
     go_left = false;
+
+    fps = 0;
 
     // shooting
     is_shooting = false;
@@ -32,7 +31,7 @@ Starship::Starship(double max_speed_factor, double current_speed_factor, int hp,
     angle = 270.0;
 
     // gun initialization
-    gun = Gun(Vector2(0, 0), BULLET_DELAY, angle, INITIAL_BULLET_SPEED_FACTOR, MAX_BULLET_SPEED_FACTOR);
+    gun = Gun(Vector2(0, 0), BULLET_DELAY, angle, INITIAL_BULLET_SPEED_FACTOR);
 
     update_pos();
 }
@@ -43,16 +42,21 @@ Vector2 Starship::get_position() {
     return position;
 }
 
+double Starship::get_velocity() {
+    return speed_factor;
+}
+
+
 
 
 // render
 void Starship::render(int fps, int  mouseX, int mouseY) {
+    update_parameters(float(fps));
     draw();
     aim(mouseX, mouseY);
     movePos();
     update_pos();
     shoot();
-    update_parameters(fps);
     gun.render(angle, fps);
     //printf("Position: %f, %f\n", position.x, position.y);
 }
@@ -81,9 +85,8 @@ void Starship::aim(float x, float y) {
 
 }
 
-void Starship::update_parameters(int fps) {
-    max_speed_factor = MAX_SPEED / fps;
-    true_speed = current_speed_factor / fps;
+void Starship::update_parameters(float fps) {
+    this->fps = fps;
 }
 
 void Starship::draw() {
@@ -95,21 +98,11 @@ void Starship::draw() {
 }
 
 void Starship::movePos() {
-    if (go_forward == true) {
-        position.x += cos(angle_to_radians(angle)) * true_speed;
-        position.y += sin(angle_to_radians(angle)) * true_speed;
-    }
-    if (go_backwards == true) {
-        position.x += cos(angle_to_radians(angle + 180)) * true_speed;
-        position.y += sin(angle_to_radians(angle + 180)) * true_speed;
-    }
     if (go_right == true) {
-        position.x += cos(angle_to_radians(angle + 90)) * true_speed;
-        position.y += sin(angle_to_radians(angle + 90)) * true_speed;
+        position.x += cos(angle_to_radians(angle + 90)) * (speed_factor / fps);
     }
     if (go_left == true) {
-        position.x += cos(angle_to_radians(angle + 270)) * true_speed;
-        position.y += sin(angle_to_radians(angle + 270)) * true_speed;
+        position.x += cos(angle_to_radians(angle + 270)) * (speed_factor / fps);
     }
 }
 
@@ -120,19 +113,7 @@ void Starship::shoot() {
 }
 
 void Starship::handleKeyboard(int command, int up) {
-    if (command == MOVE_FORWARD) {
-        if (up == 0) {
-            go_forward = true;
-        } else {
-            go_forward = false;
-        }
-    } else if (command == MOVE_BACKWARDS) {
-        if (up == 0) {
-            go_backwards = true;
-        } else {
-            go_backwards = false;
-        }
-    } else if (command == MOVE_RIGHT) {
+    if (command == MOVE_RIGHT) {
         if (up == 0) {
             go_right = true;
         } else {
