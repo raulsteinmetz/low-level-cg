@@ -20,7 +20,7 @@ int screenWidth = 800, screenHeight = 600;
 int mouseX, mouseY;
 
 Map map(50, 10, screenHeight, screenWidth);
-Starship player(250, 100, screenWidth/2, screenHeight*0.8, 20);
+Starship player(250, 5, screenWidth/2, screenHeight*0.8, 20);
 CubicBezierCurve a(100, Vector2(200.0, 200.0), Vector2(250.0, 250.0), Vector2(300.0, 150.0), Vector2(350.0, 350.0));
 
 // test enemy
@@ -35,8 +35,13 @@ void setup() {
 void render()
 {
     fps = frames.getFrames();
+    if (map.render(float(player.get_velocity()), float(fps), player.polygon_x, player.polygon_y)) {
+        // send player to the midle of the screen
+        player.position = Vector2(screenWidth/2, screenHeight*0.8);
+        // reduce player hp
+        player.takeDamage(1);
+    }
     player.render(fps, mouseX, mouseY);
-    map.render(player.get_position().x, player.get_position().y, float(player.get_velocity()), float(fps));
     enemy.render(fps);
 }
 

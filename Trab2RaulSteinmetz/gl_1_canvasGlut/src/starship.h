@@ -29,12 +29,7 @@ class Starship {
         float angle;
         float radius;
         float fps;
-        Vector2 position;
 
-
-        // physics 2d
-        float polygon_x[3];
-        float polygon_y[3];
 
 
 
@@ -54,12 +49,12 @@ class Starship {
 
         void movePos (float angle_);
 
-        void take_damage(int damage);
 
 
 
     public:
         Gun gun;
+        Vector2 position;
         // Constructor
         Starship(double speed_factor, int hp, float px, float py, float radius);
 
@@ -77,6 +72,15 @@ class Starship {
         void handleMouse(int button, int state);
         void movePos();
         void shoot();
+
+        void takeDamage(int damage);
+
+        void drawHP();
+
+        // attributes
+        // physics 2d
+        float polygon_x[3];
+        float polygon_y[3];
 
 };
 

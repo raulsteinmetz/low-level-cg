@@ -18,7 +18,7 @@ Bullet::Bullet(Vector2 position, float speed_factor, float angle, float radius)
        : position(position), speed_factor(speed_factor), angle(angle), radius(radius) {}
 
 void Bullet::draw() {
-    CV::color(0.5, 0.5, 0.5);
+    CV::color(1.0, 1.0, 1.0);
     CV::circleFill(position.x, position.y, radius, 20);
 }
 
@@ -53,13 +53,17 @@ void Gun::updateBullets() {
         float rad = angle_to_radians_(bullet.angle);
         bullet.position.x += (bullet.speed_factor / float(app_fps)) * cos(rad);
         bullet.position.y += (bullet.speed_factor / float(app_fps)) * sin(rad);
-    }
-    
+    } 
+}
+
+
+void Gun::checkHit() {
+    // TODO
 }
 
 
 void Gun::draw() {
-    CV::color(0, 0, 0);
+    CV::color(1.0, 1.0, 1.0);
     CV::circle(position.x, position.y, 20, 20);
     // Draw bullets
     for (std::list<Bullet>::const_iterator it = bullets.begin(); it != bullets.end(); ++it) {

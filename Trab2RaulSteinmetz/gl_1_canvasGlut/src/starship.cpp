@@ -1,7 +1,7 @@
 #include "starship.h"
 
 # define BULLET_DELAY 50
-# define INITIAL_BULLET_SPEED_FACTOR 100
+# define INITIAL_BULLET_SPEED_FACTOR 300
 
 #define PI_ 3.1415
 
@@ -33,6 +33,11 @@ Starship::Starship(double speed_factor, int hp, float px, float py, float radius
     // gun initialization
     gun = Gun(Vector2(0, 0), BULLET_DELAY, angle, INITIAL_BULLET_SPEED_FACTOR);
 
+    color_r = 1.00;
+    color_g = 1.00;
+    color_b = 1.00;
+
+
     update_pos();
 }
 
@@ -58,6 +63,7 @@ void Starship::render(int fps, int  mouseX, int mouseY) {
     update_pos();
     shoot();
     gun.render(angle, fps);
+    drawHP();
     //printf("Position: %f, %f\n", position.x, position.y);
 }
 
@@ -91,7 +97,7 @@ void Starship::update_parameters(float fps) {
 
 void Starship::draw() {
     // drawing ship
-    CV::color(0, 0, 0);
+    CV::color(color_r, color_g, color_b);
     CV::polygon(this->polygon_x, this->polygon_y, 3);
     // drawing gun
     gun.draw();
@@ -139,7 +145,16 @@ void Starship::handleMouse(int button, int state) {
     }
 }
 
-void Starship::take_damage(int damage) {
+void Starship::takeDamage(int damage) {
     hp -= damage;
 }
+
+void Starship::drawHP() {
+    for (int i = 0; i < hp; i++) {
+        CV::color(255, 0, 0);
+        CV::circleFill(20 + i * 20, 20, 10, 25);
+    }
+}
+
+
 

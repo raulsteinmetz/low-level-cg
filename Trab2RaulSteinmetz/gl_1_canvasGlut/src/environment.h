@@ -18,6 +18,7 @@ class CubicBezierCurve {
         CubicBezierCurve();
         CubicBezierCurve(int n_points, Vector2 p0, Vector2 p1, Vector2 p2, Vector2 p3);
         void draw();
+        bool checkTriangleColision(float triangle_x[], float triangle_y[]);
         int n_points;      
 };
 
@@ -33,8 +34,9 @@ class Map {
 
         Map();
         Map(int point_resolution, int n_screens, int screen_height, int screen_width);
-        void render(int player_x, int player_y, float player_velocity, float fps);
+        bool render(float player_velocity, float fps, float player_points_x[], float player_points_y[]);
         void infiniteGeneration(); 
+        bool verifyPlayerColision(float player_x[], float player_y[]);
 };
 
 

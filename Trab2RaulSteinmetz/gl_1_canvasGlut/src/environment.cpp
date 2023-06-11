@@ -53,6 +53,44 @@ void CubicBezierCurve::draw() {
 }
 
 
+bool checkPointInsideTriangle(Vector2 point, Vector2 triangle[]) {
+    float x1 = triangle[0].x, x2 = triangle[1].x, x3 = triangle[2].x;
+    float y1 = triangle[0].y, y2 = triangle[1].y, y3 = triangle[2].y;
+    float x = point.x, y = point.y;
+
+    float denominator = ((y2 - y3)*(x1 - x3) + (x3 - x2)*(y1 - y3));
+    float a = ((y2 - y3)*(x - x3) + (x3 - x2)*(y - y3)) / denominator;
+    float b = ((y3 - y1)*(x - x3) + (x1 - x3)*(y - y3)) / denominator;
+    float c = 1 - a - b;
+
+    return 0 <= a && a <= 1 && 0 <= b && b <= 1 && 0 <= c && c <= 1;
+}
+
+
+bool CubicBezierCurve::checkTriangleColision(float traingle_x[], float traingle_y[]) {
+
+    for (float t = 0; t <= 1; t+=float(1.0/n_points)) {
+        double x = calculatePoint(t, points[0].x, points[1].x, points[2].x, points[3].x);
+        double y = calculatePoint(t, points[0].y, points[1].y, points[2].y, points[3].y);
+
+
+        Vector2 triangle[3];
+        triangle[0] = Vector2(traingle_x[0], traingle_y[0]);
+        triangle[1] = Vector2(traingle_x[1], traingle_y[1]);
+        triangle[2] = Vector2(traingle_x[2], traingle_y[2]);
+
+
+        for (int i = 0; i < 3; i++) {
+            if (checkPointInsideTriangle(Vector2(x, y), triangle)) {
+                return true;
+            }
+        }
+        
+    }
+    return false;
+}
+
+
 // environment
 
 float generateRandomFloat(float minValue, float maxValue) {
@@ -164,7 +202,31 @@ void Map::infiniteGeneration() {
     }
 }
 
-void Map::render(int player_x, int player_y, float player_velocity, float fps) {
+// check if player triangle colides with any of the curves
+bool Map::verifyPlayerColision(float player_x[], float player_y[]) {
+    // calculating the curves
+    for (auto it = left_boundary.begin(); it != left_boundary.end(); it++) {
+        if (it->checkTriangleColision(player_x, player_y)) {
+            return true;
+        }
+    }
+
+    for (auto it = right_boundary.begin(); it != right_boundary.end(); it++) {
+        if (it->checkTriangleColision(player_x, player_y)) {
+            return true;
+        }
+    }
+    
+}
+
+
+// returns flag if the player is out of the map
+bool Map::render(float player_velocity, float fps, float player_points_x[], float player_points_y[]) {
+
+    // black screen
+    CV::color(0, 0, 0);
+    CV::rectFill(0, 0, screen_width, screen_height);
+    
 
     // reducing y on all curves
     for (auto it = left_boundary.begin(); it != left_boundary.end(); it++) {
@@ -191,4 +253,10 @@ void Map::render(int player_x, int player_y, float player_velocity, float fps) {
     }
 
     infiniteGeneration();
+
+    // checking colision
+    if (verifyPlayerColision(player_points_x, player_points_y)) {
+        return true;
+    }
+    return false;
 }
