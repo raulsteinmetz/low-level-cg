@@ -1,4 +1,6 @@
 #include "gun.h"
+#include "enemy.h"
+#include "list"
 
 #define DELAY_FACTOR 0.25
 
@@ -27,10 +29,10 @@ void Bullet::draw() {
 Gun::Gun(){}
 Gun::Gun(Vector2 position, int delay_factor, float angle, float current_bullet_speed_factor)
     : position(position), delay(delay), angle(angle), current_bullet_speed_factor(current_bullet_speed_factor)
-    {
-        app_fps = 0;
-        delay = 0;
-    }
+{
+    app_fps = 0;
+    delay = 0;
+}
 
 // gun methods
 void Gun::shoot()
@@ -54,11 +56,6 @@ void Gun::updateBullets() {
         bullet.position.x += (bullet.speed_factor / float(app_fps)) * cos(rad);
         bullet.position.y += (bullet.speed_factor / float(app_fps)) * sin(rad);
     } 
-}
-
-
-void Gun::checkHit() {
-    // TODO
 }
 
 

@@ -56,6 +56,7 @@ class Starship {
         Gun gun;
         Vector2 position;
         // Constructor
+        Starship();
         Starship(double speed_factor, int hp, float px, float py, float radius);
 
         // getters
@@ -72,6 +73,7 @@ class Starship {
         void handleMouse(int button, int state);
         void movePos();
         void shoot();
+        bool isHit(Vector2 position, float bullet_radius);
 
         void takeDamage(int damage);
 

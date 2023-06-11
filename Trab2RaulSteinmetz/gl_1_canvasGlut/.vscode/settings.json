@@ -2,6 +2,7 @@
     "files.associations": {
         "environment.h": "c",
         "gl_canvas2d.h": "c",
-        "cmath": "cpp"
+        "cmath": "cpp",
+        "*.tcc": "cpp"
     }
 }

@@ -42,7 +42,6 @@ public:
     void updateAngle(float new_angle);
     void render(float new_angle, float fps);
     void updateParameters(int fps);
-    void checkHit();
 };
 
 

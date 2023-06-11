@@ -1,5 +1,5 @@
 limpar codigo
 curvas de bezier continuas
-atira no inimigo * 
-inimigo meche e atira
 deixar mais bonito
+score
+spawn de inimigos
