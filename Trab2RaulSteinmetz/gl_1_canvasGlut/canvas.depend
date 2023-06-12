@@ -189,7 +189,7 @@
 
 1684854541 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab2raulsteinmetz\gl_1_canvasglut\src\level.h
 
-1686518321 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab2raulsteinmetz\gl_1_canvasglut\src\manager.h
+1686538307 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab2raulsteinmetz\gl_1_canvasglut\src\manager.h
 	<GL/glut.h>
 	<GL/freeglut_ext.h>
 	<math.h>
@@ -200,8 +200,13 @@
 	"frames.h"
 	"environment.h"
 	"enemy.h"
+	"animator.h"
 	<list>
 
-1686517620 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab2raulsteinmetz\gl_1_canvasglut\src\manager.cpp
+1686518607 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab2raulsteinmetz\gl_1_canvasglut\src\manager.cpp
 	"manager.h"
+
+1686538184 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab2raulsteinmetz\gl_1_canvasglut\src\animator.h
+	"gl_canvas2d.h"
+	<list>
 

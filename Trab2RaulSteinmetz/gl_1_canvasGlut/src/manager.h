@@ -13,6 +13,7 @@
 #include "frames.h"
 #include "environment.h"
 #include "enemy.h"
+#include "animator.h"
 #include <list>
 
 
@@ -20,10 +21,12 @@ class GameManager {
     public:
         int screenWidth, screenHeight;
         float enemy_spawn_delay;
+        float score;
 
         Starship player; // player
         std::list<Enemy> enemies; // enemies
         Map map; // map
+        Animator animator; // animator
 
         GameManager();
         GameManager(int screenHeight, int screenWidth);
@@ -32,6 +35,8 @@ class GameManager {
         void handleMouse(int button, int state);
         void checkBullets();
         void spawnEnemy(int fps);
+        void drawScore();
+        void updateScore(float fps);
 
 
 

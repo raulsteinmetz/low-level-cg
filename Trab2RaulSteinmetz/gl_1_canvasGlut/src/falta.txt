@@ -1,5 +1,4 @@
 limpar codigo
-curvas de bezier continuas
 deixar mais bonito
-score
-spawn de inimigos
+melhorar o movimento dos inimigos
+progressao

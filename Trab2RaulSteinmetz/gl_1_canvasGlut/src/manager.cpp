@@ -9,6 +9,7 @@ GameManager::GameManager(){}
 GameManager::GameManager(int screenHeight, int screenWidth) {
     map =  Map(50, 10, screenHeight, screenWidth);
     player = Starship(250, 5, screenWidth/2, screenHeight*0.8, 20);
+    score = 0;
     // test enemy
     Enemy enemy(3, 100, 100, -100, 30);
     enemies.push_back(enemy);
@@ -38,7 +39,20 @@ void GameManager::render(int fps, float mouseX, float mouseY) {
 
     checkBullets();
     spawnEnemy(fps);
-    
+    drawScore();
+    updateScore(fps);
+    animator.render(fps);
+}
+
+// to be changed when progression is implemented
+void GameManager::updateScore(float fps) {
+    score += 1;
+}
+
+void GameManager::drawScore() {
+    char str[100];
+    sprintf(str, "Score: %d", int(score));
+    CV::text(screenWidth - 150, 30, str);
 }
 
 void GameManager::handleKeyboard(int key, int state) {
@@ -70,7 +84,9 @@ void GameManager::checkBullets() {
     
                 // remove enemy if hp == 0
                 if (enemy.hp == 0) {
+                    animator.enemy_explosion_init(enemy.position.x, enemy.position.y);
                     it2 = enemies.erase(it2);
+
                     continue;
                 }
 
@@ -89,6 +105,7 @@ void GameManager::checkBullets() {
             if (bullet.position.x < 0 || bullet.position.x > screenWidth || bullet.position.y < 0 || bullet.position.y > screenHeight) {
                 // remove bullet from list
                 it2 = enemy.gun.bullets.erase(it2);
+                score += 100;
                 continue;
             }
             // check if bullet hit an enemy

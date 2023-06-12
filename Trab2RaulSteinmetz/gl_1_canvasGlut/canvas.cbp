@@ -45,6 +45,8 @@
 		</Linker>
 		<Unit filename="include/GL/glut.h" />
 		<Unit filename="src/Vector2.h" />
+		<Unit filename="src/animator.cpp" />
+		<Unit filename="src/animator.h" />
 		<Unit filename="src/enemy.cpp" />
 		<Unit filename="src/enemy.h" />
 		<Unit filename="src/environment.cpp" />
@@ -57,6 +59,8 @@
 		<Unit filename="src/level.cpp" />
 		<Unit filename="src/level.h" />
 		<Unit filename="src/main.cpp" />
+		<Unit filename="src/manager.cpp" />
+		<Unit filename="src/manager.h" />
 		<Unit filename="src/starship.cpp" />
 		<Unit filename="src/starship.h" />
 		<Extensions>
