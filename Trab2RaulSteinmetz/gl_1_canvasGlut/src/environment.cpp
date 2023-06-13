@@ -30,10 +30,8 @@ void CubicBezierCurve::draw() {
     bool first_it = true;
 
     //draw control points
-    CV::color(0, 0, 255);
-    for (int i = 0; i < 4; i++) {
-        CV::circle(points[i].x, points[i].y, 5, 20);
-    }
+
+    CV::color(0.5, 0, 1);
 
     //draw curve
     for (float t = 0; t <= 1; t+=float(1.0/n_points)) {

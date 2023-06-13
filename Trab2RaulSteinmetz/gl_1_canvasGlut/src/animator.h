@@ -30,11 +30,12 @@ class Animator {
     private:
         // list of animation objects
         std::list<CircleParticle> explosion_objects;
-        std::list<SquareParticle> player_damage_objects;
-        std::list<SquareParticle> enemy_damage_objects;
+        std::list<SquareParticle> damage_objects;
         std::list<SquareParticle> fuel_objects;
+        std::list<CircleParticle> stars;
 
         float explosion_time;
+        float damage_time;
 
 
     public:
@@ -44,10 +45,11 @@ class Animator {
         // functions
         void enemy_explosion_init(float x, float y);
         void enemy_explosion_handle(float fps);
-        void enemy_damage(float x, float y, float fps);
-        void player_damage(float x, float y, float fps);
-        void player_fuel(float x, float y, float fps);
-        void render(float fps);
+        void damage_init(float x, float y);
+        void damage_handle(float fps);
+        void stars_init(float screen_width, float screen_height);
+        void stars_handle(float fps, float screen_height);
+        void render(float fps, float screen_height);
 };
 
 #endif // ANIMATOR_H

@@ -14,6 +14,10 @@ class Enemy {
         Vector2 speed_factor;
         Gun gun;
         float delay;
+        float colorR;
+        float colorG;
+        float colorB;
+        
 
         float polygon_x[3];
         float polygon_y[3];

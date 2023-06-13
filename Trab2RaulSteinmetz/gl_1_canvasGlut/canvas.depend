@@ -140,7 +140,7 @@
 1589214891 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab2raulsteinmetz\gl_1_canvasglut\src\botao.h
 	"gl_canvas2d.h"
 
-1686517308 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab2raulsteinmetz\gl_1_canvasglut\src\starship.cpp
+1686572489 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab2raulsteinmetz\gl_1_canvasglut\src\starship.cpp
 	"starship.h"
 
 1686517176 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab2raulsteinmetz\gl_1_canvasglut\src\starship.h
@@ -166,22 +166,22 @@
 	"stdio.h"
 	"gl_canvas2d.h"
 
-1686490206 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab2raulsteinmetz\gl_1_canvasglut\src\environment.cpp
+1686622539 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab2raulsteinmetz\gl_1_canvasglut\src\environment.cpp
 	"environment.h"
 	<stdio.h>
 
-1686488961 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab2raulsteinmetz\gl_1_canvasglut\src\environment.h
+1686621542 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab2raulsteinmetz\gl_1_canvasglut\src\environment.h
 	<string>
 	"Vector2.h"
 	"gun.h"
 	"gl_canvas2d.h"
 	<list>
 
-1686517902 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab2raulsteinmetz\gl_1_canvasglut\src\enemy.h
+1686623226 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab2raulsteinmetz\gl_1_canvasglut\src\enemy.h
 	"vector2.h"
 	"gun.h"
 
-1686518097 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab2raulsteinmetz\gl_1_canvasglut\src\enemy.cpp
+1686623241 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab2raulsteinmetz\gl_1_canvasglut\src\enemy.cpp
 	"enemy.h"
 
 1684854522 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab2raulsteinmetz\gl_1_canvasglut\src\level.cpp
@@ -203,10 +203,13 @@
 	"animator.h"
 	<list>
 
-1686518607 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab2raulsteinmetz\gl_1_canvasglut\src\manager.cpp
+1686623422 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab2raulsteinmetz\gl_1_canvasglut\src\manager.cpp
 	"manager.h"
 
-1686538184 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab2raulsteinmetz\gl_1_canvasglut\src\animator.h
+1686621903 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab2raulsteinmetz\gl_1_canvasglut\src\animator.h
 	"gl_canvas2d.h"
 	<list>
+
+1686622621 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab2raulsteinmetz\gl_1_canvasglut\src\animator.cpp
+	"animator.h"
 

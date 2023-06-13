@@ -16,9 +16,9 @@ GameManager::GameManager(int screenHeight, int screenWidth) {
     
     this->screenWidth = screenWidth;
     this->screenHeight = screenHeight;
-
     this->enemy_spawn_delay = 0;
 
+    animator.stars_init(screenWidth, screenHeight);
 }
 
 
@@ -29,6 +29,8 @@ void GameManager::render(int fps, float mouseX, float mouseY) {
         // reduce player hp
         player.takeDamage(1);
     }
+
+    animator.render(fps, screenHeight);
 
     player.render(fps, mouseX, mouseY);
     
@@ -41,7 +43,6 @@ void GameManager::render(int fps, float mouseX, float mouseY) {
     spawnEnemy(fps);
     drawScore();
     updateScore(fps);
-    animator.render(fps);
 }
 
 // to be changed when progression is implemented
@@ -81,6 +82,8 @@ void GameManager::checkBullets() {
                 it = player.gun.bullets.erase(it);
 
                 enemy.takeDamage(1);
+
+                animator.damage_init(enemy.position.x, enemy.position.y);
     
                 // remove enemy if hp == 0
                 if (enemy.hp == 0) {
@@ -121,12 +124,51 @@ void GameManager::checkBullets() {
 
 void GameManager::spawnEnemy(int fps) {
     if (enemy_spawn_delay <= 0) {
-        printf("spawning enemy\n");
-        // spawn enemy
-        Enemy enemy(3, 100, 100 + rand() % (screenWidth - 100) , -100, 30);
-        enemies.push_back(enemy);
-        // reset delay
-        enemy_spawn_delay = ENEMY_SPAWN_DELAY_FACTOR * fps;
+        if (score < 10000) {
+            // spawn enemy
+            Enemy enemy(3, 100, 100 + rand() % (screenWidth - 100) , -100, 30);
+            enemy.colorR = 1;
+            enemy.colorG = 0.4;
+            enemy.colorB = 0.4;
+            enemies.push_back(enemy);
+            // reset delay
+            enemy_spawn_delay = ENEMY_SPAWN_DELAY_FACTOR * fps * 2;
+        }
+        else if (score < 20000) {
+            // spawn enemy
+            Enemy enemy(3, 100, 100 + rand() % (screenWidth - 100) , -100, 30);
+            enemy.colorR = 1;
+            enemy.colorG = 0.5;
+            enemy.colorB = 0.8;
+            enemy.gun.current_bullet_speed_factor = 350;
+            enemies.push_back(enemy);
+
+            // reset delay
+            enemy_spawn_delay = ENEMY_SPAWN_DELAY_FACTOR * fps;
+        }
+        else if (score < 50000) {
+            // spawn enemy
+            Enemy enemy(3, 100, 100 + rand() % (screenWidth - 100) , -100, 30);
+            enemy.colorR = 1;
+            enemy.colorG = 0;
+            enemy.colorB = 1;
+            enemy.gun.current_bullet_speed_factor = 450;
+            enemies.push_back(enemy);
+
+            // reset delay
+            enemy_spawn_delay = ENEMY_SPAWN_DELAY_FACTOR * fps / 2.0;
+        } else {
+            // spawn enemy
+            Enemy enemy(3, 100, 100 + rand() % (screenWidth - 100) , -100, 30);
+            enemy.colorR = 1;
+            enemy.colorG = 0;
+            enemy.colorB = 0;
+            enemy.gun.current_bullet_speed_factor = 550;
+            enemies.push_back(enemy);
+
+            // reset delay
+            enemy_spawn_delay = ENEMY_SPAWN_DELAY_FACTOR * fps / 3.0;
+        }
     } else {
         enemy_spawn_delay--;
     }

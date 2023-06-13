@@ -19,6 +19,10 @@ Enemy::Enemy(int hp, int power, float px, float py, float radius) {
     this->speed_factor.x = X_SPEED;
     this->speed_factor.y = Y_SPEED;
     this->delay = 0;
+    this->colorR = 1;
+    this->colorG = 0.4;
+    this->colorB = 0.4;
+
     gun = Gun(Vector2(0, 0), 50, (float) DEFAULT_ANGLE, 250);
 
     update_pos();
@@ -26,7 +30,7 @@ Enemy::Enemy(int hp, int power, float px, float py, float radius) {
 
 void Enemy::draw(){
     // drawing ship
-    CV::color(1, 0.4, 0.4);
+    CV::color(colorR, colorG, colorB);
     CV::polygon(this->polygon_x, this->polygon_y, 3);
     // drawing gun
     gun.draw();
@@ -91,34 +95,24 @@ bool Enemy::isHit(Vector2 position, float bullet_radius) {
 }
 
 void Enemy::moveX(int fps, float screen_width) {
-    // randomize a number from 0 to 9
-    int random = rand() % 10;
+    // Randomly choose a direction
+    int direction = rand() % 2; // 0 for subtracting, 1 for adding
 
-    // check if player.x is between 45 and 55 % of the screen or before or after screen center
-    if ((position.x > screen_width * 0.45 && position.x < screen_width * 0.55) || position.x == screen_width / 2) {
-        if (random > 2) {
-            position.x += speed_factor.x / fps;
-        }
-        else {
-            position.x -= speed_factor.x / fps;
-        }
-    }
-    else if (position.x < screen_width / 2) {
-        if (random < 7) {
-             // if player.x is before screen center, move right
-            position.x += speed_factor.x / fps;
-        } else {
-            // if player.x is before screen center, move left
-            position.x -= speed_factor.x / fps;
-        }
+    // Calculate the change in position based on speed_factor and fps
+    float delta = speed_factor.x / fps;
+
+    // Update position based on the chosen direction
+    if (direction == 0) {
+        position.x -= delta;
     } else {
-        if (random < 7) {
-            // if player.x is after screen center, move left
-            position.x -= speed_factor.x / fps;
-        } else {
-            // if player.x is after screen center, move right
-            position.x += speed_factor.x / fps;
-        }
+        position.x += delta;
+    }
+
+    // Ensure position stays within the screen bounds
+    if (position.x < 0.4f * screen_width) {
+        position.x = 0.4f * screen_width;
+    } else if (position.x > 0.6 * screen_width) {
+        position.x = 0.6 * screen_width;
     }
 }
 

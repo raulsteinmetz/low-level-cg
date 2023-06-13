@@ -1,4 +1,2 @@
-limpar codigo
-deixar mais bonito
-melhorar o movimento dos inimigos
-progressao
+menu, tela de morte
+especiais
