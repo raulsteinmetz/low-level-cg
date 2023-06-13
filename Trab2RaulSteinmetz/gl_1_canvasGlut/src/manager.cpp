@@ -24,11 +24,8 @@ GameManager::GameManager(){}
 GameManager::GameManager(int screenHeight, int screenWidth) {
     map =  Map(50, 10, screenHeight, screenWidth);
     player = Starship(250, 5, screenWidth/2, screenHeight*0.8, 20);
-    score = 0;
+    score = 1;
     ui = UserInterface(screenWidth, screenHeight);
-    // test enemy
-    Enemy enemy(3, 100, 100, -100, 30);
-    enemies.push_back(enemy);
 
     this->screenWidth = screenWidth;
     this->screenHeight = screenHeight;
@@ -82,8 +79,20 @@ void GameManager::render(int fps, float mouseX, float mouseY) {
 
 // to be changed when progression is implemented
 void GameManager::updateScore(float fps) {
-    score += 1;
+    if (score < 10000) {
+        score += 100.0 / fps;
+    }
+    else if (score < 20000) {
+        score += 200.0 / fps;
+    }
+    else if (score < 50000) {
+        score += 300.0 / fps;
+    }
+    else {
+        score += 500.0 / fps; 
+    }
 }
+
 
 void GameManager::drawScore() {
     char str[100];
@@ -118,7 +127,7 @@ void GameManager::handleMouse(int button, int state, float mouseX, float mouseY)
                 if (button.check(mouseX, mouseY)) {
                     if (button.id == 0) { // play
                         application_state = 1;
-                        score = 0;
+                        score = 1;
                         player.hp = 5;
                         enemies.clear();
                         player.gun.bullets.clear();
@@ -155,6 +164,7 @@ void GameManager::checkBullets() {
 
                 // remove enemy if hp == 0
                 if (enemy.hp == 0) {
+                    score += 3000;
                     animator.enemy_explosion_init(enemy.position.x, enemy.position.y);
                     it2 = enemies.erase(it2);
 
@@ -176,7 +186,6 @@ void GameManager::checkBullets() {
             if (bullet.position.x < 0 || bullet.position.x > screenWidth || bullet.position.y < 0 || bullet.position.y > screenHeight) {
                 // remove bullet from list
                 it2 = enemy.gun.bullets.erase(it2);
-                score += 1000;
                 continue;
             }
             // check if bullet hit an enemy
@@ -195,7 +204,7 @@ void GameManager::spawnEnemy(int fps) {
     if (enemy_spawn_delay <= 0) {
         if (score < 10000) {
             // spawn enemy
-            Enemy enemy(3, 100, 100 + rand() % (screenWidth - 100) , -100, 30);
+            Enemy enemy(3, 100, 100 + rand() % (screenWidth - 100) , -100, 30, Vector2(200, 50));
             enemy.colorR = 1;
             enemy.colorG = 0.4;
             enemy.colorB = 0.4;
@@ -205,7 +214,7 @@ void GameManager::spawnEnemy(int fps) {
         }
         else if (score < 20000) {
             // spawn enemy
-            Enemy enemy(3, 100, 100 + rand() % (screenWidth - 100) , -100, 30);
+            Enemy enemy(3, 100, 100 + rand() % (screenWidth - 100) , -100, 30, Vector2(300, 75));
             enemy.colorR = 1;
             enemy.colorG = 0.5;
             enemy.colorB = 0.8;
@@ -217,7 +226,7 @@ void GameManager::spawnEnemy(int fps) {
         }
         else if (score < 50000) {
             // spawn enemy
-            Enemy enemy(3, 100, 100 + rand() % (screenWidth - 100) , -100, 30);
+            Enemy enemy(3, 100, 100 + rand() % (screenWidth - 100) , -100, 30, Vector2(350, 100));
             enemy.colorR = 1;
             enemy.colorG = 0;
             enemy.colorB = 1;
@@ -228,7 +237,7 @@ void GameManager::spawnEnemy(int fps) {
             enemy_spawn_delay = ENEMY_SPAWN_DELAY_FACTOR * fps / 3.0;
         } else {
             // spawn enemy
-            Enemy enemy(3, 100, 100 + rand() % (screenWidth - 100) , -100, 30);
+            Enemy enemy(3, 100, 100 + rand() % (screenWidth - 100) , -100, 30, Vector2(400, 150));
             enemy.colorR = 1;
             enemy.colorG = 1;
             enemy.colorB = 0;

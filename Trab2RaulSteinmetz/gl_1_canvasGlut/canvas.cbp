@@ -63,6 +63,8 @@
 		<Unit filename="src/manager.h" />
 		<Unit filename="src/starship.cpp" />
 		<Unit filename="src/starship.h" />
+		<Unit filename="src/ui.cpp" />
+		<Unit filename="src/ui.h" />
 		<Extensions>
 			<code_completion />
 			<debugger />

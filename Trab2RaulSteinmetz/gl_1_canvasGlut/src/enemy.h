@@ -32,7 +32,7 @@ class Enemy {
         float polygon_y[3];
 
         Enemy();
-        Enemy(int hp, int power, float px, float py, float radius);
+        Enemy(int hp, int power, float px, float py, float radius, Vector2 speed_factor);
         void update_pos(); // position update and points calculations
         void draw(); // draws enemy
         void render(int fps, float screen_width, Vector2 player_pos); // enemy render

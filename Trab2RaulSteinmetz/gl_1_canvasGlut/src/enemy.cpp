@@ -19,14 +19,14 @@
 
 Enemy::Enemy() {}
 
-Enemy::Enemy(int hp, int power, float px, float py, float radius) {
+Enemy::Enemy(int hp, int power, float px, float py, float radius, Vector2 speed_factor) {
     this->hp = hp;
     this->power = power;
     this->position.x = px;
     this->position.y = py;
     this->radius = radius;
-    this->speed_factor.x = X_SPEED;
-    this->speed_factor.y = Y_SPEED;
+    this->speed_factor.x = speed_factor.x;
+    this->speed_factor.y = speed_factor.y;
     this->delay = 0;
     this->colorR = 1;
     this->colorG = 0.4;
