@@ -1,5 +1,5 @@
 #include <GL/glut.h>
-#include <GL/freeglut_ext.h> //callback da wheel do mouse.
+#include <GL/freeglut_ext.h> 
 
 #include <math.h>
 #include <stdio.h>
@@ -17,11 +17,6 @@ int screenWidth = 800, screenHeight = 600;
 int mouseX, mouseY;
 
 GameManager gameManager(screenHeight, screenWidth);
-
-
-void setup() {
-
-}
 
 
 void render()
@@ -56,7 +51,6 @@ void mouse(int button, int state, int wheel, int direction, int x, int y)
 
 int main(void)
 {
-   setup();
    CV::init(&screenWidth, &screenHeight, "Singularity");
    CV::run();
 }

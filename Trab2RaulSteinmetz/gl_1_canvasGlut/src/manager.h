@@ -54,6 +54,7 @@ class GameManager {
         void spawnEnemy(int fps); // spawns enemies in the game, controlled by a cetain delay
         void drawScore(); // draw player score
         void updateScore(float fps); // increment score based on time passed
+        void checkPlayerEnemyColision(); // check if any enemy hit the player
 
 
 

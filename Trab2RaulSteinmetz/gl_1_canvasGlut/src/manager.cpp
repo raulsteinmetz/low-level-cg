@@ -14,6 +14,7 @@
 
 
 #include "manager.h"
+#include <cmath>
 
 #define ENEMY_SPAWN_DELAY_FACTOR 5
 
@@ -33,6 +34,46 @@ GameManager::GameManager(int screenHeight, int screenWidth) {
     this->application_state = 0;
 
     animator.stars_init(screenWidth, screenHeight);
+}
+
+bool pointInTriangle(float x, float y, float triangleX[3], float triangleY[3]) {
+    // check if point is inside triangle
+    float alpha = ((triangleY[1] - triangleY[2])*(x - triangleX[2]) + (triangleX[2] - triangleX[1])*(y - triangleY[2])) / ((triangleY[1] - triangleY[2])*(triangleX[0] - triangleX[2]) + (triangleX[2] - triangleX[1])*(triangleY[0] - triangleY[2]));
+    float beta = ((triangleY[2] - triangleY[0])*(x - triangleX[2]) + (triangleX[0] - triangleX[2])*(y - triangleY[2])) / ((triangleY[1] - triangleY[2])*(triangleX[0] - triangleX[2]) + (triangleX[2] - triangleX[1])*(triangleY[0] - triangleY[2]));
+    float gamma = 1.0f - alpha - beta;
+
+    return (alpha > 0 && beta > 0 && gamma > 0);
+}
+
+
+bool checkColisionBetweenTriangles(float triangle1X[3], float triangle1Y[3], float triangle2X[3], float triangle2Y[3]) {
+    // check if any of the points of triangle 1 is inside triangle 2
+    for (int i = 0; i < 3; i++) {
+        if (pointInTriangle(triangle1X[i], triangle1Y[i], triangle2X, triangle2Y)) {
+            return true;
+        }
+    }
+    // check if any of the points of triangle 2 is inside triangle 1
+    for (int i = 0; i < 3; i++) {
+        if (pointInTriangle(triangle2X[i], triangle2Y[i], triangle1X, triangle1Y)) {
+            return true;
+        }
+    }
+    
+}
+
+
+
+
+void GameManager::checkPlayerEnemyColision() {
+    // iterate throught enemies
+    for (std::list<Enemy>::iterator it = enemies.begin(); it != enemies.end(); ++it) {
+        // check if enemy hit player
+        if (checkColisionBetweenTriangles(it->polygon_x, it->polygon_y, player.polygon_x, player.polygon_y)) {
+            // send player to the midle of the screen
+            player.hp = 0;
+        }
+    }
 }
 
 
@@ -60,6 +101,7 @@ void GameManager::render(int fps, float mouseX, float mouseY) {
         drawScore();
         updateScore(fps);
         animator.render(fps, screenHeight);
+        checkPlayerEnemyColision();
 
         if (player.hp <= 0) {
             application_state = 2;
@@ -192,7 +234,7 @@ void GameManager::checkBullets() {
             if (player.isHit(bullet.position, bullet.radius) == true) {
                 // remove bullet from list
                 it2 = enemy.gun.bullets.erase(it2);
-                player.takeDamage(1);
+                player.takeDamage(enemy.power);
                 animator.damage_init(player.position.x, player.position.y);
                 break;
             }
@@ -204,7 +246,7 @@ void GameManager::spawnEnemy(int fps) {
     if (enemy_spawn_delay <= 0) {
         if (score < 10000) {
             // spawn enemy
-            Enemy enemy(3, 100, 100 + rand() % (screenWidth - 100) , -100, 30, Vector2(200, 50));
+            Enemy enemy(3, 1, 100 + rand() % (screenWidth - 100) , -100, 30, Vector2(200, 50));
             enemy.colorR = 1;
             enemy.colorG = 0.4;
             enemy.colorB = 0.4;
@@ -214,7 +256,7 @@ void GameManager::spawnEnemy(int fps) {
         }
         else if (score < 20000) {
             // spawn enemy
-            Enemy enemy(3, 100, 100 + rand() % (screenWidth - 100) , -100, 30, Vector2(300, 75));
+            Enemy enemy(3, 1, 100 + rand() % (screenWidth - 100) , -100, 30, Vector2(300, 75));
             enemy.colorR = 1;
             enemy.colorG = 0.5;
             enemy.colorB = 0.8;
@@ -226,7 +268,7 @@ void GameManager::spawnEnemy(int fps) {
         }
         else if (score < 50000) {
             // spawn enemy
-            Enemy enemy(3, 100, 100 + rand() % (screenWidth - 100) , -100, 30, Vector2(350, 100));
+            Enemy enemy(3, 1, 100 + rand() % (screenWidth - 100) , -100, 30, Vector2(350, 100));
             enemy.colorR = 1;
             enemy.colorG = 0;
             enemy.colorB = 1;
@@ -237,7 +279,7 @@ void GameManager::spawnEnemy(int fps) {
             enemy_spawn_delay = ENEMY_SPAWN_DELAY_FACTOR * fps / 3.0;
         } else {
             // spawn enemy
-            Enemy enemy(3, 100, 100 + rand() % (screenWidth - 100) , -100, 30, Vector2(400, 150));
+            Enemy enemy(5, 1, 100 + rand() % (screenWidth - 100) , -100, 30, Vector2(400, 150));
             enemy.colorR = 1;
             enemy.colorG = 1;
             enemy.colorB = 0;

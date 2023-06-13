@@ -1,5 +1,5 @@
 Nome: Raul Steinmetz
-Trabalho: 2 (Galega)
+Trabalho: 3 (Galega)
 
 
 Como Jogar:
@@ -8,7 +8,8 @@ Como Jogar:
     - Atira com mouse1
     - Movimenta a nave com A e D
     - Perde vida se tomar tiro dos inimigos
-    - Perde vida se tocar nas bordas (Curvas)
+    - Perde vida se tocar nas bordas (curvas)
+    - Morre instantaneamente se colidir com inimigo
     - Inimigos morrem com uma certa quantidade de tiros
     - É possível desviar dos tiros dos inimigos
 
@@ -16,6 +17,7 @@ Requisitos Implementados:
     
     Obrigatórios (todos):
         - Cenário com 10x o tamanho da window
+	- Bordas com curvas de Bezier randomicas
         - Nave pode disparar contra inimigos
         - Inimigos disparam contra a nave 
         - Placar de pontuação
@@ -29,4 +31,4 @@ Requisitos Implementados:
             Se move na tela com algorítimo de controle
             Mira de forma suave para o player, atirando de tempos em tempos
         - Player pode mirar
-        - Jogo tem progressão (fica mais difícil de acordo com o score)
+        - Jogo tem progressão (fica mais difícil de acordo com o score, inimigos mais fortes)

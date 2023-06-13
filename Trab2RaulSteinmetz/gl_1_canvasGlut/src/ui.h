@@ -2,7 +2,7 @@
 
     Made by Raul Steinmetz
 
-    This file is responsable for managing the player class
+    This file is responsable for ui elements (menus)
         
 
 */

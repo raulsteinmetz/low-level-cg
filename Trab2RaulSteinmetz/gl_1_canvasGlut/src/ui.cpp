@@ -2,7 +2,7 @@
 
     Made by Raul Steinmetz
 
-    This file is responsable for ui elements
+    This file is responsable for ui elements (menus)
         
 
 */
