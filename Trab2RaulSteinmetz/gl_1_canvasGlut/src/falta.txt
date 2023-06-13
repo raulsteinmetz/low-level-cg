@@ -1,2 +1,2 @@
-menu, tela de morte
 especiais
+ranking

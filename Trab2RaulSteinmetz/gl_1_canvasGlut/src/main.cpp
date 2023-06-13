@@ -51,7 +51,7 @@ void mouse(int button, int state, int wheel, int direction, int x, int y)
    // 0 0 click
    // 0 1 solta
 
-   gameManager.handleMouse(button, state);
+   gameManager.handleMouse(button, state, mouseX, mouseY);
 }
 
 int main(void)

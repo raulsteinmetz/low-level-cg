@@ -24,7 +24,6 @@ class Starship {
         // attributes
         double speed_factor;
         int bullet_delay;
-        int hp;
         int bullet_power;
         float angle;
         float radius;
@@ -53,6 +52,7 @@ class Starship {
 
 
     public:
+        int hp;
         Gun gun;
         Vector2 position;
         // Constructor

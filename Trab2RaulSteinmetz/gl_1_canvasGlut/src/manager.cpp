@@ -10,39 +10,54 @@ GameManager::GameManager(int screenHeight, int screenWidth) {
     map =  Map(50, 10, screenHeight, screenWidth);
     player = Starship(250, 5, screenWidth/2, screenHeight*0.8, 20);
     score = 0;
+    ui = UserInterface(screenWidth, screenHeight);
     // test enemy
     Enemy enemy(3, 100, 100, -100, 30);
     enemies.push_back(enemy);
-    
+
     this->screenWidth = screenWidth;
     this->screenHeight = screenHeight;
     this->enemy_spawn_delay = 0;
+    this->application_state = 0;
 
     animator.stars_init(screenWidth, screenHeight);
 }
 
 
 void GameManager::render(int fps, float mouseX, float mouseY) {
-    if (map.render(float(player.get_velocity()), float(fps), player.polygon_x, player.polygon_y)) {
-        // send player to the midle of the screen
-        player.position = Vector2(screenWidth/2, screenHeight*0.8);
-        // reduce player hp
-        player.takeDamage(1);
+    if (application_state == 0) { // menu
+        ui.initial_menu(mouseX, mouseY);
+    }
+    else if (application_state == 1) { // game
+        if (map.render(float(player.get_velocity()), float(fps), player.polygon_x, player.polygon_y)) {
+            // send player to the midle of the screen
+            player.position = Vector2(screenWidth/2, screenHeight*0.8);
+            // reduce player hp
+            player.takeDamage(1);
+        }
+
+        player.render(fps, mouseX, mouseY);
+
+        // render enemies
+        for (std::list<Enemy>::iterator it = enemies.begin(); it != enemies.end(); ++it) {
+            it->render(fps, screenWidth, player.position);
+        }
+
+        checkBullets();
+        spawnEnemy(fps);
+        drawScore();
+        updateScore(fps);
+        animator.render(fps, screenHeight);
+
+        if (player.hp <= 0) {
+            application_state = 2;
+            
+        }
+    }
+    else if (application_state == 2) {
+        ui.death_menu(mouseX, mouseY);
     }
 
-    animator.render(fps, screenHeight);
-
-    player.render(fps, mouseX, mouseY);
-    
-    // render enemies
-    for (std::list<Enemy>::iterator it = enemies.begin(); it != enemies.end(); ++it) {
-        it->render(fps, screenWidth, player.position);
-    }
-
-    checkBullets();
-    spawnEnemy(fps);
-    drawScore();
-    updateScore(fps);
 }
 
 // to be changed when progression is implemented
@@ -60,8 +75,41 @@ void GameManager::handleKeyboard(int key, int state) {
     player.handleKeyboard(key, state);
 }
 
-void GameManager::handleMouse(int button, int state) {
+void GameManager::handleMouse(int button, int state, float mouseX, float mouseY) {
     player.handleMouse(button, state);
+    if (button == 0 && state == 0) {
+        // iterate buttons on ui
+        if (application_state == 0) {
+            for (std::list<Button>::iterator it = ui.menu_buttons.begin(); it != ui.menu_buttons.end(); ++it) {
+                Button& button = *it;
+                if (button.check(mouseX, mouseY)) {
+                    if (button.id == 0) { // play
+                        application_state = 1;
+                    }
+                    else if (button.id == 1) { // quit
+                        exit(0);
+                    }
+                }
+            }
+        }
+        else if (application_state == 2) {
+            for (std::list<Button>::iterator it = ui.death_buttons.begin(); it != ui.death_buttons.end(); ++it) {
+                Button& button = *it;
+                if (button.check(mouseX, mouseY)) {
+                    if (button.id == 0) { // play
+                        application_state = 1;
+                        score = 0;
+                        player.hp = 5;
+                        enemies.clear();
+                        player.gun.bullets.clear();
+                    }
+                    else if (button.id == 1) { // quit
+                        exit(0);
+                    }
+                }
+            }
+        }
+    }
 }
 
 void GameManager::checkBullets() {
@@ -84,7 +132,7 @@ void GameManager::checkBullets() {
                 enemy.takeDamage(1);
 
                 animator.damage_init(enemy.position.x, enemy.position.y);
-    
+
                 // remove enemy if hp == 0
                 if (enemy.hp == 0) {
                     animator.enemy_explosion_init(enemy.position.x, enemy.position.y);
