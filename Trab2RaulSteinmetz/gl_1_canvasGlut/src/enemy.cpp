@@ -1,3 +1,12 @@
+/*
+
+    Made by Raul Steinmetz
+
+    This file is responsable for enemy control
+
+*/
+
+
 #include "enemy.h"
 
 #define Y_SPEED 50

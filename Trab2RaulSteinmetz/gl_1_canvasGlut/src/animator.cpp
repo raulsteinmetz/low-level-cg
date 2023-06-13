@@ -1,9 +1,19 @@
+/*
+
+    Made by Raul Steinmetz
+
+    This file is responsable for the animations in the game
+
+
+*/
+
+
 #include "animator.h"
 
 #define EXPLOSION_END 0.5
 #define DAMAGE_END 0.25
 
-// circle
+// circle particle
 CircleParticle::CircleParticle() {
     radius = 0;
     x = 0;
@@ -19,7 +29,7 @@ void CircleParticle::draw() {
 }
 
 
-// square
+// square particle
 SquareParticle::SquareParticle() {
     side = 0;
     x = 0;
@@ -34,24 +44,18 @@ void SquareParticle::draw() {
     CV::rectFill(x, y, x + side, y + side);
 }
 
-
-
-// constructor
 Animator::Animator() {
     explosion_time = EXPLOSION_END ;
 }
 
-// functions
 void Animator::enemy_explosion_init(float x, float y) {
     for (int i = 0; i < 20; i++) {
         CircleParticle particle;
         particle.radius = 5;
 
-        // randomize initial positions in a radius of 20
         particle.x = x + (rand() % 40) - 20;
         particle.y = y + (rand() % 40) - 20;
 
-        // randomize colors between yellow, red and black
         particle.r = 1;
         particle.g = (rand() % 100) / 100.0;
         particle.b = 0;
@@ -62,17 +66,12 @@ void Animator::enemy_explosion_init(float x, float y) {
 
 void Animator::enemy_explosion_handle(float fps) {
     for (std::list<CircleParticle>::iterator it = explosion_objects.begin(); it != explosion_objects.end(); ++it) {
-        // randomize angle in radians
         float angle = (rand() % 360) * 3.1415 / 180.0;
-        // randomize speed
         float speed = (rand() % 100);
-        // update position
         it->x += cos(angle) * speed / fps;
     }
 
-    // check if list is not empty
     if (!explosion_objects.empty()) {
-        // draw all particles
         for (std::list<CircleParticle>::iterator it = explosion_objects.begin(); it != explosion_objects.end(); ++it) {
             it->draw();
         }
@@ -93,11 +92,9 @@ void Animator::damage_init(float x, float y) {
         SquareParticle particle;
         particle.side = 5;
 
-        // randomize initial positions in a radius of 20
         particle.x = x + (rand() % 40) - 20;
         particle.y = y + (rand() % 40) - 20;
 
-        // randomize colors between yellow, red and black
         particle.r = 1;
         particle.g = (rand() % 100) / 100.0;
         particle.b = 0;
@@ -108,17 +105,12 @@ void Animator::damage_init(float x, float y) {
 
 void Animator::damage_handle(float fps) {
     for (std::list<SquareParticle>::iterator it = damage_objects.begin(); it != damage_objects.end(); ++it) {
-        // randomizing particle movement angle
         float angle = (rand() % 360) * 3.1415 / 180.0;
-        // randomize speed
         float speed = (rand() % 100);
-        // update position
         it->x += cos(angle) * speed / fps;
     }
 
-    // check if list is not empty
     if (!damage_objects.empty()) {
-        // draw all particles
         for (std::list<SquareParticle>::iterator it = damage_objects.begin(); it != damage_objects.end(); ++it) {
             it->draw();
         }
@@ -154,7 +146,6 @@ void Animator::stars_init(float screen_width, float screen_height) {
 }
 
 void Animator::stars_handle(float fps, float screen_height) {
-    // decrease y position of all stars
     for (std::list<CircleParticle>::iterator it = stars.begin(); it != stars.end(); ++it) {
         if (it->y > screen_height)
             it->y -= screen_height;

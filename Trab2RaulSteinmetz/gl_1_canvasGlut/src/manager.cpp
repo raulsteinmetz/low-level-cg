@@ -1,3 +1,18 @@
+/*
+
+    Made by Raul Steinmetz
+
+    This file is responsable for managing all elements in the game:
+        Player
+        Enemies
+        Map
+        Score
+        Input
+        
+
+*/
+
+
 #include "manager.h"
 
 #define ENEMY_SPAWN_DELAY_FACTOR 5
@@ -55,7 +70,12 @@ void GameManager::render(int fps, float mouseX, float mouseY) {
         }
     }
     else if (application_state == 2) {
+        // print score
         ui.death_menu(mouseX, mouseY);
+        CV::color(1, 1, 1);
+        char str[100];
+        sprintf(str, "Score: %d", int(score));
+        CV::text(screenWidth/2 - 50, 100, str);
     }
 
 }
@@ -156,7 +176,7 @@ void GameManager::checkBullets() {
             if (bullet.position.x < 0 || bullet.position.x > screenWidth || bullet.position.y < 0 || bullet.position.y > screenHeight) {
                 // remove bullet from list
                 it2 = enemy.gun.bullets.erase(it2);
-                score += 100;
+                score += 1000;
                 continue;
             }
             // check if bullet hit an enemy
@@ -164,6 +184,7 @@ void GameManager::checkBullets() {
                 // remove bullet from list
                 it2 = enemy.gun.bullets.erase(it2);
                 player.takeDamage(1);
+                animator.damage_init(player.position.x, player.position.y);
                 break;
             }
         }
@@ -180,7 +201,7 @@ void GameManager::spawnEnemy(int fps) {
             enemy.colorB = 0.4;
             enemies.push_back(enemy);
             // reset delay
-            enemy_spawn_delay = ENEMY_SPAWN_DELAY_FACTOR * fps * 2;
+            enemy_spawn_delay = ENEMY_SPAWN_DELAY_FACTOR * fps;
         }
         else if (score < 20000) {
             // spawn enemy
@@ -192,7 +213,7 @@ void GameManager::spawnEnemy(int fps) {
             enemies.push_back(enemy);
 
             // reset delay
-            enemy_spawn_delay = ENEMY_SPAWN_DELAY_FACTOR * fps;
+            enemy_spawn_delay = ENEMY_SPAWN_DELAY_FACTOR * fps / 2.0;
         }
         else if (score < 50000) {
             // spawn enemy
@@ -204,12 +225,12 @@ void GameManager::spawnEnemy(int fps) {
             enemies.push_back(enemy);
 
             // reset delay
-            enemy_spawn_delay = ENEMY_SPAWN_DELAY_FACTOR * fps / 2.0;
+            enemy_spawn_delay = ENEMY_SPAWN_DELAY_FACTOR * fps / 3.0;
         } else {
             // spawn enemy
             Enemy enemy(3, 100, 100 + rand() % (screenWidth - 100) , -100, 30);
             enemy.colorR = 1;
-            enemy.colorG = 0;
+            enemy.colorG = 1;
             enemy.colorB = 0;
             enemy.gun.current_bullet_speed_factor = 550;
             enemies.push_back(enemy);

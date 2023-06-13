@@ -1,5 +1,14 @@
+/*
+
+    Made by Raul Steinmetz
+
+    This file is responsable for enemy control
+
+*/
+
 #ifndef EMEMY_H
 #define EMEMY_H
+
 
 #include "vector2.h"
 #include "gun.h"
@@ -24,15 +33,15 @@ class Enemy {
 
         Enemy();
         Enemy(int hp, int power, float px, float py, float radius);
-        void update_pos();
-        void draw();
-        void render(int fps, float screen_width, Vector2 player_pos);
-        void takeDamage(int damage);
-        void moveY(int fps);
-        bool isHit(Vector2 position, float bullet_radius);
-        void moveX(int fps, float screen_width);
-        void shoot(int fps);
-        void aim(float player_x, float player_y);
+        void update_pos(); // position update and points calculations
+        void draw(); // draws enemy
+        void render(int fps, float screen_width, Vector2 player_pos); // enemy render
+        void takeDamage(int damage); // enemy loses hp
+        void moveY(int fps); // move position.y constantly
+        bool isHit(Vector2 position, float bullet_radius); // check if enemy is hit by a bullet
+        void moveX(int fps, float screen_width); // moves X randomly
+        void shoot(int fps); // shoots when the delay is reached
+        void aim(float player_x, float player_y); // aims towards player
 };
 
 

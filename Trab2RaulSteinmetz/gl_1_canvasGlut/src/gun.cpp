@@ -1,3 +1,11 @@
+/*
+
+    Made by Raul Steinmetz
+
+    This file is responsable for gun (player's and enemy's), shooting, bullets physics
+
+*/
+
 #include "gun.h"
 #include "enemy.h"
 #include "list"

@@ -1,3 +1,12 @@
+/*
+
+    Made by Raul Steinmetz
+
+    This file is responsable for map render and its physics
+
+*/
+
+
 #include "environment.h"
 #include <stdio.h>
 

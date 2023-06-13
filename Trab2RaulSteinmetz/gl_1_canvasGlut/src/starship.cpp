@@ -1,3 +1,14 @@
+/*
+
+    Made by Raul Steinmetz
+
+    This file is responsable for managing the player class
+        
+
+*/
+
+
+
 #include "starship.h"
 
 # define BULLET_DELAY 50

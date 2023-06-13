@@ -4,6 +4,14 @@
 #include "gl_canvas2d.h"
 #include <list>
 
+/*
+
+    Made by Raul Steinmetz
+
+    This file is responsable for the animations in the game
+
+*/
+
 class CircleParticle {
     public:
         float radius;
@@ -12,7 +20,7 @@ class CircleParticle {
         float g;
         float b;
         CircleParticle();
-        void draw();
+        void draw(); // draws particle
 };
 
 class SquareParticle {
@@ -23,7 +31,7 @@ class SquareParticle {
         float g;
         float b;
         SquareParticle();
-        void draw();
+        void draw(); // draws particle
 };
 
 class Animator {
@@ -39,17 +47,16 @@ class Animator {
 
 
     public:
-        // constructor
         Animator();
 
         // functions
-        void enemy_explosion_init(float x, float y);
-        void enemy_explosion_handle(float fps);
-        void damage_init(float x, float y);
-        void damage_handle(float fps);
-        void stars_init(float screen_width, float screen_height);
-        void stars_handle(float fps, float screen_height);
-        void render(float fps, float screen_height);
+        void enemy_explosion_init(float x, float y); // explosion setup
+        void enemy_explosion_handle(float fps); // animation render
+        void damage_init(float x, float y); // damage setup
+        void damage_handle(float fps); // damage render
+        void stars_init(float screen_width, float screen_height); // stars setup
+        void stars_handle(float fps, float screen_height); // stars handle
+        void render(float fps, float screen_height); // animator render (calls all renders)
 };
 
 #endif // ANIMATOR_H

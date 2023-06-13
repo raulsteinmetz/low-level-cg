@@ -1,3 +1,12 @@
+/*
+
+    Made by Raul Steinmetz
+
+    This file is responsable for gun (player's and enemy's), shooting, bullets physics
+
+*/
+
+
 #ifndef GUN_H
 #define GUN_H
 
@@ -18,7 +27,7 @@ public:
     Vector2 position;
 
     Bullet(Vector2 position, float speed_factor, float angle, float radius);
-    void draw();
+    void draw(); // draws bullet
 
 };
 
@@ -35,13 +44,13 @@ public:
 
     Gun();
     Gun(Vector2 position, int delay, float angle, float current_bullet_speed_factor);
-    void shoot();
-    void updateDelay();
-    void draw();
-    void updateBullets();
-    void updateAngle(float new_angle);
-    void render(float new_angle, float fps);
-    void updateParameters(int fps);
+    void shoot(); // shoots bullet on the current angle direction
+    void updateDelay(); // reduces bullet delay
+    void draw(); // draw all the bullets and the gun
+    void updateBullets(); // update bullet positions
+    void updateAngle(float new_angle); // update gun angles
+    void render(float new_angle, float fps); // gun render
+    void updateParameters(int fps); // used for fps control
 };
 
 

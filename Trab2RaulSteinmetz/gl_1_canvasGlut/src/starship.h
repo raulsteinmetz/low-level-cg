@@ -1,3 +1,12 @@
+/*
+
+    Made by Raul Steinmetz
+
+    This file is responsable for managing the player class
+        
+
+*/
+
 #ifndef STARSHIP_H
 #define STARSHIP_H
 
@@ -64,20 +73,20 @@ class Starship {
         double get_velocity();
 
 
-        void render(int fps, int mouseX, int mouseY);
-        void update_parameters(float fps);
-        void draw();
-        void update_pos();
-        void aim(float x, float y);
-        void handleKeyboard(int command, int up);
-        void handleMouse(int button, int state);
-        void movePos();
-        void shoot();
-        bool isHit(Vector2 position, float bullet_radius);
+        void render(int fps, int mouseX, int mouseY); // player render
+        void update_parameters(float fps); // fps control
+        void draw(); // draw player
+        void update_pos(); // update player position and physics
+        void aim(float x, float y); // aiming  
+        void handleKeyboard(int command, int up); // keyboard input handle
+        void handleMouse(int button, int state); // mouse input handle
+        void movePos(); // move player
+        void shoot(); // shoot control
+        bool isHit(Vector2 position, float bullet_radius); // check if player was hit by given bullet
 
-        void takeDamage(int damage);
+        void takeDamage(int damage); // decreases player hp
 
-        void drawHP();
+        void drawHP(); // hp drawing
 
         // attributes
         // physics 2d
