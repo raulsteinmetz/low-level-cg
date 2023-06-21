@@ -221,3 +221,120 @@
 1686689962 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab2raulsteinmetz\gl_1_canvasglut\src\ui.cpp
 	"ui.h"
 
+1686677494 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab2raulsteinmetz\trab3raulsteinmetz\src\animator.cpp
+	"animator.h"
+
+1686678422 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab2raulsteinmetz\trab3raulsteinmetz\src\animator.h
+	"gl_canvas2d.h"
+	<list>
+
+1684175269 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab2raulsteinmetz\trab3raulsteinmetz\src\gl_canvas2d.h
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	<string.h>
+	<GL/glut.h>
+	<GL/freeglut_ext.h>
+	"Vector2.h"
+
+1426372440 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab2raulsteinmetz\trab3raulsteinmetz\include\gl\glut.h
+	"freeglut_std.h"
+
+1437579942 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab2raulsteinmetz\trab3raulsteinmetz\include\gl\freeglut_std.h
+	<windows.h>
+	<EGL/egl.h>
+	<GLES/gl.h>
+	<GLES2/gl2.h>
+	<OpenGL/gl.h>
+	<OpenGL/glu.h>
+	<GL/gl.h>
+	<GL/glu.h>
+	<stdlib.h>
+
+1426372440 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab2raulsteinmetz\trab3raulsteinmetz\include\gl\freeglut_ext.h
+	<stdarg.h>
+
+1684338367 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab2raulsteinmetz\trab3raulsteinmetz\src\vector2.h
+	<math.h>
+
+1686685590 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab2raulsteinmetz\trab3raulsteinmetz\src\enemy.cpp
+	"enemy.h"
+
+1686685579 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab2raulsteinmetz\trab3raulsteinmetz\src\enemy.h
+	"vector2.h"
+	"gun.h"
+
+1686678693 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab2raulsteinmetz\trab3raulsteinmetz\src\gun.h
+	"Vector2.h"
+	<list>
+	"stdio.h"
+	"gl_canvas2d.h"
+
+1686677648 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab2raulsteinmetz\trab3raulsteinmetz\src\environment.cpp
+	"environment.h"
+	<stdio.h>
+
+1686678578 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab2raulsteinmetz\trab3raulsteinmetz\src\environment.h
+	<string>
+	"Vector2.h"
+	"gun.h"
+	"gl_canvas2d.h"
+	<list>
+
+1684779425 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab2raulsteinmetz\trab3raulsteinmetz\src\gl_canvas2d.cpp
+	"gl_canvas2d.h"
+	<GL/glut.h>
+
+1686677696 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab2raulsteinmetz\trab3raulsteinmetz\src\gun.cpp
+	"gun.h"
+	"enemy.h"
+	"list"
+
+1686690002 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab2raulsteinmetz\trab3raulsteinmetz\src\main.cpp
+	<GL/glut.h>
+	<GL/freeglut_ext.h>
+	<math.h>
+	<stdio.h>
+	<stdlib.h>
+	"gl_canvas2d.h"
+	"manager.h"
+
+1686691738 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab2raulsteinmetz\trab3raulsteinmetz\src\manager.h
+	<GL/glut.h>
+	<GL/freeglut_ext.h>
+	<math.h>
+	<stdio.h>
+	<stdlib.h>
+	"gl_canvas2d.h"
+	"starship.h"
+	"frames.h"
+	"environment.h"
+	"enemy.h"
+	"animator.h"
+	"ui.h"
+	<list>
+
+1686679058 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab2raulsteinmetz\trab3raulsteinmetz\src\starship.h
+	<string>
+	"Vector2.h"
+	"gun.h"
+	"gl_canvas2d.h"
+
+1684336945 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab2raulsteinmetz\trab3raulsteinmetz\src\frames.h
+	<stdio.h>
+	<time.h>
+
+1686689958 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab2raulsteinmetz\trab3raulsteinmetz\src\ui.h
+	<list>
+	"gl_canvas2d.h"
+
+1686691851 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab2raulsteinmetz\trab3raulsteinmetz\src\manager.cpp
+	"manager.h"
+	<cmath>
+
+1686678910 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab2raulsteinmetz\trab3raulsteinmetz\src\starship.cpp
+	"starship.h"
+
+1686689962 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab2raulsteinmetz\trab3raulsteinmetz\src\ui.cpp
+	"ui.h"
+
