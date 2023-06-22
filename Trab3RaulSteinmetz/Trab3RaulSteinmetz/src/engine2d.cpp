@@ -19,7 +19,14 @@ Piston::Piston(Vector2 center_screw_position, Vector2 side_lenght, double connec
 
 void Piston::update_center_screw_position(Vector2 crank_center_screw_position) {
     double x = crank_center_screw_position.x;
-    double y = 0;
+    
+    double ca = calculate_ditance(connecting_rod_end_effector_position, Vector2(crank_center_screw_position.x, connecting_rod_end_effector_position.y));
+    double hip = connecting_rod_length;
+    double co = sqrt(pow(hip, 2) - pow(ca, 2));
+
+    double y = connecting_rod_end_effector_position.y - co;
+
+
     this->center_screw_position = Vector2(x, y);
 }
 
@@ -92,28 +99,32 @@ void Crank::update(double fps) {
 
 
 
-// full engine
+// one piston engine
 
 
-Engine2D::Engine2D() {
+OnePistonEngine2D::OnePistonEngine2D() {
     this->crank = Crank();
 }
 
-Engine2D::Engine2D(Vector2 center_screw_position, double radius, double moving_screw_radians, bool state, double rpm)
+OnePistonEngine2D::OnePistonEngine2D(Vector2 center_screw_position, double radius, double moving_screw_radians, bool state, double rpm)
 {
     this->crank = Crank(center_screw_position, radius, moving_screw_radians, state);
-    this->piston = Piston(Vector2(center_screw_position.x, center_screw_position.y - 200), Vector2(50, 50), 150);
+    this->piston = Piston(Vector2(center_screw_position.x, center_screw_position.y - 200), Vector2(50, 50), 300);
     this->rpm = rpm;
     crank.rpm = rpm;
 }
 
 
-void Engine2D::draw() {
+void OnePistonEngine2D::draw() {
     this->crank.draw();
     this->piston.draw();
 }
 
-void Engine2D::update(double fps) {
+void OnePistonEngine2D::update(double fps) {
     this->crank.update(fps);
     this->piston.update(this->crank.center_screw_position, this->crank.moving_screw_position);
 }
+
+
+
+// v twin

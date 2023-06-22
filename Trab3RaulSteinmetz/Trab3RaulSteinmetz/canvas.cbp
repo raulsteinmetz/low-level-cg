@@ -45,24 +45,12 @@
 		</Linker>
 		<Unit filename="include/GL/glut.h" />
 		<Unit filename="src/Vector2.h" />
-		<Unit filename="src/animator.cpp" />
-		<Unit filename="src/animator.h" />
-		<Unit filename="src/enemy.cpp" />
-		<Unit filename="src/enemy.h" />
-		<Unit filename="src/environment.cpp" />
-		<Unit filename="src/environment.h" />
+		<Unit filename="src/engine2d.cpp" />
+		<Unit filename="src/engine2d.h" />
 		<Unit filename="src/frames.h" />
 		<Unit filename="src/gl_canvas2d.cpp" />
 		<Unit filename="src/gl_canvas2d.h" />
-		<Unit filename="src/gun.cpp" />
-		<Unit filename="src/gun.h" />
 		<Unit filename="src/main.cpp" />
-		<Unit filename="src/manager.cpp" />
-		<Unit filename="src/manager.h" />
-		<Unit filename="src/starship.cpp" />
-		<Unit filename="src/starship.h" />
-		<Unit filename="src/ui.cpp" />
-		<Unit filename="src/ui.h" />
 		<Extensions>
 			<code_completion />
 			<debugger />

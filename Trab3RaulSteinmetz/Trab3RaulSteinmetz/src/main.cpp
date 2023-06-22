@@ -17,7 +17,7 @@ Frames frames;
 int screenWidth = 800, screenHeight = 600;
 int mouseX, mouseY;
 
-Engine2D engine(Vector2(screenWidth / 2.0, screenHeight / 1.5), 100, 0, true, 15);
+OnePistonEngine2D engine(Vector2(screenWidth / 2.0, screenHeight / 1.5), 100, 0, true, 15);
 
 void render()
 {
