@@ -16,9 +16,10 @@ class Piston {
         Vector2 side_lenght;
         double connecting_rod_length;
         Vector2 connecting_rod_end_effector_position;
+        double rad;
 
         Piston();
-        Piston(Vector2 center_screw_position, Vector2 side_lenght, double connecting_rod_length);
+        Piston(Vector2 center_screw_position, Vector2 side_lenght, double connecting_rod_length, double rad);
 
         void draw();
         void update(Vector2 crank_center_screw_position, Vector2 end_effector_postition);

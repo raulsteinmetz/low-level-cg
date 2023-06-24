@@ -1,5 +1,18 @@
 #include "engine2d.h"
 
+Vector2 rotateVector(Vector2 vector, double radians) {
+    // Compute sine and cosine of the rotation angle
+    double cosTheta = cos(radians);
+    double sinTheta = sin(radians);
+
+    // Apply rotation transformation
+    Vector2 rotatedVector;
+    rotatedVector.x = vector.x * cosTheta - vector.y * sinTheta;
+    rotatedVector.y = vector.x * sinTheta + vector.y * cosTheta;
+
+    return rotatedVector;
+}
+
 double calculate_ditance(Vector2 a, Vector2 b) {
     return sqrt(pow(a.x - b.x, 2) + pow(a.y - b.y, 2));
 }
@@ -11,23 +24,29 @@ Piston::Piston() {
     this->connecting_rod_length = 0;
 }
 
-Piston::Piston(Vector2 center_screw_position, Vector2 side_lenght, double connecting_rod_length) {
+Piston::Piston(Vector2 center_screw_position, Vector2 side_lenght, double connecting_rod_length, double rad) {
     this->center_screw_position = center_screw_position;
     this->side_lenght = side_lenght;
     this->connecting_rod_length = connecting_rod_length;
+    this->rad = rad;
 }
 
 void Piston::update_center_screw_position(Vector2 crank_center_screw_position) {
+
+    // rotate end effector by -rad clockwise
+    // Vector2 fake_connecting_rod_end_effector_position = rotateVector(connecting_rod_end_effector_position, -this->rad);
+
     double x = crank_center_screw_position.x;
-    
     double ca = calculate_ditance(connecting_rod_end_effector_position, Vector2(crank_center_screw_position.x, connecting_rod_end_effector_position.y));
     double hip = connecting_rod_length;
     double co = sqrt(pow(hip, 2) - pow(ca, 2));
-
     double y = connecting_rod_end_effector_position.y - co;
 
+    Vector2 new_position(x, y);
+    //new_position = rotateVector(Vector2(x, y), this->rad);
 
-    this->center_screw_position = Vector2(x, y);
+
+    this->center_screw_position = new_position;
 }
 
 void Piston::draw() {
@@ -48,6 +67,8 @@ void Piston::draw() {
     CV::color(0, 0, 1);
     CV::line(center_screw_position.x, center_screw_position.y, 
             connecting_rod_end_effector_position.x, connecting_rod_end_effector_position.y);
+
+    // printf("Distance: %f\n", calculate_ditance(center_screw_position, connecting_rod_end_effector_position));
 }
 
 void Piston::update(Vector2 crank_center_screw_position, Vector2 end_effector_postition) {
@@ -100,16 +121,15 @@ void Crank::update(double fps) {
 
 
 // one piston engine
-
-
 OnePistonEngine2D::OnePistonEngine2D() {
     this->crank = Crank();
+    this->piston = Piston();
 }
 
 OnePistonEngine2D::OnePistonEngine2D(Vector2 center_screw_position, double radius, double moving_screw_radians, bool state, double rpm)
 {
     this->crank = Crank(center_screw_position, radius, moving_screw_radians, state);
-    this->piston = Piston(Vector2(center_screw_position.x, center_screw_position.y - 200), Vector2(50, 50), 300);
+    this->piston = Piston(Vector2(center_screw_position.x, center_screw_position.y - 200), Vector2(50, 50), 300, 0);
     this->rpm = rpm;
     crank.rpm = rpm;
 }
@@ -126,5 +146,30 @@ void OnePistonEngine2D::update(double fps) {
 }
 
 
-
 // v twin
+TwoPistonEngine2D::TwoPistonEngine2D() {
+    this->crank = Crank();
+    this->left_piston = Piston();
+    this->right_piston = Piston();
+}
+
+TwoPistonEngine2D::TwoPistonEngine2D(Vector2 center_screw_position, double radius, double moving_screw_radians, bool state, double rpm) {
+    this->crank = Crank(center_screw_position, radius, moving_screw_radians, state);
+    this->left_piston = Piston(Vector2(center_screw_position.x, center_screw_position.y - 200), Vector2(50, 50), 150, - PI/6.0);
+    this->right_piston = Piston(Vector2(center_screw_position.x, center_screw_position.y - 200), Vector2(50, 50), 150, + PI/6.0);
+    this->rpm = rpm;
+    crank.rpm = rpm;
+}
+
+void TwoPistonEngine2D::draw() {
+    this->crank.draw();
+    this->left_piston.draw();
+    this->right_piston.draw();
+}
+
+void TwoPistonEngine2D::update(double fps) {
+    this->crank.update(fps);
+    this->left_piston.update(this->crank.center_screw_position, this->crank.moving_screw_position);
+    this->right_piston.update(this->crank.center_screw_position, this->crank.moving_screw_position);
+}
+

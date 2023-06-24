@@ -338,7 +338,7 @@
 1686689962 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab2raulsteinmetz\trab3raulsteinmetz\src\ui.cpp
 	"ui.h"
 
-1684779425 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab3raulsteinmetz\trab3raulsteinmetz\src\gl_canvas2d.cpp
+1687623462 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab3raulsteinmetz\trab3raulsteinmetz\src\gl_canvas2d.cpp
 	"gl_canvas2d.h"
 	<GL/glut.h>
 
@@ -371,7 +371,7 @@
 1684338367 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab3raulsteinmetz\trab3raulsteinmetz\src\vector2.h
 	<math.h>
 
-1687446608 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab3raulsteinmetz\trab3raulsteinmetz\src\main.cpp
+1687626705 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab3raulsteinmetz\trab3raulsteinmetz\src\main.cpp
 	<GL/glut.h>
 	<GL/freeglut_ext.h>
 	<math.h>
@@ -385,12 +385,12 @@
 	<stdio.h>
 	<time.h>
 
-1687447002 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab3raulsteinmetz\trab3raulsteinmetz\src\engine2d.h
+1687458841 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab3raulsteinmetz\trab3raulsteinmetz\src\engine2d.h
 	"gl_canvas2d.h"
 	"Vector2.h"
 	"math.h"
 	"stdio.h"
 
-1687446321 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab3raulsteinmetz\trab3raulsteinmetz\src\engine2d.cpp
+1687623582 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab3raulsteinmetz\trab3raulsteinmetz\src\engine2d.cpp
 	"engine2d.h"
 
