@@ -35,7 +35,28 @@ Vector3 cube[8];
 Vector3 cilinder_bottom[100];
 Vector3 cilinder_top[100];
 
+Vector3 crank_top[100];
+Vector3 crank_bottom[100];
 
+
+
+void setupCrank() {
+      float radius = 10;
+      float height = 2;
+   
+      for(int i = 0; i < 100; i++) {
+         float rad = 2 * PI * i / 100;
+         crank_bottom[i] = Vector3(radius * cos(rad), radius * sin(rad), 0);
+         crank_top[i] = Vector3(radius * cos(rad), radius * sin(rad), height);
+      }
+   
+      // tranlade in z (5 units)
+      for(int i = 0; i < 100; i++) {
+         crank_bottom[i].z += 30;
+         crank_top[i].z += 30;
+      }
+}
+         
 
 void setupCube() {
     // points in y = 0
@@ -54,6 +75,7 @@ void setupCube() {
     // tranlade in z (5 units)
     for(int i = 0; i < 8; i++) {
         cube[i].z += 5;
+        cube[i].x -= 2;
     }
 
 }
@@ -72,6 +94,9 @@ void setupCilinder() {
       for(int i = 0; i < 100; i++) {
          cilinder_bottom[i].z += 10;
          cilinder_top[i].z += 10;
+
+         cilinder_top[i].x += 5;
+         cilinder_bottom[i].x += 5;
       }
 }
 
@@ -81,6 +106,8 @@ void rotateCilinderYaxis(double angle) {
          // center cilinder in 0, 0, 0
          cilinder_bottom[i].z -= 10;
          cilinder_top[i].z -= 10;
+         cilinder_top[i].x -= 5;
+         cilinder_bottom[i].x -= 5;
 
 
          float x = cilinder_bottom[i].x * cos(rad) - cilinder_bottom[i].z * sin(rad);
@@ -96,6 +123,8 @@ void rotateCilinderYaxis(double angle) {
 
          cilinder_bottom[i].z += 10;
          cilinder_top[i].z += 10;
+         cilinder_top[i].x += 5;
+         cilinder_bottom[i].x += 5;
       }
 }
 
@@ -105,6 +134,41 @@ Vector2 perspective(Vector3 v) {
     float y = v.y * d / (v.z);
     return Vector2(x, y);
 }
+
+void crank3D() {
+      d = mouseY;
+      CV::color(0, 0 , 1);
+         for(int i = 0; i < 100; i++) {
+            CV::line(perspective(crank_bottom[i]), perspective(crank_bottom[(i+1)%100]));
+            CV::line(perspective(crank_top[i]), perspective(crank_top[(i+1)%100]));
+            CV::line(perspective(crank_bottom[i]), perspective(crank_top[i]));
+         }
+}
+
+void rotateCrank(double angle) {
+   double rad = angle * PI / 180.0;
+   for(int i = 0; i < 100; i++) {
+      // center cilinder in 0, 0, 0
+      crank_bottom[i].z -= 30;
+      crank_top[i].z -= 30;
+
+
+      float x = crank_bottom[i].x * cos(rad) - crank_bottom[i].z * sin(rad);
+      float z = crank_bottom[i].x * sin(rad) + crank_bottom[i].z * cos(rad);
+      crank_bottom[i].x = x;
+      crank_bottom[i].z = z;
+
+      x = crank_top[i].x * cos(rad) - crank_top[i].z * sin(rad);
+      z = crank_top[i].x * sin(rad) + crank_top[i].z * cos(rad);
+      crank_top[i].x = x;
+      crank_top[i].z = z;
+
+
+      crank_top[i].z += 30;
+      crank_bottom[i].z += 30;
+   }
+}
+
 
 void cilinder3d () {
       //CV::translate(float(screenWidth)/2.0, float(screenHeight)/2.0);
@@ -150,13 +214,15 @@ void render()
    CV::translate(400, 300);
    fps = frames.getFrames();
    engine.draw();
-   engine.update(fps);
    cube3d();
+   cilinder3d();
+   crank3D();
 
    angle += 0.00001;
    if (angle > 360) angle = 0;
    rotateCilinderYaxis(angle);
-   cilinder3d();
+   engine.update(fps);
+   rotateCrank(angle);
 }
 
 
@@ -183,6 +249,7 @@ void mouse(int button, int state, int wheel, int direction, int x, int y)
 
 int main(void)
 {
+   setupCrank();
    setupCube();
    setupCilinder();
    CV::init(&screenWidth, &screenHeight, "V TWIN");
