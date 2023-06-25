@@ -4,6 +4,7 @@
 
 #include "Vector2.h"
 #include "gl_canvas2d.h"
+#include "models3d.h"
 
 #define AXIS_X 0
 #define AXIS_Y 1
@@ -45,7 +46,6 @@ class Cilinder {
         Cilinder(double radius, double height, double n_points, double offset_x, double offset_y, double offset_z);
         void rotate(int axis, double angle);
         void draw(double d);
-
 };
 
 
