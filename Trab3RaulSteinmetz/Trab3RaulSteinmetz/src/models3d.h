@@ -19,14 +19,16 @@ class Vector3 {
 };
 Vector2 perspective(Vector3 v);
 
-class Cube {
+class Cuboid {
     public:
         Vector3 points[8];
         double size;
         double offset_x, offset_y, offset_z;
-        Cube();
-        Cube(float size);
-        Cube(float size, float offset_x, float offset_y, float offset_z);
+        double hight, width, depth;
+        Cuboid();
+        Cuboid(double size);
+        Cuboid(double size, double offset_x, double offset_y, double offset_z);
+        Cuboid(double hight, double width, double depth, double offset_x, double offset_y, double offset_z);
         void rotate(int axis, double angle);
         void draw(double d);
 };
@@ -39,8 +41,8 @@ class Cilinder {
         double radius, height;
         double offset_x, offset_y, offset_z;
         Cilinder();
-        Cilinder(float radius, float height, float n_points);
-        Cilinder(float radius, float height, float n_points, float offset_x, float offset_y, float offset_z);
+        Cilinder(double radius, double height, double n_points);
+        Cilinder(double radius, double height, double n_points, double offset_x, double offset_y, double offset_z);
         void rotate(int axis, double angle);
         void draw(double d);
 

@@ -23,8 +23,10 @@ float d = 500.0;
 //OnePistonEngine2D engine(Vector2(0, 0), 50, 0, true, 15);
 TwoPistonEngine2D engine(Vector2(0, 0), 50, 0, true, 15);
 
-Cube testCube(1.0, 2, 2, 2);
+Cuboid testCube(1.0, 2, 2, 2);
 Cilinder testCilinder(1.0, 2.0, 100, 0, 0, 2);
+
+Cuboid testCuboid(1.0, 2.0, 3.0, 0, 0, 5.0);
 
 
 double angle = 0;
@@ -44,6 +46,7 @@ void render()
    // testing 
    testCube.draw(d);
    testCilinder.draw(d);
+   testCuboid.draw(d);
 
    testCube.rotate(AXIS_Z, angle);
    testCube.rotate(AXIS_X, angle);
@@ -52,6 +55,11 @@ void render()
    testCilinder.rotate(AXIS_Z, angle);
    testCilinder.rotate(AXIS_X, angle);
    testCilinder.rotate(AXIS_Y, angle);
+
+   testCuboid.rotate(AXIS_Z, angle);
+   testCuboid.rotate(AXIS_X, angle);
+   testCuboid.rotate(AXIS_Y, angle);
+   
 
    angle += 0.00001;
    if (angle > 360) angle = 0;

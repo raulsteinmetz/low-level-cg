@@ -15,8 +15,13 @@ Vector3::Vector3(float x, float y, float z) : x(x), y(y), z(z) {}
 
 // CUBE
 
-Cube::Cube() {}
-Cube::Cube(float size) : size(size) {
+Cuboid::Cuboid() {}
+Cuboid::Cuboid(double size) : size(size) {
+
+    this->width = 1.0;
+    this->hight = 1.0;
+    this->depth = 1.0;
+
     // points in y = 0
     points[0] = Vector3(1, 1, 1);
     points[1] = Vector3(-1, 1, 1);
@@ -38,8 +43,13 @@ Cube::Cube(float size) : size(size) {
     }
 }
 
-Cube::Cube(float size, float offset_x, float offset_y, float offset_z) : 
+Cuboid::Cuboid(double size, double offset_x, double offset_y, double offset_z) : 
            size(size), offset_x(offset_x), offset_y(offset_y), offset_z(offset_z) {
+
+    this->width = 1.0;
+    this->hight = 1.0;
+    this->depth = 1.0;
+
     // points in y = 0
     points[0] = Vector3(1, 1, 1);
     points[1] = Vector3(-1, 1, 1);
@@ -68,7 +78,30 @@ Cube::Cube(float size, float offset_x, float offset_y, float offset_z) :
     }
 }
 
-void Cube::draw(double d) {
+Cuboid::Cuboid(double width, double hight, double depth, double offset_x, double offset_y, double offset_z) : 
+           width(width), hight(hight), depth(depth), offset_x(offset_x), offset_y(offset_y), offset_z(offset_z) {
+
+    // points in y = 0
+    points[0] = Vector3(width/2, hight/2, depth/2);
+    points[1] = Vector3(-width/2, hight/2, depth/2);
+    points[2] = Vector3(-width/2, -hight/2, depth/2);
+    points[3] = Vector3(width/2, -hight/2, depth/2);
+
+    // points in y = 1
+    points[4] = Vector3(width/2, hight/2, -depth/2);
+    points[5] = Vector3(-width/2, hight/2, -depth/2);
+    points[6] = Vector3(-width/2, -hight/2, -depth/2);
+    points[7] = Vector3(width/2, -hight/2, -depth/2);
+
+    // translate
+    for (int i = 0; i < 8; i++) {
+        points[i].x += offset_x;
+        points[i].y += offset_y;
+        points[i].z += offset_z;
+    }
+}
+
+void Cuboid::draw(double d) {
     // drawing lines
     CV::color(0, 0, 0);
     CV::line(perspective(points[0], d), perspective(points[1], d));
@@ -85,7 +118,7 @@ void Cube::draw(double d) {
     CV::line(perspective(points[3], d), perspective(points[7], d));
 }
 
-void Cube::rotate(int axis, double angle) {
+void Cuboid::rotate(int axis, double angle) {
     double rad = angle * PI / 180;
 
     // translate to origin
@@ -131,7 +164,7 @@ Cilinder::Cilinder() {
     }
 }
 
-Cilinder::Cilinder(float radius, float height, float n_points) {
+Cilinder::Cilinder(double radius, double height, double n_points) {
     this->radius = radius;
     this->height = height;
     this->n_points = n_points;
@@ -143,7 +176,7 @@ Cilinder::Cilinder(float radius, float height, float n_points) {
     }
 }
 
-Cilinder::Cilinder(float radius, float height, float n_points, float offset_x, float offset_y, float offset_z) {
+Cilinder::Cilinder(double radius, double height, double n_points, double offset_x, double offset_y, double offset_z) {
     this->radius = radius;
     this->height = height;
     this->n_points = n_points;
