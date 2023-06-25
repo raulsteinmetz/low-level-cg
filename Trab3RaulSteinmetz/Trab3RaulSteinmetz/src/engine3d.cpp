@@ -94,7 +94,7 @@ void Crank3D::rotate(int axis, double angle) {
 }
 
 Engine3D::Engine3D() {
-    this->crank = Crank3D(Vector3(0, 0, 8), 1, 3, 0, ENGINE_ON, 5);
+    this->crank = Crank3D(Vector3(0, 0, 6), 1, 2, 0, ENGINE_ON, 5);
 }
 
 void Engine3D::draw(double d) {

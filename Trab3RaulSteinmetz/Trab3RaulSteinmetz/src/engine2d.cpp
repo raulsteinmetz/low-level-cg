@@ -32,18 +32,14 @@ Piston::Piston(Vector2 center_screw_position, Vector2 side_lenght, double connec
 }
 
 void Piston::update_center_screw_position(Vector2 crank_center_screw_position) {
-
-    // rotate end effector by -rad clockwise
-    // Vector2 fake_connecting_rod_end_effector_position = rotateVector(connecting_rod_end_effector_position, -this->rad);
-
     double x = crank_center_screw_position.x;
     double ca = calculate_ditance(connecting_rod_end_effector_position, Vector2(crank_center_screw_position.x, connecting_rod_end_effector_position.y));
     double hip = connecting_rod_length;
     double co = sqrt(pow(hip, 2) - pow(ca, 2));
     double y = connecting_rod_end_effector_position.y - co;
 
-    Vector2 new_position(x, y);
-    //new_position = rotateVector(Vector2(x, y), this->rad);
+
+   Vector2 new_position = rotateVector(Vector2(x, y), rad);    
 
 
     this->center_screw_position = new_position;
@@ -143,6 +139,7 @@ void OnePistonEngine2D::draw() {
 void OnePistonEngine2D::update(double fps) {
     this->crank.update(fps);
     this->piston.update(this->crank.center_screw_position, this->crank.moving_screw_position);
+    
 }
 
 
@@ -164,12 +161,13 @@ TwoPistonEngine2D::TwoPistonEngine2D(Vector2 center_screw_position, double radiu
 void TwoPistonEngine2D::draw() {
     this->crank.draw();
     this->left_piston.draw();
-    this->right_piston.draw();
+    //this->right_piston.draw();
 }
 
 void TwoPistonEngine2D::update(double fps) {
+    this->crank.moving_screw_position = rotateVector(this->crank.moving_screw_position, this->left_piston.rad);
     this->crank.update(fps);
     this->left_piston.update(this->crank.center_screw_position, this->crank.moving_screw_position);
-    this->right_piston.update(this->crank.center_screw_position, this->crank.moving_screw_position);
+    //this->right_piston.update(this->crank.center_screw_position, this->crank.moving_screw_position);
 }
 

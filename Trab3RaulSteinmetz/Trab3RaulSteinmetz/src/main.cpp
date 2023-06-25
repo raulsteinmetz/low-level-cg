@@ -39,41 +39,17 @@ void render()
 {
    CV::translate(400, 300);
    fps = frames.getFrames();
-   engine.draw();
 
-   angle += 0.00001;
-   if (angle > 360) angle = 0;
-   engine.update(fps);
+   //engine.draw();
+   //engine.update(fps);
 
    d = mouseY;
 
    engine3d.draw(d);
    engine3d.update(fps);
 
-   // testing
-   /* testCube.draw(d);
-   testCilinder.draw(d);
-   testCuboid.draw(d);
-
-   testCube.rotate(AXIS_Z, angle);
-   testCube.rotate(AXIS_X, angle);
-   testCube.rotate(AXIS_Y, angle);
-
-   testCilinder.rotate(AXIS_Z, angle);
-   testCilinder.rotate(AXIS_X, angle);
-   testCilinder.rotate(AXIS_Y, angle);
-
-   testCuboid.rotate(AXIS_Z, angle);
-   testCuboid.rotate(AXIS_X, angle);
-   testCuboid.rotate(AXIS_Y, angle);*/
-
-   //engine3d.rotate(AXIS_Z, angle/fps);
-   //engine3d.rotate(AXIS_X, angle/fps);
-   //engine3d.rotate(AXIS_Y, angle/fps);
-
-
    angle += 10;
-   if (angle > 360) angle = 0; 
+   if (angle > 360) angle = 0;
 }
 
 
