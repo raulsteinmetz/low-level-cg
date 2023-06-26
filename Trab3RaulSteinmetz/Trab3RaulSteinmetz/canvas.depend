@@ -371,7 +371,7 @@
 1684338367 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab3raulsteinmetz\trab3raulsteinmetz\src\vector2.h
 	<math.h>
 
-1687713463 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab3raulsteinmetz\trab3raulsteinmetz\src\main.cpp
+1687797298 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab3raulsteinmetz\trab3raulsteinmetz\src\main.cpp
 	<GL/glut.h>
 	<GL/freeglut_ext.h>
 	<math.h>
@@ -395,18 +395,18 @@
 1687713365 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab3raulsteinmetz\trab3raulsteinmetz\src\engine2d.cpp
 	"engine2d.h"
 
-1687697640 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab3raulsteinmetz\trab3raulsteinmetz\src\models3d.cpp
+1687796927 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab3raulsteinmetz\trab3raulsteinmetz\src\models3d.cpp
 	"models3d.h"
 
-1687698071 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab3raulsteinmetz\trab3raulsteinmetz\src\models3d.h
+1687796346 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab3raulsteinmetz\trab3raulsteinmetz\src\models3d.h
 	"Vector2.h"
 	"gl_canvas2d.h"
 	"models3d.h"
 
-1687711822 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab3raulsteinmetz\trab3raulsteinmetz\src\engine3d.cpp
+1687796669 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab3raulsteinmetz\trab3raulsteinmetz\src\engine3d.cpp
 	"engine3d.h"
 
-1687710784 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab3raulsteinmetz\trab3raulsteinmetz\src\engine3d.h
+1687795446 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\trab3raulsteinmetz\trab3raulsteinmetz\src\engine3d.h
 	"gl_canvas2d.h"
 	"Vector2.h"
 	"models3d.h"

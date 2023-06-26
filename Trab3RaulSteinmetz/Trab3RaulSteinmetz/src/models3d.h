@@ -30,8 +30,10 @@ class Cuboid {
         Cuboid(double size);
         Cuboid(double size, double offset_x, double offset_y, double offset_z);
         Cuboid(double hight, double width, double depth, double offset_x, double offset_y, double offset_z);
-        void rotate(int axis, double angle);
+        void rotate_on_origin(int axis, double angle);
+        void rotate_on_spot(int axis, double angle);
         void draw(double d);
+        void update_pos(double offset_x, double offset_y, double offset_z);
 };
 
 class Cilinder {
@@ -44,7 +46,8 @@ class Cilinder {
         Cilinder();
         Cilinder(double radius, double height, double n_points);
         Cilinder(double radius, double height, double n_points, double offset_x, double offset_y, double offset_z);
-        void rotate(int axis, double angle);
+        void rotate_on_origin(int axis, double angle);
+        void rotate_on_spot(int axis, double angle);
         void draw(double d);
 };
 

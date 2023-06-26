@@ -33,7 +33,7 @@ void _init() {
    engine3d = Engine3D();
 }
 
-double angle = 0;
+double angle = 100;
 
 void render()
 {
@@ -48,8 +48,12 @@ void render()
    engine3d.draw(d);
    engine3d.update(fps);
 
-   angle += 10;
-   if (angle > 360) angle = 0;
+   //engine3d.rotate(AXIS_X, angle/fps);
+   //engine3d.rotate(AXIS_Y, angle/fps);
+   //engine3d.rotate(AXIS_Z, angle/fps);
+
+   angle += 2;
+   if (angle > 200) angle = 100;
 }
 
 

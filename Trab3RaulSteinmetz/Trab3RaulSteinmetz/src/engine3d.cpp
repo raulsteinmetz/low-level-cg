@@ -1,20 +1,20 @@
 #include "engine3d.h"
 
-Screw::Screw() {
+Screw3D::Screw3D() {
     this->position = Vector3(0, 0, 0);
     this->body = Cuboid(1);
 }
 
-Screw::Screw(Vector3 position, double size) {
+Screw3D::Screw3D(Vector3 position, double size) {
     this->position = position;
     this->body = Cuboid(size, position.x, position.y, position.z);
 }
 
-void Screw::draw(double d) {
+void Screw3D::draw(double d) {
     this->body.draw(d);
 }
 
-void Screw::update(Vector3 position) {
+void Screw3D::update(Vector3 position) {
     this->position = position;
 
     for (int i = 0; i < 8; i++) {
@@ -35,13 +35,17 @@ void Screw::update(Vector3 position) {
 
 }
 
-void Screw::rotate(int axis, double radians) {
-    this->body.rotate(axis, radians);
+void Screw3D::update_pos(double x, double y, double z) {
+    this->update(Vector3(x, y, z));
+}
+
+void Screw3D::rotate(int axis, double radians) {
+    this->body.rotate_on_origin(axis, radians);
 }
 
 Crank3D::Crank3D() {
-    this->center_screw = Screw(Vector3(0, 0, 0), 0.5);
-    this->moving_screw = Screw(Vector3(0, 0, 0), 0.25);
+    this->center_screw = Screw3D(Vector3(0, 0, 0), 0.5);
+    this->moving_screw = Screw3D(Vector3(0, 0, 0), 0.1);
     this->body = Cilinder(1, 1, 1);
     this->moving_screw_radians = 0;
     this->state = ENGINE_OFF;
@@ -49,8 +53,8 @@ Crank3D::Crank3D() {
 }
 
 Crank3D::Crank3D(Vector3 center_screw_position, double height, double radius, double moving_screw_radians, bool state, double rpm) {
-    this->center_screw = Screw(center_screw_position, 0.5);
-    this->moving_screw = Screw(Vector3(0, 0, 0), 0.5);
+    this->center_screw = Screw3D(center_screw_position, 0.5);
+    this->moving_screw = Screw3D(Vector3(0, 0, center_screw_position.z), 0.1);
     this->body = Cilinder(radius, height, 100, center_screw_position.x, center_screw_position.y, center_screw_position.z);
     this->moving_screw_radians = moving_screw_radians;
     this->state = state;
@@ -72,10 +76,13 @@ void Crank3D::start() {
     this->state = ENGINE_ON;
 }
 
+// rotation error is probably here
+// when the crank is rotated the moving screw is not in the right position
+// the calculus to get the position when this is rotated is not that simple
 Vector3 Crank3D::calculate_moving_screw_position() {
     double x = this->center_screw.position.x + this->body.radius * cos(this->moving_screw_radians);
     double y = this->center_screw.position.y + this->body.radius * sin(this->moving_screw_radians);
-    double z = this->center_screw.position.z;
+    double z = this->moving_screw.position.z;
     return Vector3(x, y, z);
 }
 
@@ -88,21 +95,150 @@ void Crank3D::update(double fps) {
 }
 
 void Crank3D::rotate(int axis, double angle) {
-    this->center_screw.rotate(axis, angle);
+    // all has to rotate based on the body 
+
+
+    // translate body to origin
+    for (int i = 0; i < this->body.n_points; i++) {
+        this->body.top[i].x -= this->body.offset_x;
+        this->body.top[i].y -= this->body.offset_y;
+        this->body.top[i].z -= this->body.offset_z;
+        this->body.bottom[i].x -= this->body.offset_x;
+        this->body.bottom[i].y -= this->body.offset_y;
+        this->body.bottom[i].z -= this->body.offset_z;
+    }
+
+    // translate screws to position
+    for (int i = 0; i < 8; i++) {
+        this->center_screw.body.points[i].x -= this->body.offset_x;
+        this->center_screw.body.points[i].y -= this->body.offset_y;
+        this->center_screw.body.points[i].z -= this->body.offset_z;
+
+        this->moving_screw.body.points[i].x -= this->body.offset_x;
+        this->moving_screw.body.points[i].y -= this->body.offset_y;
+        this->moving_screw.body.points[i].z -= this->body.offset_z;
+    }
+
+    // rotate stuff on spot
+    this->body.rotate_on_spot(axis, angle);
+    this->center_screw.body.rotate_on_spot(axis, angle);
+    this->moving_screw.body.rotate_on_spot(axis, angle);
+
+    // tranlate back
+
+    for (int i = 0; i < this->body.n_points; i++) {
+        this->body.top[i].x += this->body.offset_x;
+        this->body.top[i].y += this->body.offset_y;
+        this->body.top[i].z += this->body.offset_z;
+        this->body.bottom[i].x += this->body.offset_x;
+        this->body.bottom[i].y += this->body.offset_y;
+        this->body.bottom[i].z += this->body.offset_z;
+    }
+
+    // translate screws to position
+    for (int i = 0; i < 8; i++) {
+        this->center_screw.body.points[i].x += this->body.offset_x;
+        this->center_screw.body.points[i].y += this->body.offset_y;
+        this->center_screw.body.points[i].z += this->body.offset_z;
+
+        this->moving_screw.body.points[i].x += this->body.offset_x;
+        this->moving_screw.body.points[i].y += this->body.offset_y;
+        this->moving_screw.body.points[i].z += this->body.offset_z;
+    }
+
+
+
+
+    /*this->center_screw.rotate(axis, angle);
     this->moving_screw.rotate(axis, angle);
-    this->body.rotate(axis, angle);
+    this->body.rotate_on_origin(axis, angle);*/
 }
+
+
+Rod3D::Rod3D() {
+    this->start_effector = Vector3(0, 0, 0);
+    this->end_effector = Vector3(0, 0, 0);
+    this->width = 1.0;
+    this->height = 1.0;
+    this->depth = 1.0;
+    this->body_back = Cuboid(1.0, 0.2, 0.1, 0, 0, 0);
+}
+
+Rod3D::Rod3D(Vector3 start_effector, Vector3 end_effector, double width, double height, double lenght) {
+
+}
+
+
+
+Piston3D::Piston3D(){
+    this->depth = 1.0;
+    this->width = 1.0;
+    this->height = 1.0;
+    this->center_screw_position = Vector3(0, 0, 0);
+    this->body = Cuboid(1.0, 1.0, 1.0, 0, 0, 0);
+}
+
+Piston3D::Piston3D(Vector3 center_screw_position, double width, double height, double depth, double rod_length, double rad) {
+    this->depth = depth;
+    this->width = width;
+    this->height = height;
+    this->center_screw_position = center_screw_position;
+    this->body = Cuboid(depth, width, height, center_screw_position.x, center_screw_position.y, center_screw_position.z);
+    this->rad = rad;
+    this->connecting_rod_lenght = rod_length;
+}
+
+void Piston3D::draw(double d) {
+    this->body.draw(d);
+}
+
+void Piston3D::update(Vector3 crank_center_screw_pos, Vector3 end_effector_pos, double fps) {
+    this->update_center_screw_position(end_effector_pos);
+}
+
+double distance_between_points(Vector3 p1, Vector3 p2) {
+    double distance_between_points(Vector3 p1, Vector3 p2);
+    double dx = p2.x - p1.x;
+    double dy = p2.y - p1.y;
+    double dz = p2.z - p1.z;
+    return sqrt(dx * dx + dy * dy + dz * dz);
+
+}
+
+void Piston3D::update_center_screw_position(Vector3 end_effector_pos) {
+    double x = this->center_screw_position.x;
+    double ca = distance_between_points(end_effector_pos, Vector3(this->center_screw_position.x, end_effector_pos.y, end_effector_pos.z));
+    double hip = this->connecting_rod_lenght;
+    double co = sqrt(pow(hip, 2) - pow(ca, 2));
+    double y = end_effector_pos.y - co;
+    double z = end_effector_pos.z;
+
+    printf("ca: %f, co: %f, hip: %f\n", ca, co, hip);
+
+    Vector3 new_pos(x, y, z);
+    this->center_screw_position = new_pos;
+
+    //printf("x: %f, y: %f, z: %f\n", x, y, z);
+
+    this->body.update_pos(x, y, z);
+}
+
+
+
 
 Engine3D::Engine3D() {
     this->crank = Crank3D(Vector3(0, 0, 6), 1, 2, 0, ENGINE_ON, 5);
+    this->piston = Piston3D(Vector3(0, 0, 0), 1, 1, 1, 5, 0);
 }
 
 void Engine3D::draw(double d) {
     this->crank.draw(d);
+    this->piston.draw(d);
 }
 
 void Engine3D::update(double fps) {
     this->crank.update(fps);
+    this->piston.update(this->crank.calculate_moving_screw_position(), this->crank.moving_screw.position, fps);
 }
 
 void Engine3D::rotate(int axis, double angle) {

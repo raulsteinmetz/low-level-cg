@@ -9,21 +9,22 @@
 #define ENGINE_OFF false
 
 
-class Screw {
+class Screw3D {
     public:
         Vector3 position;
         Cuboid body;
-        Screw();
-        Screw(Vector3 position, double size);
+        Screw3D();
+        Screw3D(Vector3 position, double size);
         void draw(double d);
         void update(Vector3 position);
+        void update_pos(double off_set_x, double off_set_y, double off_set_z);
         void rotate(int axis, double angle);
 };
 
 class Crank3D {
     public:
-        Screw center_screw;
-        Screw moving_screw;
+        Screw3D center_screw;
+        Screw3D moving_screw;
         Cilinder body;
         double moving_screw_radians;
         bool state;
@@ -40,7 +41,7 @@ class Crank3D {
 
 };
 
-class Rod {
+class Rod3D {
     public:
         Vector3 start_effector;
         Vector3 end_effector;
@@ -48,9 +49,9 @@ class Rod {
         Cuboid body_back;
         double width;
         double height;
-        double lenght;
-        Rod();
-        Rod(Vector3 start_effector, Vector3 end_effector, double width, double height, double lenght);
+        double depth;
+        Rod3D();
+        Rod3D(Vector3 start_effector, Vector3 end_effector, double width, double height, double lenght);
 };
 
 class Piston3D {
@@ -60,6 +61,8 @@ class Piston3D {
         double height;
         double depth;
         double rad;
+        Cuboid body;
+        double connecting_rod_lenght;
 
         Piston3D();
         Piston3D(Vector3 center_screw_position, double width, double height, double depth, double rod_length, double rad);
@@ -71,6 +74,7 @@ class Piston3D {
 class Engine3D {
     public:
         Crank3D crank;
+        Piston3D piston;
         Engine3D();
         void draw(double d);
         void update(double fps);

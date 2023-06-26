@@ -47,10 +47,14 @@
 		<Unit filename="src/Vector2.h" />
 		<Unit filename="src/engine2d.cpp" />
 		<Unit filename="src/engine2d.h" />
+		<Unit filename="src/engine3d.cpp" />
+		<Unit filename="src/engine3d.h" />
 		<Unit filename="src/frames.h" />
 		<Unit filename="src/gl_canvas2d.cpp" />
 		<Unit filename="src/gl_canvas2d.h" />
 		<Unit filename="src/main.cpp" />
+		<Unit filename="src/models3d.cpp" />
+		<Unit filename="src/models3d.h" />
 		<Extensions>
 			<code_completion />
 			<debugger />
