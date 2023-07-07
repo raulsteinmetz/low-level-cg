@@ -54,7 +54,7 @@ Crank3D::Crank3D() {
 
 Crank3D::Crank3D(Vector3 center_screw_position, double height, double radius, double moving_screw_radians, bool state, double rpm) {
     this->center_screw = Screw3D(center_screw_position, 0.5);
-    this->moving_screw = Screw3D(Vector3(0, 0, center_screw_position.z), 0.1);
+    this->moving_screw = Screw3D(Vector3(0, 0, center_screw_position.z), 0.5);
     this->body = Cilinder(radius, height, 100, center_screw_position.x, center_screw_position.y, center_screw_position.z);
     this->moving_screw_radians = moving_screw_radians;
     this->state = state;
@@ -95,63 +95,7 @@ void Crank3D::update(double fps) {
 }
 
 void Crank3D::rotate(int axis, double angle) {
-    // all has to rotate based on the body 
 
-
-    // translate body to origin
-    for (int i = 0; i < this->body.n_points; i++) {
-        this->body.top[i].x -= this->body.offset_x;
-        this->body.top[i].y -= this->body.offset_y;
-        this->body.top[i].z -= this->body.offset_z;
-        this->body.bottom[i].x -= this->body.offset_x;
-        this->body.bottom[i].y -= this->body.offset_y;
-        this->body.bottom[i].z -= this->body.offset_z;
-    }
-
-    // translate screws to position
-    for (int i = 0; i < 8; i++) {
-        this->center_screw.body.points[i].x -= this->body.offset_x;
-        this->center_screw.body.points[i].y -= this->body.offset_y;
-        this->center_screw.body.points[i].z -= this->body.offset_z;
-
-        this->moving_screw.body.points[i].x -= this->body.offset_x;
-        this->moving_screw.body.points[i].y -= this->body.offset_y;
-        this->moving_screw.body.points[i].z -= this->body.offset_z;
-    }
-
-    // rotate stuff on spot
-    this->body.rotate_on_spot(axis, angle);
-    this->center_screw.body.rotate_on_spot(axis, angle);
-    this->moving_screw.body.rotate_on_spot(axis, angle);
-
-    // tranlate back
-
-    for (int i = 0; i < this->body.n_points; i++) {
-        this->body.top[i].x += this->body.offset_x;
-        this->body.top[i].y += this->body.offset_y;
-        this->body.top[i].z += this->body.offset_z;
-        this->body.bottom[i].x += this->body.offset_x;
-        this->body.bottom[i].y += this->body.offset_y;
-        this->body.bottom[i].z += this->body.offset_z;
-    }
-
-    // translate screws to position
-    for (int i = 0; i < 8; i++) {
-        this->center_screw.body.points[i].x += this->body.offset_x;
-        this->center_screw.body.points[i].y += this->body.offset_y;
-        this->center_screw.body.points[i].z += this->body.offset_z;
-
-        this->moving_screw.body.points[i].x += this->body.offset_x;
-        this->moving_screw.body.points[i].y += this->body.offset_y;
-        this->moving_screw.body.points[i].z += this->body.offset_z;
-    }
-
-
-
-
-    /*this->center_screw.rotate(axis, angle);
-    this->moving_screw.rotate(axis, angle);
-    this->body.rotate_on_origin(axis, angle);*/
 }
 
 
@@ -243,4 +187,5 @@ void Engine3D::update(double fps) {
 
 void Engine3D::rotate(int axis, double angle) {
     this->crank.rotate(axis, angle);
+    //this->piston.rotate(axis, angle);
 }

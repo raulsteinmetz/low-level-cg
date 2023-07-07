@@ -40,17 +40,15 @@ void render()
    CV::translate(400, 300);
    fps = frames.getFrames();
 
-   //engine.draw();
    //engine.update(fps);
+   //engine.draw();
+
 
    d = mouseY;
 
-   engine3d.draw(d);
-   engine3d.update(fps);
 
-   //engine3d.rotate(AXIS_X, angle/fps);
-   //engine3d.rotate(AXIS_Y, angle/fps);
-   //engine3d.rotate(AXIS_Z, angle/fps);
+   /*engine3d.draw(d);
+   engine3d.update(fps);*/
 
    angle += 2;
    if (angle > 200) angle = 100;

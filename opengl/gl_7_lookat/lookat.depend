@@ -1,0 +1,82 @@
+# depslib dependency file v1.0
+1452511700 source:d:\ufsm\disciplinas\computacao grafica\programas\gl_7_lookat\src\lookat.cpp
+	<GL/glut.h>
+	<stdlib.h>
+	<ctype.h>
+	<stdio.h>
+
+1426358040 d:\ufsm\disciplinas\computacao grafica\programas\gl_7_lookat\include\gl\glut.h
+	"freeglut_std.h"
+
+1437565542 d:\ufsm\disciplinas\computacao grafica\programas\gl_7_lookat\include\gl\freeglut_std.h
+	<windows.h>
+	<EGL/egl.h>
+	<GLES/gl.h>
+	<GLES2/gl2.h>
+	<OpenGL/gl.h>
+	<OpenGL/glu.h>
+	<GL/gl.h>
+	<GL/glu.h>
+	<stdlib.h>
+
+1626954854 source:d:\ufsm\disciplinas\computacao grafica\demos\gl_7_lookat\src\lookat.cpp
+	<GL/glut.h>
+	<stdlib.h>
+	<ctype.h>
+	<stdio.h>
+
+1426372440 d:\ufsm\disciplinas\computacao grafica\demos\gl_7_lookat\include\gl\glut.h
+	"freeglut_std.h"
+
+1437579942 d:\ufsm\disciplinas\computacao grafica\demos\gl_7_lookat\include\gl\freeglut_std.h
+	<windows.h>
+	<EGL/egl.h>
+	<GLES/gl.h>
+	<GLES2/gl2.h>
+	<OpenGL/gl.h>
+	<OpenGL/glu.h>
+	<GL/gl.h>
+	<GL/glu.h>
+	<stdlib.h>
+
+1626954880 source:c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_7_lookat\src\lookat.cpp
+	<GL/glut.h>
+	<stdlib.h>
+	<ctype.h>
+	<stdio.h>
+
+1426372440 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_7_lookat\include\gl\glut.h
+	"freeglut_std.h"
+
+1437579942 c:\users\rauls\onedrive\햞ea de trabalho\compgrafica\gl_7_lookat\include\gl\freeglut_std.h
+	<windows.h>
+	<EGL/egl.h>
+	<GLES/gl.h>
+	<GLES2/gl2.h>
+	<OpenGL/gl.h>
+	<OpenGL/glu.h>
+	<GL/gl.h>
+	<GL/glu.h>
+	<stdlib.h>
+
+1688648419 source:c:\users\rauls\onedrive\햞ea de trabalho\opengl\opengl\gl_7_lookat\src\lookat.cpp
+	<GL/glut.h>
+	<stdlib.h>
+	<ctype.h>
+	<stdio.h>
+	<time.h>
+
+1426372440 c:\users\rauls\onedrive\햞ea de trabalho\opengl\opengl\gl_7_lookat\include\gl\glut.h
+	"freeglut_std.h"
+
+1437579942 c:\users\rauls\onedrive\햞ea de trabalho\opengl\opengl\gl_7_lookat\include\gl\freeglut_std.h
+	<windows.h>
+	<EGL/egl.h>
+	<GLES/gl.h>
+	<GLES2/gl2.h>
+	<OpenGL/gl.h>
+	<OpenGL/glu.h>
+	<GL/gl.h>
+	<GL/glu.h>
+	<stdlib.h>
+

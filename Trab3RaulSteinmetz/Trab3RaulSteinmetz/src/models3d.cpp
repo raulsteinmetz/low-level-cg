@@ -120,51 +120,10 @@ void Cuboid::draw(double d) {
 
 void Cuboid::rotate_on_origin(int axis, double angle) {
     double rad = angle * PI / 180;
-
-    // translate to origin
-    for (int i = 0; i < 8; i++) {
-        points[i].x -= offset_x;
-        points[i].y -= offset_y;
-        points[i].z -= offset_z;
-    }
-
-    // rotate
-    for (int i = 0; i < 8; i++) {
-        if (axis == 0) {
-            points[i].y = points[i].y * cos(rad) - points[i].z * sin(rad);
-            points[i].z = points[i].y * sin(rad) + points[i].z * cos(rad);
-        } else if (axis == 1) {
-            points[i].x = points[i].x * cos(rad) + points[i].z * sin(rad);
-            points[i].z = -points[i].x * sin(rad) + points[i].z * cos(rad);
-        } else if (axis == 2) {
-            points[i].x = points[i].x * cos(rad) - points[i].y * sin(rad);
-            points[i].y = points[i].x * sin(rad) + points[i].y * cos(rad);
-        }
-    }
-
-    // translate back
-    for (int i = 0; i < 8; i++) {
-        points[i].x += offset_x;
-        points[i].y += offset_y;
-        points[i].z += offset_z;
-    }
 }
 
 void Cuboid::rotate_on_spot(int axis, double angle) {
     double rad = angle * PI / 180;
-    // rotate
-    for (int i = 0; i < 8; i++) {
-        if (axis == 0) {
-            points[i].y = points[i].y * cos(rad) - points[i].z * sin(rad);
-            points[i].z = points[i].y * sin(rad) + points[i].z * cos(rad);
-        } else if (axis == 1) {
-            points[i].x = points[i].x * cos(rad) + points[i].z * sin(rad);
-            points[i].z = -points[i].x * sin(rad) + points[i].z * cos(rad);
-        } else if (axis == 2) {
-            points[i].x = points[i].x * cos(rad) - points[i].y * sin(rad);
-            points[i].y = points[i].x * sin(rad) + points[i].y * cos(rad);
-        }
-    }
 }
 
 void Cuboid::update_pos(double offset_x, double offset_y, double offset_z) {
@@ -249,67 +208,9 @@ void Cilinder::draw(double d) {
 void Cilinder::rotate_on_origin(int axis, double angle) {
     double rad = angle * PI / 180;
     
-    // translate to origin
-    for (int i = 0; i < n_points; i++) {
-        bottom[i].x -= offset_x;
-        bottom[i].y -= offset_y;
-        bottom[i].z -= offset_z;
-        top[i].x -= offset_x;
-        top[i].y -= offset_y;
-        top[i].z -= offset_z;
-    }
-
-    // rotate
-    for (int i = 0; i < n_points; i++) {
-        if (axis == 0) {
-            bottom[i].y = bottom[i].y * cos(rad) - bottom[i].z * sin(rad);
-            bottom[i].z = bottom[i].y * sin(rad) + bottom[i].z * cos(rad);
-            top[i].y = top[i].y * cos(rad) - top[i].z * sin(rad);
-            top[i].z = top[i].y * sin(rad) + top[i].z * cos(rad);
-        } else if (axis == 1) {
-            bottom[i].x = bottom[i].x * cos(rad) + bottom[i].z * sin(rad);
-            bottom[i].z = -bottom[i].x * sin(rad) + bottom[i].z * cos(rad);
-            top[i].x = top[i].x * cos(rad) + top[i].z * sin(rad);
-            top[i].z = -top[i].x * sin(rad) + top[i].z * cos(rad);
-        } else if (axis == 2) {
-            bottom[i].x = bottom[i].x * cos(rad) - bottom[i].y * sin(rad);
-            bottom[i].y = bottom[i].x * sin(rad) + bottom[i].y * cos(rad);
-            top[i].x = top[i].x * cos(rad) - top[i].y * sin(rad);
-            top[i].y = top[i].x * sin(rad) + top[i].y * cos(rad);
-        }
-    }
-
-    // translate back
-    for (int i = 0; i < n_points; i++) {
-        bottom[i].x += offset_x;
-        bottom[i].y += offset_y;
-        bottom[i].z += offset_z;
-        top[i].x += offset_x;
-        top[i].y += offset_y;
-        top[i].z += offset_z;
-    }
 }
 
 void Cilinder::rotate_on_spot(int axis, double angle) {
     double rad = angle * PI / 180;
     
-    // rotate
-    for (int i = 0; i < n_points; i++) {
-        if (axis == 0) {
-            bottom[i].y = bottom[i].y * cos(rad) - bottom[i].z * sin(rad);
-            bottom[i].z = bottom[i].y * sin(rad) + bottom[i].z * cos(rad);
-            top[i].y = top[i].y * cos(rad) - top[i].z * sin(rad);
-            top[i].z = top[i].y * sin(rad) + top[i].z * cos(rad);
-        } else if (axis == 1) {
-            bottom[i].x = bottom[i].x * cos(rad) + bottom[i].z * sin(rad);
-            bottom[i].z = -bottom[i].x * sin(rad) + bottom[i].z * cos(rad);
-            top[i].x = top[i].x * cos(rad) + top[i].z * sin(rad);
-            top[i].z = -top[i].x * sin(rad) + top[i].z * cos(rad);
-        } else if (axis == 2) {
-            bottom[i].x = bottom[i].x * cos(rad) - bottom[i].y * sin(rad);
-            bottom[i].y = bottom[i].x * sin(rad) + bottom[i].y * cos(rad);
-            top[i].x = top[i].x * cos(rad) - top[i].y * sin(rad);
-            top[i].y = top[i].x * sin(rad) + top[i].y * cos(rad);
-        }
-    }
 }

@@ -45,17 +45,6 @@ class Crank {
         Vector2 calculate_moving_screw_position();
 };
 
-class OnePistonEngine2D {
-    public:
-        double rpm;
-        Crank crank;
-        Piston piston;
-        OnePistonEngine2D();
-        OnePistonEngine2D(Vector2 center_screw_position, double radius, double moving_screw_radians, bool state, double rpm);
-        void draw();
-        void update(double fps);
-};
-
 class TwoPistonEngine2D {
     public:
         double rpm;
@@ -68,6 +57,8 @@ class TwoPistonEngine2D {
         void update(double fps);
         
 };
+
+Vector2 rotateVector(Vector2 vector, double radians);
 
 
 #endif // ENGINE2D_H
