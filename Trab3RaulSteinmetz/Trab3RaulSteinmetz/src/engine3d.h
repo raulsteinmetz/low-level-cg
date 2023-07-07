@@ -67,14 +67,15 @@ class Piston3D {
         Piston3D();
         Piston3D(Vector3 center_screw_position, double width, double height, double depth, double rod_length, double rad);
         void draw(double d);
-        void update(Vector3 crank_center_screw_pos, Vector3 end_effector_pos, double fps);
+        void update(Vector3 end_effector_pos, double fps);
         void update_center_screw_position(Vector3 end_effector_pos);
 };
 
 class Engine3D {
     public:
         Crank3D crank;
-        Piston3D piston;
+        Piston3D left_piston;
+        Piston3D right_piston;
         Engine3D();
         void draw(double d);
         void update(double fps);

@@ -63,7 +63,6 @@ void Piston::draw() {
     CV::line(center_screw_position.x, center_screw_position.y, 
             connecting_rod_end_effector_position.x, connecting_rod_end_effector_position.y);
 
-    printf("Distance: %f\n", calculate_ditance(center_screw_position, connecting_rod_end_effector_position));
 
 }
 

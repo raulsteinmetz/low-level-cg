@@ -10,10 +10,14 @@
 #include "engine2d.h"
 #include "engine3d.h"
 
+#define BIDIMENTIONAL 0
+#define TRIDIMENTIONAL 1
+
+
 // fps control
 int fps = 0;
 Frames frames;
-
+int state = BIDIMENTIONAL;
 
 int screenWidth = 800, screenHeight = 600;
 int mouseX, mouseY;
@@ -40,30 +44,37 @@ void render()
    CV::translate(400, 300);
    fps = frames.getFrames();
 
-   //engine.update(fps);
-   //engine.draw();
-
+   if (state == BIDIMENTIONAL) {
+      engine.draw();
+      engine.update(fps);
+   }
+   else {
+      engine3d.draw(d);
+      engine3d.update(fps);
+   }
 
    d = mouseY;
 
 
-   /*engine3d.draw(d);
-   engine3d.update(fps);*/
-
-   angle += 2;
-   if (angle > 200) angle = 100;
+   angle += 1;
+   if (angle > 360) angle = 0;
 }
 
 
 void keyboard(int key)
 {
-
+   if (key == 49) {
+      state = BIDIMENTIONAL;
+   }
+   else if (key == 50){ 
+      state = TRIDIMENTIONAL;
+   }
 }
 
 
 void keyboardUp(int key)
 {
-
+   printf("key up: %d\n", key);
 }
 
 
@@ -74,6 +85,7 @@ void mouse(int button, int state, int wheel, int direction, int x, int y)
 
    // 0 0 click
    // 0 1 solta;
+
 }
 
 int main(void)
