@@ -17,14 +17,13 @@
 // fps control
 int fps = 0;
 Frames frames;
-int state = BIDIMENTIONAL;
+int state = TRIDIMENTIONAL;
 
 int screenWidth = 800, screenHeight = 600;
 int mouseX, mouseY;
 
 float d = 500.0;
 
-//OnePistonEngine2D engine(Vector2(0, 0), 50, 0, true, 15);
 TwoPistonEngine2D engine(Vector2(0, 0), 50, 0, true, 15);
 
 Cuboid testCube(1.0, 2, 2, 2);
@@ -49,8 +48,7 @@ void render()
       engine.update(fps);
    }
    else {
-      engine3d.draw(d);
-      engine3d.update(fps);
+      engine3d.render(fps, d);
    }
 
    d = mouseY;

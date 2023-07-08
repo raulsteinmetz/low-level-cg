@@ -41,19 +41,6 @@ class Crank3D {
 
 };
 
-class Rod3D {
-    public:
-        Vector3 start_effector;
-        Vector3 end_effector;
-        Cuboid body_front;
-        Cuboid body_back;
-        double width;
-        double height;
-        double depth;
-        Rod3D();
-        Rod3D(Vector3 start_effector, Vector3 end_effector, double width, double height, double lenght);
-};
-
 class Piston3D {
     public:
         Vector3 center_screw_position;
@@ -63,6 +50,7 @@ class Piston3D {
         double rad;
         Cuboid body;
         double connecting_rod_lenght;
+        Vector3 end_effector_position;
 
         Piston3D();
         Piston3D(Vector3 center_screw_position, double width, double height, double depth, double rod_length, double rad);
@@ -80,6 +68,7 @@ class Engine3D {
         void draw(double d);
         void update(double fps);
         void rotate(int axis, double angle);
+        void render(double fps, double d);
 };
 
 
