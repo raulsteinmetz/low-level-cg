@@ -13,6 +13,9 @@ Vector3::Vector3() {}
 Vector3::Vector3(float x, float y, float z) : x(x), y(y), z(z) {}
 
 
+
+
+
 // CUBE
 
 Cuboid::Cuboid() {}
@@ -121,6 +124,7 @@ void Cuboid::draw(double d) {
 
 void Cuboid::rotate_on_origin(int axis, double angle) {
     double rad = angle * PI / 180;
+
 }
 
 void Cuboid::rotate_on_spot(int axis, double angle) {
