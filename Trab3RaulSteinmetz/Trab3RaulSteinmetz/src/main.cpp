@@ -25,15 +25,14 @@ int mouseX, mouseY;
 float d = 500.0;
 
 TwoPistonEngine2D engine(Vector2(0, 0), 50, 0, true, 15);
-
-Cuboid testCube(1.0, 2, 2, 2);
-Cilinder testCilinder(1.0, 2.0, 100, 0, 0, 2);
-Cuboid testCuboid(1.0, 2.0, 3.0, 0, 0, 5.0);
-
 Engine3D engine3d;
+Engine3D engine3d_2;
+Engine3D engine3d_3;
 
 void _init() {
-   engine3d = Engine3D();
+   engine3d = Engine3D(6);
+   engine3d_2 = Engine3D(8);
+   engine3d_3 = Engine3D(10);
 }
 
 double angle = 100;
@@ -49,6 +48,8 @@ void render()
    }
    else {
       engine3d.render(fps, d);
+      engine3d_2.render(fps, d);
+      engine3d_3.render(fps, d);
    }
 
    d = mouseY;

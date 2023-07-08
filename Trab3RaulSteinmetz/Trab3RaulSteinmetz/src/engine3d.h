@@ -57,6 +57,7 @@ class Piston3D {
         void draw(double d);
         void update(Vector3 end_effector_pos, double fps);
         void update_center_screw_position(Vector3 end_effector_pos);
+        void rotate(int axis, double angle);
 };
 
 class Engine3D {
@@ -64,6 +65,7 @@ class Engine3D {
         Crank3D crank;
         Piston3D left_piston;
         Piston3D right_piston;
+        Engine3D(double z);
         Engine3D();
         void draw(double d);
         void update(double fps);

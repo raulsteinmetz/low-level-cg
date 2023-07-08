@@ -123,12 +123,68 @@ void Cuboid::draw(double d) {
 }
 
 void Cuboid::rotate_on_origin(int axis, double angle) {
+    for (int i = 0; i < 8; i++) {
+        points[i].x -= offset_x;
+        points[i].y -= offset_y;
+        points[i].z -= offset_z;
+    }
     double rad = angle * PI / 180;
-
+    if (axis == AXIS_X) {
+        for (int i = 0; i < 8; i++) {
+            double y = points[i].y;
+            double z = points[i].z;
+            points[i].y = y * cos(rad) - z * sin(rad);
+            points[i].z = y * sin(rad) + z * cos(rad);
+        }
+    } else if (axis == AXIS_Y) {
+        for (int i = 0; i < 8; i++) {
+            double x = points[i].x;
+            double z = points[i].z;
+            points[i].x = x * cos(rad) + z * sin(rad);
+            points[i].z = -x * sin(rad) + z * cos(rad);
+        }
+    } else if (axis == AXIS_Z) {
+        for(int i = 0; i < 8; i++) {
+            double x = points[i].x;
+            double y = points[i].y;
+            points[i].x = x * cos(rad) - y * sin(rad);
+            points[i].y = x * sin(rad) + y * cos(rad);
+        }
+    }
+    for(int i = 0; i < 8; i++) {
+        points[i].x += offset_x;
+        points[i].y += offset_y;
+        points[i].z += offset_z;
+    }
 }
 
 void Cuboid::rotate_on_spot(int axis, double angle) {
     double rad = angle * PI / 180;
+    if (axis == AXIS_X) {
+        for (int i = 0; i < 8; i++) {
+            double y = points[i].y;
+            double z = points[i].z;
+            points[i].y = y * cos(rad) - z * sin(rad);
+            points[i].z = y * sin(rad) + z * cos(rad);
+        }
+    } else if (axis == AXIS_Y) {
+        for (int i = 0; i < 8; i++) {
+            double x = points[i].x;
+            double z = points[i].z;
+            points[i].x = x * cos(rad) + z * sin(rad);
+            points[i].z = -x * sin(rad) + z * cos(rad);
+        }
+    } else if (axis == AXIS_Z) {
+        for(int i = 0; i < 8; i++) {
+            double x = points[i].x;
+            double y = points[i].y;
+            points[i].x = x * cos(rad) - y * sin(rad);
+            points[i].y = x * sin(rad) + y * cos(rad);
+        }
+    }
+
+    // find out new offset
+
 }
 
 void Cuboid::update_pos(double offset_x, double offset_y, double offset_z) {
@@ -245,11 +301,107 @@ void Cilinder::draw(double d) {
 }
 
 void Cilinder::rotate_on_origin(int axis, double angle) {
-    double rad = angle * PI / 180;
+    // translate to origin
+    for (int i = 0; i < n_points; i++) {
+        bottom[i].x -= offset_x;
+        bottom[i].y -= offset_y;
+        bottom[i].z -= offset_z;
+        top[i].x -= offset_x;
+        top[i].y -= offset_y;
+        top[i].z -= offset_z;
+    }
 
+    double rad = angle * PI / 180;
+    if (axis == AXIS_X) {
+        for (int i = 0; i < n_points; i++) {
+            double y = bottom[i].y;
+            double z = bottom[i].z;
+            bottom[i].y = y * cos(rad) - z * sin(rad);
+            bottom[i].z = y * sin(rad) + z * cos(rad);
+
+            y = top[i].y;
+            z = top[i].z;
+            top[i].y = y * cos(rad) - z * sin(rad);
+            top[i].z = y * sin(rad) + z * cos(rad);
+        }
+    } else if (axis == AXIS_Y) {
+        for (int i = 0; i < n_points; i++) {
+            double x = bottom[i].x;
+            double z = bottom[i].z;
+            bottom[i].x = x * cos(rad) + z * sin(rad);
+            bottom[i].z = -x * sin(rad) + z * cos(rad);
+
+            x = top[i].x;
+            z = top[i].z;
+            top[i].x = x * cos(rad) + z * sin(rad);
+            top[i].z = -x * sin(rad) + z * cos(rad);
+        }
+    } else if (axis == AXIS_Z) {
+        for (int i = 0; i < n_points; i++) {
+            double x = bottom[i].x;
+            double y = bottom[i].y;
+            bottom[i].x = x * cos(rad) - y * sin(rad);
+            bottom[i].y = x * sin(rad) + y * cos(rad);
+
+            x = top[i].x;
+            y = top[i].y;
+            top[i].x = x * cos(rad) - y * sin(rad);
+            top[i].y = x * sin(rad) + y * cos(rad);
+        }
+
+    }
+    // translate back
+    for (int i = 0; i < n_points; i++) {
+        bottom[i].x += offset_x;
+        bottom[i].y += offset_y;
+        bottom[i].z += offset_z;
+        top[i].x += offset_x;
+        top[i].y += offset_y;
+        top[i].z += offset_z;
+    }
 }
 
 void Cilinder::rotate_on_spot(int axis, double angle) {
     double rad = angle * PI / 180;
+
+    if (axis == AXIS_X) {
+        for (int i = 0; i < n_points; i++) {
+            double y = bottom[i].y;
+            double z = bottom[i].z;
+            bottom[i].y = y * cos(rad) - z * sin(rad);
+            bottom[i].z = y * sin(rad) + z * cos(rad);
+
+            y = top[i].y;
+            z = top[i].z;
+            top[i].y = y * cos(rad) - z * sin(rad);
+            top[i].z = y * sin(rad) + z * cos(rad);
+        }
+    } else if (axis == AXIS_Y) {
+        for (int i = 0; i < n_points; i++) {
+            double x = bottom[i].x;
+            double z = bottom[i].z;
+            bottom[i].x = x * cos(rad) + z * sin(rad);
+            bottom[i].z = -x * sin(rad) + z * cos(rad);
+
+            x = top[i].x;
+            z = top[i].z;
+            top[i].x = x * cos(rad) + z * sin(rad);
+            top[i].z = -x * sin(rad) + z * cos(rad);
+        }
+    } else if (axis == AXIS_Z) {
+        for (int i = 0; i < n_points; i++) {
+            double x = bottom[i].x;
+            double y = bottom[i].y;
+            bottom[i].x = x * cos(rad) - y * sin(rad);
+            bottom[i].y = x * sin(rad) + y * cos(rad);
+
+            x = top[i].x;
+            y = top[i].y;
+            top[i].x = x * cos(rad) - y * sin(rad);
+            top[i].y = x * sin(rad) + y * cos(rad);
+        }
+    }
+
+    // find out whats the new offset
 
 }
