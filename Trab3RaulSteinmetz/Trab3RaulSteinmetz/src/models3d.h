@@ -40,12 +40,16 @@ class Cilinder {
     public:
         Vector3 bottom[100];
         Vector3 top[100];
+        Vector3 top_center;
+        Vector3 bottom_center;
         int n_points;
         double radius, height;
         double offset_x, offset_y, offset_z;
         Cilinder();
         Cilinder(double radius, double height, double n_points);
         Cilinder(double radius, double height, double n_points, double offset_x, double offset_y, double offset_z);
+        Cilinder(double radius, double n_points, Vector3 bottom_center, Vector3 top_center);
+        void compute_cilinder_points();
         void rotate_on_origin(int axis, double angle);
         void rotate_on_spot(int axis, double angle);
         void draw(double d);

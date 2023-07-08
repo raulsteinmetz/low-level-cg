@@ -134,10 +134,9 @@ Piston3D::Piston3D(Vector3 center_screw_position, double width, double height, d
 
 void Piston3D::draw(double d) {
     this->body.draw(d);
-    Cilinder rod = Cilinder(0.25, this->connecting_rod_lenght, 100, this->center_screw_position.x, this->center_screw_position.y, this->center_screw_position.z);
-    //rotate cilinder 90 degrees on x axis
-    //rod.rotate_on_origin(AXIS_X, 30);
-    //rod.draw(d);
+    Cilinder rod = Cilinder(0.25, 40, this->end_effector_position, this->center_screw_position);
+    rod.draw(d);
+
 }
 
 void Piston3D::update(Vector3 end_effector_pos, double fps) {
@@ -173,9 +172,9 @@ void Piston3D::update_center_screw_position(Vector3 end_effector_pos) {
 
 
 Engine3D::Engine3D() {
-    this->crank = Crank3D(Vector3(0, 0, 6), 1, 2, 0, ENGINE_ON, 3);
-    this->left_piston = Piston3D(Vector3(0, 0, 6), 1, 1, 1, 5, -PI/6.0);
-    this->right_piston = Piston3D(Vector3(0, 0, 6), 1, 1, 1, 5, PI/6.0);
+    this->crank = Crank3D(Vector3(0, 0, 6), 1, 2, 0, ENGINE_ON, 120);
+    this->left_piston = Piston3D(Vector3(0, 0, 6), 1, 1, 1, 5, -PI/4.0);
+    this->right_piston = Piston3D(Vector3(0, 0, 6), 1, 1, 1, 5, PI/4.0);
 }
 
 void Engine3D::draw(double d) {
@@ -194,6 +193,17 @@ void Engine3D::draw(double d) {
     this->right_piston.center_screw_position = new_right;
 
 
+    this->left_piston.end_effector_position = this->crank.moving_screw.position;
+    this->right_piston.end_effector_position = this->crank.moving_screw.position;
+
+
+    // pushing right piston back
+    /*
+    this->right_piston.body.update_pos(this->right_piston.center_screw_position.x, this->right_piston.center_screw_position.y, this->right_piston.center_screw_position.z + 2);
+    this->right_piston.center_screw_position = Vector3(this->right_piston.center_screw_position.x, this->right_piston.center_screw_position.y, this->right_piston.center_screw_position.z + 2);
+    */
+
+
     this->left_piston.draw(d);
     this->crank.draw(d);
     this->right_piston.draw(d);
@@ -208,6 +218,15 @@ void Engine3D::draw(double d) {
 
     this->right_piston.body.update_pos(old_right.x, old_right.y, old_right.z);
     this->right_piston.center_screw_position = old_right;
+
+    this->left_piston.end_effector_position = this->crank.moving_screw.position;
+    this->right_piston.end_effector_position = this->crank.moving_screw.position;
+
+    // pushing right piston back
+    /*
+    this->right_piston.body.update_pos(this->right_piston.center_screw_position.x, this->right_piston.center_screw_position.y, this->right_piston.center_screw_position.z + 2);
+    this->right_piston.center_screw_position = Vector3(this->right_piston.center_screw_position.x, this->right_piston.center_screw_position.y, this->right_piston.center_screw_position.z + 2);
+    */
 
 }
 

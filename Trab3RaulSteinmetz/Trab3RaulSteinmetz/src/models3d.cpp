@@ -43,7 +43,7 @@ Cuboid::Cuboid(double size) : size(size) {
     }
 }
 
-Cuboid::Cuboid(double size, double offset_x, double offset_y, double offset_z) : 
+Cuboid::Cuboid(double size, double offset_x, double offset_y, double offset_z) :
            size(size), offset_x(offset_x), offset_y(offset_y), offset_z(offset_z) {
 
     this->width = 1.0;
@@ -78,7 +78,7 @@ Cuboid::Cuboid(double size, double offset_x, double offset_y, double offset_z) :
     }
 }
 
-Cuboid::Cuboid(double width, double hight, double depth, double offset_x, double offset_y, double offset_z) : 
+Cuboid::Cuboid(double width, double hight, double depth, double offset_x, double offset_y, double offset_z) :
            width(width), hight(hight), depth(depth), offset_x(offset_x), offset_y(offset_y), offset_z(offset_z) {
 
     // points in y = 0
@@ -151,7 +151,7 @@ Cilinder::Cilinder() {
     this->radius = 1;
     this->height = 1;
     this->n_points = 100;
-   
+
     for(int i = 0; i < n_points; i++) {
         float rad = 2 * PI * i / n_points;
         bottom[i] = Vector3(radius * cos(rad), radius * sin(rad), 0);
@@ -196,6 +196,40 @@ Cilinder::Cilinder(double radius, double height, double n_points, double offset_
     }
 }
 
+void Cilinder::compute_cilinder_points() {
+    Vector3 direction = Vector3(top_center.x - bottom_center.x, top_center.y - bottom_center.y, top_center.z - bottom_center.z);
+    double length = sqrt(direction.x * direction.x + direction.y * direction.y + direction.z * direction.z);
+    direction.x /= length;
+    direction.y /= length;
+    direction.z /= length;
+
+    Vector3 perpendicular;
+    if (fabs(direction.x) < 0.1 && fabs(direction.y) < 0.1)
+        perpendicular = Vector3(1.0, 0.0, 0.0);
+    else
+        perpendicular = Vector3(-direction.y, direction.x, 0.0);
+
+    double angleIncrement = 2 * PI / n_points;
+    for (int i = 0; i < n_points; i++) {
+        double angle = i * angleIncrement;
+        double cosAngle = cos(angle);
+        double sinAngle = sin(angle);
+
+        bottom[i] = Vector3(bottom_center.x + (perpendicular.x * radius * cosAngle), bottom_center.y + (perpendicular.y * radius * cosAngle), bottom_center.z + (perpendicular.z * radius * cosAngle));
+        top[i] = Vector3(top_center.x + (perpendicular.x * radius * cosAngle), top_center.y + (perpendicular.y * radius * cosAngle), top_center.z + (perpendicular.z * radius * cosAngle));
+    }
+}
+
+Cilinder::Cilinder(double radius, double n_points, Vector3 bottom_center, Vector3 top_center) {
+    this->radius = radius;
+    this->n_points = n_points;
+    this->bottom_center = bottom_center;
+    this->top_center = top_center;
+    compute_cilinder_points();
+
+}
+
+
 void Cilinder::draw(double d) {
     // drawing lines
     CV::color(0, 0, 0);
@@ -208,10 +242,10 @@ void Cilinder::draw(double d) {
 
 void Cilinder::rotate_on_origin(int axis, double angle) {
     double rad = angle * PI / 180;
-    
+
 }
 
 void Cilinder::rotate_on_spot(int axis, double angle) {
     double rad = angle * PI / 180;
-    
+
 }
