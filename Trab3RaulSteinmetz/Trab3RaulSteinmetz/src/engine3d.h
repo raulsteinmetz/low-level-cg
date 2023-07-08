@@ -18,7 +18,6 @@ class Screw3D {
         void draw(double d);
         void update(Vector3 position);
         void update_pos(double off_set_x, double off_set_y, double off_set_z);
-        void rotate(int axis, double angle);
 };
 
 class Crank3D {
@@ -37,7 +36,6 @@ class Crank3D {
         void stop();
         void start();
         Vector3 calculate_moving_screw_position();
-        void rotate(int axis, double angle);
 
 };
 
@@ -57,7 +55,6 @@ class Piston3D {
         void draw(double d);
         void update(Vector3 end_effector_pos, double fps);
         void update_center_screw_position(Vector3 end_effector_pos);
-        void rotate(int axis, double angle);
 };
 
 class Engine3D {
@@ -69,7 +66,6 @@ class Engine3D {
         Engine3D();
         void draw(double d);
         void update(double fps);
-        void rotate(int axis, double angle);
         void render(double fps, double d);
 };
 

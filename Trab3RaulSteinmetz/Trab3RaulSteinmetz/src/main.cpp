@@ -36,6 +36,8 @@ void _init() {
 }
 
 double angle = 100;
+float pos_x = 0;
+float pos_y = 0;
 
 void render()
 {
@@ -50,13 +52,14 @@ void render()
       engine3d.render(fps, d);
       engine3d_2.render(fps, d);
       engine3d_3.render(fps, d);
+
    }
 
    d = mouseY;
 
 
-   angle += 1;
-   if (angle > 360) angle = 0;
+   angle += 0.0001;
+   if (angle > 2 * PI) angle = 0;
 }
 
 

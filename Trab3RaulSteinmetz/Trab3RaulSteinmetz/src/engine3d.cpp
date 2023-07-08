@@ -54,9 +54,7 @@ void Screw3D::update_pos(double x, double y, double z) {
     this->update(Vector3(x, y, z));
 }
 
-void Screw3D::rotate(int axis, double radians) {
-    
-}
+
 
 Crank3D::Crank3D() {
     this->center_screw = Screw3D(Vector3(0, 0, 0), 0.5);
@@ -106,13 +104,6 @@ void Crank3D::update(double fps) {
         this->moving_screw.update(this->calculate_moving_screw_position());
     }
 }
-
-void Crank3D::rotate(int axis, double angle) {
-
-}
-
-
-
 
 Piston3D::Piston3D(){
     this->depth = 1.0;
@@ -168,15 +159,10 @@ void Piston3D::update_center_screw_position(Vector3 end_effector_pos) {
     this->body.update_pos(x, y, z);
 }
 
-void Piston3D::rotate(int axis, double angle) {
-
-}
-
-
 Engine3D::Engine3D(){}
 
 Engine3D::Engine3D(double z) {
-    this->crank = Crank3D(Vector3(0, 0, z), 1, 0.5, 0, ENGINE_ON, 30);
+    this->crank = Crank3D(Vector3(0, 0, z), 1, 0.5, 0, ENGINE_ON, 20);
     this->left_piston = Piston3D(Vector3(0, 0, z), 1, 1, 1, 2, -PI/4.0);
     this->right_piston = Piston3D(Vector3(0, 0, z), 1, 1, 1, 2, PI/4.0);
 }
@@ -226,13 +212,8 @@ void Engine3D::update(double fps) {
     this->right_piston.update(rotateVector3(this->crank.calculate_moving_screw_position(), this->left_piston.rad * 2), fps);
 }
 
-void Engine3D::rotate(int axis, double angle) {
-    this->crank.rotate(axis, angle);
-    this->left_piston.rotate(axis, angle);
-    this->right_piston.rotate(axis, angle);
-}
-
 void Engine3D::render(double fps, double d){
     this->draw(d);
     this->update(fps);
 }
+

@@ -1,4 +1,4 @@
-rotation not working properly
-2d model with 2 diagonal pistons
-rod
-3d model with diagonal pistons
+ajustar o angulo entre os dois pistoes (EXTRA DOIS PONTOS)
+selecionar o que mostrar e o que nao mostrar (BASICO)
+talvez transladar
+ajustar o rpm
