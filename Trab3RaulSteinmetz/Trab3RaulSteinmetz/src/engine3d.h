@@ -18,6 +18,7 @@ class Screw3D {
         void draw(double d);
         void update(Vector3 position);
         void update_pos(double off_set_x, double off_set_y, double off_set_z);
+
 };
 
 class Crank3D {
@@ -59,6 +60,9 @@ class Piston3D {
 
 class Engine3D {
     public:
+        double x_rotation;
+        double y_rotation;
+        double z_rotation;
         Crank3D crank;
         Piston3D left_piston;
         Piston3D right_piston;
@@ -67,6 +71,7 @@ class Engine3D {
         void draw(double d);
         void update(double fps);
         void render(double fps, double d);
+        
 };
 
 

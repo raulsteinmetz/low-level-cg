@@ -18,7 +18,12 @@ class Vector3 {
         Vector3();
         Vector3(float x, float y, float z);
 };
+
 Vector2 perspective(Vector3 v);
+
+Vector3 rotateVector3(int axis, double rad, Vector3 v);
+
+Vector3 translate(Vector3 v, Vector3 t);
 
 class Cuboid {
     public:

@@ -26,13 +26,9 @@ float d = 500.0;
 
 TwoPistonEngine2D engine(Vector2(0, 0), 50, 0, true, 15);
 Engine3D engine3d;
-Engine3D engine3d_2;
-Engine3D engine3d_3;
 
 void _init() {
-   engine3d = Engine3D(6);
-   engine3d_2 = Engine3D(8);
-   engine3d_3 = Engine3D(10);
+   engine3d = Engine3D(4);
 }
 
 double angle = 100;
@@ -41,7 +37,7 @@ float pos_y = 0;
 
 void render()
 {
-   CV::translate(400, 300);
+   CV::translate(400, 400);
    fps = frames.getFrames();
 
    if (state == BIDIMENTIONAL) {
@@ -50,15 +46,15 @@ void render()
    }
    else {
       engine3d.render(fps, d);
-      engine3d_2.render(fps, d);
-      engine3d_3.render(fps, d);
-
+      engine3d.x_rotation = 0;
+      engine3d.y_rotation = 0;
+      engine3d.z_rotation = 0;
    }
 
    d = mouseY;
 
 
-   angle += 0.0001;
+   angle += 0.00001;
    if (angle > 2 * PI) angle = 0;
 }
 

@@ -12,8 +12,31 @@ Vector2 perspective(Vector3 v, double d) {
 Vector3::Vector3() {}
 Vector3::Vector3(float x, float y, float z) : x(x), y(y), z(z) {}
 
+Vector3 rotateVector3(int axis, double rad, Vector3 v) {
+    double cosTheta = cos(rad);
+    double sinTheta = sin(rad);
 
+    if (axis == AXIS_X) {
+        double y = v.y * cosTheta - v.z * sinTheta;
+        double z = v.y * sinTheta + v.z * cosTheta;
+        return {v.x, y, z};
+    } else if (axis == AXIS_Y) {
+        double x = v.x * cosTheta + v.z * sinTheta;
+        double z = -v.x * sinTheta + v.z * cosTheta;
+        return {x, v.y, z};
+    } else if (axis == AXIS_Z) {
+        double x = v.x * cosTheta - v.y * sinTheta;
+        double y = v.x * sinTheta + v.y * cosTheta;
+        return {x, y, v.z};
+    }
 
+    // Handle invalid axis input
+    return v;
+}
+
+Vector3 translate(Vector3 v, Vector3 t) {
+    return {v.x + t.x, v.y + t.y, v.z + t.z};
+}
 
 
 // CUBE
