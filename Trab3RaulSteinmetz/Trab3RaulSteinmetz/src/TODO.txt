@@ -1,4 +1,1 @@
-ajustar o angulo entre os dois pistoes (EXTRA DOIS PONTOS)
-selecionar o que mostrar e o que nao mostrar (BASICO)
-talvez transladar
-ajustar o rpm
+fazer camisa
