@@ -7,6 +7,8 @@
 
 #define ENGINE_ON true
 #define ENGINE_OFF false
+#define RENDER_ON true
+#define RENDER_OFF false
 
 
 class Screw3D {
@@ -63,6 +65,11 @@ class Engine3D {
         double x_rotation;
         double y_rotation;
         double z_rotation;
+
+        int draw_crank;
+        int draw_left_piston;
+        int draw_right_piston;
+
         Crank3D crank;
         Piston3D left_piston;
         Piston3D right_piston;

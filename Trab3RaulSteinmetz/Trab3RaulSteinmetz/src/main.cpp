@@ -20,10 +20,10 @@ int fps = 0;
 Frames frames;
 int state = TRIDIMENTIONAL;
 
-int screenWidth = 800, screenHeight = 600;
+int screenWidth = 800, screenHeight = 700;
 int mouseX, mouseY;
 
-float d = 400.0;
+float d = 600.0;
 
 TwoPistonEngine2D engine(Vector2(0, 0), 50, 0, true, 15);
 Engine3D engine3d;
@@ -41,6 +41,9 @@ Button rpm_plus = Button(5, 405, 150, 35, 0.5, 0.5, 0.5, TRIDIMENTIONAL, "RPM +"
 Button rpm_minus = Button(5, 445, 150, 35, 0.5, 0.5, 0.5, TRIDIMENTIONAL, "RPM -");
 Button piston_angle_plus = Button(5, 485, 150, 35, 0.5, 0.5, 0.5, TRIDIMENTIONAL, "P ANGLE +");
 Button piston_angle_minus = Button(5, 525, 150, 35, 0.5, 0.5, 0.5, TRIDIMENTIONAL, "P ANGLE -");
+Button draw_crank = Button(5, 565, 150, 35, 0.5, 0.5, 0.5, TRIDIMENTIONAL, "DRAW CRANK");
+Button draw_right_piston = Button(5, 605, 150, 35, 0.5, 0.5, 0.5, TRIDIMENTIONAL, "DRAW PISTON");
+Button draw_left_piston = Button(5, 645, 150, 35, 0.5, 0.5, 0.5, TRIDIMENTIONAL, "DRAW PISTON");
 
 
 void _init() {
@@ -56,7 +59,7 @@ float pos_y = 0;
 
 void render()
 {
-   CV::translate(400, 400);
+   CV::translate(500, 400);
    fps = frames.getFrames();
 
    if (state == BIDIMENTIONAL) {
@@ -84,6 +87,9 @@ void render()
    rpm_minus.render(mouseX, mouseY);
    piston_angle_plus.render(mouseX, mouseY);
    piston_angle_minus.render(mouseX, mouseY);
+   draw_crank.render(mouseX, mouseY);
+   draw_right_piston.render(mouseX, mouseY);
+   draw_left_piston.render(mouseX, mouseY);
 }
 
 void handleClick(float mouseX, float mouseY) {
@@ -132,6 +138,15 @@ void handleClick(float mouseX, float mouseY) {
    else if (piston_angle_minus.check_click(mouseX, mouseY) == CLICK_TRUE) {
       engine3d.left_piston.rad += 0.1;
       engine3d.right_piston.rad -= 0.1;
+   }
+   else if (draw_crank.check_click(mouseX, mouseY) == CLICK_TRUE) {
+      engine3d.draw_crank = !engine3d.draw_crank;
+   }
+   else if (draw_right_piston.check_click(mouseX, mouseY) == CLICK_TRUE) {
+      engine3d.draw_right_piston = !engine3d.draw_right_piston;
+   }
+   else if (draw_left_piston.check_click(mouseX, mouseY) == CLICK_TRUE) {
+      engine3d.draw_left_piston = !engine3d.draw_left_piston;
    }
 
 }

@@ -164,6 +164,9 @@ Engine3D::Engine3D(double z) {
     this->crank = Crank3D(Vector3(0, 0, z), 0.25, 0.5, 0, ENGINE_ON, 120);
     this->left_piston = Piston3D(Vector3(0, 0, z + 4), 0.5, 0.5, 0.5, 2, -PI/4.0);
     this->right_piston = Piston3D(Vector3(0, 0, z - 4), 0.5, 0.5, 0.5, 2, PI/4.0);
+    this->draw_crank = RENDER_ON;
+    this->draw_left_piston = RENDER_ON;
+    this->draw_right_piston = RENDER_ON;
 }
 
 void Engine3D::draw(double d) {
@@ -253,9 +256,15 @@ void Engine3D::draw(double d) {
     this->right_piston.center_screw_position = rotateVector3(AXIS_Z, this->z_rotation, this->right_piston.center_screw_position);
     this->right_piston.center_screw_position = translate(this->right_piston.center_screw_position, Vector3(0, 0, this->right_piston.body.offset_z));
 
-    this->left_piston.draw(d);
-    this->crank.draw(d);
-    this->right_piston.draw(d);
+    if (this->draw_crank == RENDER_ON) {
+        this->crank.draw(d);
+    }
+    if (this->draw_left_piston == RENDER_ON) {
+        this->left_piston.draw(d);
+    }
+    if (this->draw_right_piston == RENDER_ON) {
+        this->right_piston.draw(d);
+    }
 
     // undo rotations
 
