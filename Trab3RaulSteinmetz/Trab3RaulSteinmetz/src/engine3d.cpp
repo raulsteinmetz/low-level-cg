@@ -68,7 +68,7 @@ Crank3D::Crank3D() {
 Crank3D::Crank3D(Vector3 center_screw_position, double height, double radius, double moving_screw_radians, bool state, double rpm) {
     this->center_screw = Screw3D(center_screw_position, 0.5);
     this->moving_screw = Screw3D(Vector3(0, 0, center_screw_position.z), 0.25);
-    this->body = Cilinder(radius, height, 20, center_screw_position.x, center_screw_position.y, center_screw_position.z);
+    this->body = Cilinder(radius, height, 100, center_screw_position.x, center_screw_position.y, center_screw_position.z);
     this->moving_screw_radians = moving_screw_radians;
     this->state = state;
     this->rpm = rpm;
@@ -161,7 +161,7 @@ void Piston3D::update_center_screw_position(Vector3 end_effector_pos) {
 Engine3D::Engine3D(){}
 
 Engine3D::Engine3D(double z) {
-    this->crank = Crank3D(Vector3(0, 0, z), 1, 0.5, 0, ENGINE_ON, 120);
+    this->crank = Crank3D(Vector3(0, 0, z), 0.25, 0.5, 0, ENGINE_ON, 120);
     this->left_piston = Piston3D(Vector3(0, 0, z + 4), 0.5, 0.5, 0.5, 2, -PI/4.0);
     this->right_piston = Piston3D(Vector3(0, 0, z - 4), 0.5, 0.5, 0.5, 2, PI/4.0);
 }

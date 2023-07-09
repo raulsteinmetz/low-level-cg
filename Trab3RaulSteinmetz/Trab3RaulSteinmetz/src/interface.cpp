@@ -32,3 +32,22 @@ void Button::highlight(){
     CV::rectFill(this->x0 - HIGHLIGHT_FACTOR, this->y0 - HIGHLIGHT_FACTOR, this->x0 + this->width + HIGHLIGHT_FACTOR, this->y0 + this->height + HIGHLIGHT_FACTOR);
     draw();
 }
+// render
+void Button::render(double mouse_x, double mouse_y) {
+    if (mouse_x >= this->x0 && mouse_x <= this->x0 + this->width && mouse_y >= this->y0 && mouse_y <= this->y0 + this->height) {
+        highlight();
+        draw();
+    }
+    else {
+        draw();
+    }
+}
+
+int Button::check_click(double mouse_x, double mouse_y) {
+    if (mouse_x >= this->x0 && mouse_x <= this->x0 + this->width && mouse_y >= this->y0 && mouse_y <= this->y0 + this->height) {
+        return CLICK_TRUE;
+    }
+    else {
+        return CLICK_FALSE;
+    }
+}

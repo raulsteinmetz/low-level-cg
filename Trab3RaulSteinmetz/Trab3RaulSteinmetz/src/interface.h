@@ -11,6 +11,10 @@
 #define HIGHLIGHT_NONE 0
 #define HIGHLIGHTED 1
 
+#define CLICK_TRUE 1
+#define CLICK_FALSE 0
+
+
 
 class Button {
 public:
@@ -28,6 +32,9 @@ public:
     Button(int x0, int y0, int width, int height, float r, float g, float b, int app, const std::string& name); // updated constructor
     void draw(); // desenhar botao
     void highlight(); // indicar botao selecionado
+    void render(double mouse_x, double mouse_y);
+    int check_click(double mouse_x, double mouse_y);
+
 };
 
 

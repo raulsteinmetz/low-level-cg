@@ -142,7 +142,6 @@ void Cuboid::draw(double d) {
     CV::line(perspective(points[1], d), perspective(points[5], d));
     CV::line(perspective(points[2], d), perspective(points[6], d));
     CV::line(perspective(points[3], d), perspective(points[7], d));
-
 }
 
 
