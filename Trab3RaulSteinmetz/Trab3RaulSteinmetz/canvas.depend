@@ -469,7 +469,7 @@
 1688908596 source:c:\users\rauls\onedrive\햞ea de trabalho\opengl\trab3raulsteinmetz\trab3raulsteinmetz\src\models3d.cpp
 	"models3d.h"
 
-1688907768 source:c:\users\rauls\onedrive\햞ea de trabalho\opengl\trab3raulsteinmetz\trab3raulsteinmetz\src\main.cpp
+1688910252 source:c:\users\rauls\onedrive\햞ea de trabalho\opengl\trab3raulsteinmetz\trab3raulsteinmetz\src\main.cpp
 	<GL/glut.h>
 	<GL/freeglut_ext.h>
 	<math.h>
@@ -479,6 +479,7 @@
 	"frames.h"
 	"engine2d.h"
 	"engine3d.h"
+	"interface.h"
 
 1684336945 c:\users\rauls\onedrive\햞ea de trabalho\opengl\trab3raulsteinmetz\trab3raulsteinmetz\src\frames.h
 	<stdio.h>

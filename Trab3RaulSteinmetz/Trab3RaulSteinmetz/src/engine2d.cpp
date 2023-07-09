@@ -108,7 +108,7 @@ void Crank::draw() {
 void Crank::update(double fps) {
     if (this->state == ENGINE_ON) {
         double move = this->rpm / 60.0; // rotations per second
-        this->moving_screw_radians += move * 2 * PI / fps;
+        this->moving_screw_radians += (this->rpm * 2 * PI) / 60 / fps;
         this->moving_screw_position = calculate_moving_screw_position();
     }
 }

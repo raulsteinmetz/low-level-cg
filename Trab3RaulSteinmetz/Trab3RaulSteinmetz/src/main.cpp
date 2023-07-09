@@ -23,7 +23,7 @@ int state = TRIDIMENTIONAL;
 int screenWidth = 800, screenHeight = 600;
 int mouseX, mouseY;
 
-float d = 250.0;
+float d = 400.0;
 
 TwoPistonEngine2D engine(Vector2(0, 0), 50, 0, true, 15);
 Engine3D engine3d;
@@ -39,10 +39,15 @@ Button angle_z_plus = Button(5, 325, 150, 35, 0.5, 0.5, 0.5, TRIDIMENTIONAL, "AN
 Button angle_z_minus = Button(5, 365, 150, 35, 0.5, 0.5, 0.5, TRIDIMENTIONAL, "ANGLE Z-");
 Button rpm_plus = Button(5, 405, 150, 35, 0.5, 0.5, 0.5, TRIDIMENTIONAL, "RPM +");
 Button rpm_minus = Button(5, 445, 150, 35, 0.5, 0.5, 0.5, TRIDIMENTIONAL, "RPM -");
+Button piston_angle_plus = Button(5, 485, 150, 35, 0.5, 0.5, 0.5, TRIDIMENTIONAL, "P ANGLE +");
+Button piston_angle_minus = Button(5, 525, 150, 35, 0.5, 0.5, 0.5, TRIDIMENTIONAL, "P ANGLE -");
 
 
 void _init() {
    engine3d = Engine3D(4);
+   engine3d.x_rotation = 0;
+   engine3d.y_rotation = 0;
+   engine3d.z_rotation = 0;
 }
 
 double angle = 0;
@@ -77,6 +82,8 @@ void render()
    angle_z_minus.render(mouseX, mouseY);
    rpm_plus.render(mouseX, mouseY);
    rpm_minus.render(mouseX, mouseY);
+   piston_angle_plus.render(mouseX, mouseY);
+   piston_angle_minus.render(mouseX, mouseY);
 }
 
 void handleClick(float mouseX, float mouseY) {
@@ -112,9 +119,19 @@ void handleClick(float mouseX, float mouseY) {
    }
    else if (rpm_plus.check_click(mouseX, mouseY) == CLICK_TRUE) {
       engine3d.crank.rpm += 10;
+      engine.rpm += 10;
    }
    else if (rpm_minus.check_click(mouseX, mouseY) == CLICK_TRUE) {
       engine3d.crank.rpm -= 10;
+      engine.rpm -= 10;
+   }
+   else if (piston_angle_plus.check_click(mouseX, mouseY) == CLICK_TRUE) {
+      engine3d.left_piston.rad -= 0.1;
+      engine3d.right_piston.rad += 0.1;
+   }
+   else if (piston_angle_minus.check_click(mouseX, mouseY) == CLICK_TRUE) {
+      engine3d.left_piston.rad += 0.1;
+      engine3d.right_piston.rad -= 0.1;
    }
 
 }
