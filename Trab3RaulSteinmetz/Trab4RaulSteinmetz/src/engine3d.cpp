@@ -1,11 +1,11 @@
 #include "engine3d.h"
 
+
+// rotates vector3 on z axis
 Vector3 rotateVector3_z(Vector3 vector, double radians) {
-    // Compute sine and cosine of the rotation angle
     double cosTheta = cos(radians);
     double sinTheta = sin(radians);
 
-    // Apply rotation transformation
     Vector3 rotatedVector;
     rotatedVector.x = vector.x * cosTheta - vector.y * sinTheta;
     rotatedVector.y = vector.x * sinTheta + vector.y * cosTheta;
@@ -14,6 +14,7 @@ Vector3 rotateVector3_z(Vector3 vector, double radians) {
     return rotatedVector;
 }
 
+// screw
 
 Screw3D::Screw3D() {
     this->position = Vector3(0, 0, 0);
@@ -29,6 +30,7 @@ void Screw3D::draw(double d) {
     this->body.draw(d);
 }
 
+// updates screw position
 void Screw3D::update(Vector3 position) {
     this->position = position;
 
@@ -50,11 +52,13 @@ void Screw3D::update(Vector3 position) {
 
 }
 
+// updates screw position
 void Screw3D::update_pos(double x, double y, double z) {
     this->update(Vector3(x, y, z));
 }
 
 
+// crank
 
 Crank3D::Crank3D() {
     this->center_screw = Screw3D(Vector3(0, 0, 0), 0.5);
@@ -75,20 +79,23 @@ Crank3D::Crank3D(Vector3 center_screw_position, double height, double radius, do
 
 }
 
+// draws crank
 void Crank3D::draw(double d) {
     this->body.draw(d);
     this->moving_screw.draw(d);
 }
 
+// stops crank rotation
 void Crank3D::stop() {
     this->state = ENGINE_OFF;
 }
 
+// starts crank rotation
 void Crank3D::start() {
     this->state = ENGINE_ON;
 }
 
-
+// calculates moving screw position
 Vector3 Crank3D::calculate_moving_screw_position() {
     double x = this->center_screw.position.x + this->body.radius * cos(this->moving_screw_radians);
     double y = this->center_screw.position.y + this->body.radius * sin(this->moving_screw_radians);
@@ -96,13 +103,15 @@ Vector3 Crank3D::calculate_moving_screw_position() {
     return Vector3(x, y, z);
 }
 
-
+// updates moving screw angle
 void Crank3D::update(double fps) {
     if (this->state == ENGINE_ON) {
         this->moving_screw_radians += (this->rpm * 2 * PI) / 60 / fps;
         this->moving_screw.update(this->calculate_moving_screw_position());
     }
 }
+
+// piston 
 
 Piston3D::Piston3D(){
     this->depth = 1.0;
@@ -122,6 +131,7 @@ Piston3D::Piston3D(Vector3 center_screw_position, double width, double height, d
     this->connecting_rod_lenght = rod_length;
 }
 
+// draws piston
 void Piston3D::draw(double d) {
     this->body.draw(d);
     Cilinder rod = Cilinder(0.1, 40, this->end_effector_position, this->center_screw_position);
@@ -129,10 +139,12 @@ void Piston3D::draw(double d) {
 
 }
 
+// updates piston position
 void Piston3D::update(Vector3 end_effector_pos, double fps) {
     this->update_center_screw_position(end_effector_pos);
 }
 
+// calculate distance between two tridimensional points
 double distance_between_points(Vector3 p1, Vector3 p2) {
     double distance_between_points(Vector3 p1, Vector3 p2);
     double dx = p2.x - p1.x;
@@ -142,6 +154,7 @@ double distance_between_points(Vector3 p1, Vector3 p2) {
 
 }
 
+// updates piston center screw position
 void Piston3D::update_center_screw_position(Vector3 end_effector_pos) {
     double x = this->center_screw_position.x;
     double ca = distance_between_points(end_effector_pos, Vector3(this->center_screw_position.x, end_effector_pos.y, end_effector_pos.z));
@@ -158,6 +171,8 @@ void Piston3D::update_center_screw_position(Vector3 end_effector_pos) {
     this->body.update_pos(x, y, z);
 }
 
+// engine
+
 Engine3D::Engine3D(){}
 
 Engine3D::Engine3D(double z) {
@@ -169,6 +184,7 @@ Engine3D::Engine3D(double z) {
     this->draw_right_piston = RENDER_ON;
 }
 
+// draws separate parts of engine
 void Engine3D::draw(double d) {
 
     // math tricks
@@ -351,12 +367,14 @@ void Engine3D::draw(double d) {
 
 }
 
+// updates parts of the engine
 void Engine3D::update(double fps) {
     this->crank.update(fps);
     this->left_piston.update(this->crank.calculate_moving_screw_position(), fps);
     this->right_piston.update(rotateVector3_z(this->crank.calculate_moving_screw_position(), this->left_piston.rad * 2), fps);
 }
 
+// engine's render function
 void Engine3D::render(double fps, double d){
     this->draw(d);
     this->update(fps);

@@ -11,6 +11,10 @@
 #define RENDER_OFF false
 
 
+// this code contains codes for the 3d engine class
+
+
+// screw class (used for crank and piston)
 class Screw3D {
     public:
         Vector3 position;
@@ -23,6 +27,7 @@ class Screw3D {
 
 };
 
+// crank class
 class Crank3D {
     public:
         Screw3D center_screw;
@@ -42,6 +47,7 @@ class Crank3D {
 
 };
 
+// piston class
 class Piston3D {
     public:
         Vector3 center_screw_position;
@@ -60,6 +66,7 @@ class Piston3D {
         void update_center_screw_position(Vector3 end_effector_pos);
 };
 
+// entire engine in 3d
 class Engine3D {
     public:
         double x_rotation;

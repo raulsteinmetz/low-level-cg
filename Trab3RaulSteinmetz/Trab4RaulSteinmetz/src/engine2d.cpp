@@ -1,11 +1,11 @@
 #include "engine2d.h"
 
+
+// rotates 2d vector
 Vector2 rotateVector(Vector2 vector, double radians) {
-    // Compute sine and cosine of the rotation angle
     double cosTheta = cos(radians);
     double sinTheta = sin(radians);
 
-    // Apply rotation transformation
     Vector2 rotatedVector;
     rotatedVector.x = vector.x * cosTheta - vector.y * sinTheta;
     rotatedVector.y = vector.x * sinTheta + vector.y * cosTheta;
@@ -13,6 +13,7 @@ Vector2 rotateVector(Vector2 vector, double radians) {
     return rotatedVector;
 }
 
+// calculates distance between two points
 double calculate_ditance(Vector2 a, Vector2 b) {
     return sqrt(pow(a.x - b.x, 2) + pow(a.y - b.y, 2));
 }
@@ -31,6 +32,7 @@ Piston::Piston(Vector2 center_screw_position, Vector2 side_lenght, double connec
     this->rad = rad;
 }
 
+// calculates center screw position position based on crank center screw position
 void Piston::update_center_screw_position(Vector2 crank_center_screw_position) {
     // aqui pae
     double x = crank_center_screw_position.x;
@@ -39,11 +41,11 @@ void Piston::update_center_screw_position(Vector2 crank_center_screw_position) {
     double co = sqrt(pow(hip, 2) - pow(ca, 2));
     double y = connecting_rod_end_effector_position.y - co;
    
-
-
     this->center_screw_position = Vector2(x, y);
 }
 
+
+// draws piston
 void Piston::draw() {
     CV::color(0, 0, 0);
     // piston
@@ -91,13 +93,15 @@ Crank::Crank(Vector2 center_screw_position, double radius, double moving_screw_r
     this->moving_screw_position = calculate_moving_screw_position();
 }
 
+
+// calculates moving screw position based on rotation angle
 Vector2 Crank::calculate_moving_screw_position() {
     double x = this->center_screw_position.x + this->radius * cos(this->moving_screw_radians);
     double y = this->center_screw_position.y + this->radius * sin(this->moving_screw_radians);
     return Vector2(x, y);
 }
 
-
+// draws crank
 void Crank::draw() {
     CV::color(0, 0, 0);
     CV::circle(center_screw_position.x, center_screw_position.y, radius, 100);
@@ -105,6 +109,7 @@ void Crank::draw() {
     CV::circle(moving_screw_position.x, moving_screw_position.y, 10, 100);
 }
 
+// updates crank
 void Crank::update(double fps) {
     if (this->state == ENGINE_ON) {
         double move = this->rpm / 60.0; // rotations per second
@@ -129,6 +134,7 @@ TwoPistonEngine2D::TwoPistonEngine2D(Vector2 center_screw_position, double radiu
     crank.rpm = rpm;
 }
 
+// draws all engine parts
 void TwoPistonEngine2D::draw() {
 
     this->left_piston.center_screw_position = rotateVector(this->left_piston.center_screw_position, this->left_piston.rad);
@@ -144,6 +150,7 @@ void TwoPistonEngine2D::draw() {
     this->right_piston.draw();
 }
 
+// updates all engine parts
 void TwoPistonEngine2D::update(double fps) {
     this->crank.update(fps);
     this->left_piston.update(this->crank.center_screw_position, this->crank.moving_screw_position);

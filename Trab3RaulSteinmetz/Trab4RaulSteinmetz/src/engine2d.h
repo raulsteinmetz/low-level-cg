@@ -10,6 +10,9 @@
 #define ENGINE_OFF false
 
 
+// this file contains the codes for the 2d engine class
+
+// piston class
 class Piston {
     public:
         Vector2 center_screw_position;
@@ -26,7 +29,7 @@ class Piston {
         void update_center_screw_position(Vector2 crank_center_screw_position);
 };
 
-
+// crank class
 class Crank {
     public:
         Vector2 center_screw_position;
@@ -45,6 +48,7 @@ class Crank {
         Vector2 calculate_moving_screw_position();
 };
 
+// entire engine
 class TwoPistonEngine2D {
     public:
         double rpm;
