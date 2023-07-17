@@ -26,8 +26,8 @@ Screw3D::Screw3D(Vector3 position, double size) {
     this->body = Cuboid(size, position.x, position.y, position.z);
 }
 
-void Screw3D::draw(double d) {
-    this->body.draw(d);
+void Screw3D::draw(double d, int view_mode) {
+    this->body.draw(d, view_mode);
 }
 
 // updates screw position
@@ -80,9 +80,9 @@ Crank3D::Crank3D(Vector3 center_screw_position, double height, double radius, do
 }
 
 // draws crank
-void Crank3D::draw(double d) {
-    this->body.draw(d);
-    this->moving_screw.draw(d);
+void Crank3D::draw(double d, int view_mode) {
+    this->body.draw(d, view_mode);
+    this->moving_screw.draw(d, view_mode);
 }
 
 // stops crank rotation
@@ -132,10 +132,10 @@ Piston3D::Piston3D(Vector3 center_screw_position, double width, double height, d
 }
 
 // draws piston
-void Piston3D::draw(double d) {
-    this->body.draw(d);
+void Piston3D::draw(double d, int view_mode) {
+    this->body.draw(d, view_mode);
     Cilinder rod = Cilinder(0.1, 40, this->end_effector_position, this->center_screw_position);
-    rod.draw(d);
+    rod.draw(d, view_mode);
 
 }
 
@@ -177,15 +177,15 @@ Engine3D::Engine3D(){}
 
 Engine3D::Engine3D(double z) {
     this->crank = Crank3D(Vector3(0, 0, z), 0.25, 0.5, 0, ENGINE_ON, 120);
-    this->left_piston = Piston3D(Vector3(0, 0, z + 4), 0.5, 0.5, 0.5, 2, -PI/4.0);
-    this->right_piston = Piston3D(Vector3(0, 0, z - 4), 0.5, 0.5, 0.5, 2, PI/4.0);
+    this->left_piston = Piston3D(Vector3(0, 0, z), 0.5, 0.5, 0.5, 2, -PI/4.0);
+    this->right_piston = Piston3D(Vector3(0, 0, z), 0.5, 0.5, 0.5, 2, PI/4.0);
     this->draw_crank = RENDER_ON;
     this->draw_left_piston = RENDER_ON;
     this->draw_right_piston = RENDER_ON;
 }
 
 // draws separate parts of engine
-void Engine3D::draw(double d) {
+void Engine3D::draw(double d, int view_mode) {
 
     // math tricks
     Vector3 old_left = Vector3(this->left_piston.body.offset_x, this->left_piston.body.offset_y, this->left_piston.body.offset_z);
@@ -273,13 +273,13 @@ void Engine3D::draw(double d) {
     this->right_piston.center_screw_position = translate(this->right_piston.center_screw_position, Vector3(0, 0, this->right_piston.body.offset_z));
 
     if (this->draw_crank == RENDER_ON) {
-        this->crank.draw(d);
+        this->crank.draw(d, view_mode);
     }
     if (this->draw_left_piston == RENDER_ON) {
-        this->left_piston.draw(d);
+        this->left_piston.draw(d, view_mode);
     }
     if (this->draw_right_piston == RENDER_ON) {
-        this->right_piston.draw(d);
+        this->right_piston.draw(d, view_mode);
     }
 
     // undo rotations
@@ -375,8 +375,8 @@ void Engine3D::update(double fps) {
 }
 
 // engine's render function
-void Engine3D::render(double fps, double d){
-    this->draw(d);
+void Engine3D::render(double fps, double d, int view_mode){
+    this->draw(d, view_mode);
     this->update(fps);
 }
 

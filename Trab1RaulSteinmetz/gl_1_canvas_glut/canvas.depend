@@ -226,3 +226,114 @@
 	"slider_manager.h"
 	"slider.h"
 
+1681934079 source:c:\users\rauls\onedrive\햞ea de trabalho\opengl\trab1raulsteinmetz\gl_1_canvas_glut\src\auxiliar_functions.cpp
+	"auxiliar_functions.h"
+	"math.h"
+
+1681935048 c:\users\rauls\onedrive\햞ea de trabalho\opengl\trab1raulsteinmetz\gl_1_canvas_glut\src\auxiliar_functions.h
+
+1681933978 source:c:\users\rauls\onedrive\햞ea de trabalho\opengl\trab1raulsteinmetz\gl_1_canvas_glut\src\button.cpp
+	"button.h"
+	"gl_canvas2d.h"
+	<GL/glut.h>
+	<GL/freeglut_ext.h>
+
+1681935002 c:\users\rauls\onedrive\햞ea de trabalho\opengl\trab1raulsteinmetz\gl_1_canvas_glut\src\button.h
+	"string"
+
+1681850672 c:\users\rauls\onedrive\햞ea de trabalho\opengl\trab1raulsteinmetz\gl_1_canvas_glut\src\gl_canvas2d.h
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	<string.h>
+	<GL/glut.h>
+	<GL/freeglut_ext.h>
+	"Vector2.h"
+
+1681850672 c:\users\rauls\onedrive\햞ea de trabalho\opengl\trab1raulsteinmetz\gl_1_canvas_glut\include\gl\glut.h
+	"freeglut_std.h"
+
+1681850672 c:\users\rauls\onedrive\햞ea de trabalho\opengl\trab1raulsteinmetz\gl_1_canvas_glut\include\gl\freeglut_std.h
+	<windows.h>
+	<EGL/egl.h>
+	<GLES/gl.h>
+	<GLES2/gl2.h>
+	<OpenGL/gl.h>
+	<OpenGL/glu.h>
+	<GL/gl.h>
+	<GL/glu.h>
+	<stdlib.h>
+
+1681850672 c:\users\rauls\onedrive\햞ea de trabalho\opengl\trab1raulsteinmetz\gl_1_canvas_glut\include\gl\freeglut_ext.h
+	<stdarg.h>
+
+1681850672 c:\users\rauls\onedrive\햞ea de trabalho\opengl\trab1raulsteinmetz\gl_1_canvas_glut\src\vector2.h
+
+1682000743 source:c:\users\rauls\onedrive\햞ea de trabalho\opengl\trab1raulsteinmetz\gl_1_canvas_glut\src\button_manager.cpp
+	"button_manager.h"
+	"interface.h"
+
+1682000243 c:\users\rauls\onedrive\햞ea de trabalho\opengl\trab1raulsteinmetz\gl_1_canvas_glut\src\button_manager.h
+	<vector>
+	"button.h"
+
+1681850672 c:\users\rauls\onedrive\햞ea de trabalho\opengl\trab1raulsteinmetz\gl_1_canvas_glut\src\interface.h
+
+1681933754 source:c:\users\rauls\onedrive\햞ea de trabalho\opengl\trab1raulsteinmetz\gl_1_canvas_glut\src\figure.cpp
+	"figure.h"
+	"gl_canvas2d.h"
+	<GL/glut.h>
+	<GL/freeglut_ext.h>
+	<string>
+	<fstream>
+	<iostream>
+
+1681934546 c:\users\rauls\onedrive\햞ea de trabalho\opengl\trab1raulsteinmetz\gl_1_canvas_glut\src\figure.h
+	<string>
+	<iostream>
+	<fstream>
+	<string>
+	<cstring>
+
+1681850672 source:c:\users\rauls\onedrive\햞ea de trabalho\opengl\trab1raulsteinmetz\gl_1_canvas_glut\src\gl_canvas2d.cpp
+	"gl_canvas2d.h"
+	<GL/glut.h>
+
+1681992238 source:c:\users\rauls\onedrive\햞ea de trabalho\opengl\trab1raulsteinmetz\gl_1_canvas_glut\src\main.cpp
+	<GL/glut.h>
+	<GL/freeglut_ext.h>
+	<stdio.h>
+	<stdlib.h>
+	"gl_canvas2d.h"
+	"button.h"
+	"button_manager.h"
+	"figure.h"
+	"app_manager.h"
+	"interface.h"
+	"auxiliar_functions.h"
+	<list>
+	<string>
+	"slider.h"
+	"slider_manager.h"
+	"Frames.h"
+
+1681935091 c:\users\rauls\onedrive\햞ea de trabalho\opengl\trab1raulsteinmetz\gl_1_canvas_glut\src\app_manager.h
+
+1681850672 c:\users\rauls\onedrive\햞ea de trabalho\opengl\trab1raulsteinmetz\gl_1_canvas_glut\src\slider.h
+
+1682001123 c:\users\rauls\onedrive\햞ea de trabalho\opengl\trab1raulsteinmetz\gl_1_canvas_glut\src\slider_manager.h
+	"Slider.h"
+	<vector>
+
+1681850672 c:\users\rauls\onedrive\햞ea de trabalho\opengl\trab1raulsteinmetz\gl_1_canvas_glut\src\frames.h
+	<stdio.h>
+	<time.h>
+
+1681933517 source:c:\users\rauls\onedrive\햞ea de trabalho\opengl\trab1raulsteinmetz\gl_1_canvas_glut\src\slider.cpp
+	"slider.h"
+	"gl_canvas2d.h"
+
+1682001083 source:c:\users\rauls\onedrive\햞ea de trabalho\opengl\trab1raulsteinmetz\gl_1_canvas_glut\src\slider_manager.cpp
+	"slider_manager.h"
+	"slider.h"
+

@@ -48,6 +48,8 @@ int mouseX, mouseY;
 // perspective
 float d = 600.0;
 
+int render_mode = DRAW_PERSPECTIVE;
+
 // 2d engine
 TwoPistonEngine2D engine(Vector2(0, 0), 50, 0, true, 15);
 // 3d engine
@@ -94,7 +96,7 @@ void render()
       engine.update(fps);
    }
    else {
-      engine3d.render(fps, d);
+      engine3d.render(fps, d, render_mode);
    }
 
 

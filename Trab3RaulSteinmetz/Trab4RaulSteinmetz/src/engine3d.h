@@ -21,7 +21,7 @@ class Screw3D {
         Cuboid body;
         Screw3D();
         Screw3D(Vector3 position, double size);
-        void draw(double d);
+        void draw(double d, int view_mode);
         void update(Vector3 position);
         void update_pos(double off_set_x, double off_set_y, double off_set_z);
 
@@ -39,7 +39,7 @@ class Crank3D {
 
         Crank3D();
         Crank3D(Vector3 center_screw_position, double height, double radius, double moving_screw_radians, bool state, double rpm);
-        void draw(double d);
+        void draw(double d, int view_mode);
         void update(double fps);
         void stop();
         void start();
@@ -61,7 +61,7 @@ class Piston3D {
 
         Piston3D();
         Piston3D(Vector3 center_screw_position, double width, double height, double depth, double rod_length, double rad);
-        void draw(double d);
+        void draw(double d, int view_mode);
         void update(Vector3 end_effector_pos, double fps);
         void update_center_screw_position(Vector3 end_effector_pos);
 };
@@ -82,9 +82,9 @@ class Engine3D {
         Piston3D right_piston;
         Engine3D(double z);
         Engine3D();
-        void draw(double d);
+        void draw(double d, int view_mode);
         void update(double fps);
-        void render(double fps, double d);
+        void render(double fps, double d, int view_mode);
         
 };
 

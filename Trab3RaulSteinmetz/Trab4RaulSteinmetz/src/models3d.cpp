@@ -1,11 +1,16 @@
 #include "models3d.h"
 
+#define SCALE_ORTHO 200.0000
 
 // UTIL
 Vector2 perspective(Vector3 v, double d) {
     float x = v.x * d / (v.z);
     float y = v.y * d / (v.z);
     return Vector2(x, y);
+}
+
+Vector2 ortho(Vector3 v) {
+    return Vector2(v.x, v.y);
 }
 
 // VECTOR 3
@@ -127,21 +132,59 @@ Cuboid::Cuboid(double width, double hight, double depth, double offset_x, double
     }
 }
 
-void Cuboid::draw(double d) {
+void Cuboid::scale(double scale_x, double scale_y, double scale_z) {
+    for (int i = 0; i < 8; i++) {
+        this->points[i].x -= this->offset_x;
+        this->points[i].y -= this->offset_y;
+        this->points[i].z -= this->offset_z;
+    }
+
+    for (int i = 0; i < 8; i++) {
+        this->points[i].x *= scale_x;
+        this->points[i].y *= scale_y;
+        this->points[i].z *= scale_z;
+    }
+
+    for (int i = 0; i < 8; i++) {
+        this->points[i].x += this->offset_x;
+        this->points[i].y += this->offset_y;
+        this->points[i].z += this->offset_z;
+    }
+}
+
+void Cuboid::draw(double d, int view_mode) {
     // drawing lines
-    CV::color(0, 0, 0);
-    CV::line(perspective(points[0], d), perspective(points[1], d));
-    CV::line(perspective(points[1], d), perspective(points[2], d));
-    CV::line(perspective(points[2], d), perspective(points[3], d));
-    CV::line(perspective(points[3], d), perspective(points[0], d));
-    CV::line(perspective(points[4], d), perspective(points[5], d));
-    CV::line(perspective(points[5], d), perspective(points[6], d));
-    CV::line(perspective(points[6], d), perspective(points[7], d));
-    CV::line(perspective(points[7], d), perspective(points[4], d));
-    CV::line(perspective(points[0], d), perspective(points[4], d));
-    CV::line(perspective(points[1], d), perspective(points[5], d));
-    CV::line(perspective(points[2], d), perspective(points[6], d));
-    CV::line(perspective(points[3], d), perspective(points[7], d));
+    if (view_mode == DRAW_PERSPECTIVE) {
+        CV::color(0, 0, 0);
+        CV::line(perspective(points[0], d), perspective(points[1], d));
+        CV::line(perspective(points[1], d), perspective(points[2], d));
+        CV::line(perspective(points[2], d), perspective(points[3], d));
+        CV::line(perspective(points[3], d), perspective(points[0], d));
+        CV::line(perspective(points[4], d), perspective(points[5], d));
+        CV::line(perspective(points[5], d), perspective(points[6], d));
+        CV::line(perspective(points[6], d), perspective(points[7], d));
+        CV::line(perspective(points[7], d), perspective(points[4], d));
+        CV::line(perspective(points[0], d), perspective(points[4], d));
+        CV::line(perspective(points[1], d), perspective(points[5], d));
+        CV::line(perspective(points[2], d), perspective(points[6], d));
+        CV::line(perspective(points[3], d), perspective(points[7], d));
+    } else if (view_mode == DRAW_ORTHO) {
+        this->scale(SCALE_ORTHO, SCALE_ORTHO, SCALE_ORTHO);
+        CV::color(0, 0, 0);
+        CV::line(ortho(points[0]), ortho(points[1]));
+        CV::line(ortho(points[1]), ortho(points[2]));
+        CV::line(ortho(points[2]), ortho(points[3]));
+        CV::line(ortho(points[3]), ortho(points[0]));
+        CV::line(ortho(points[4]), ortho(points[5]));
+        CV::line(ortho(points[5]), ortho(points[6]));
+        CV::line(ortho(points[6]), ortho(points[7]));
+        CV::line(ortho(points[7]), ortho(points[4]));
+        CV::line(ortho(points[0]), ortho(points[4]));
+        CV::line(ortho(points[1]), ortho(points[5]));
+        CV::line(ortho(points[2]), ortho(points[6]));
+        CV::line(ortho(points[3]), ortho(points[7]));
+        this->scale(1/SCALE_ORTHO, 1/SCALE_ORTHO, 1/SCALE_ORTHO);
+    }
 }
 
 
@@ -162,6 +205,7 @@ void Cuboid::update_pos(double offset_x, double offset_y, double offset_z) {
         this->points[i].z += this->offset_z;
     }
 }
+
 
 
 // CILINDER
@@ -247,16 +291,48 @@ Cilinder::Cilinder(double radius, double n_points, Vector3 bottom_center, Vector
     compute_cilinder_points();
 }
 
+void Cilinder::scale(double scale_x, double scale_y, double scale_z) {
+    for (int i = 0; i < n_points; i++) {
+        bottom[i].x -= bottom_center.x;
+        bottom[i].y -= bottom_center.y;
+        bottom[i].z -= bottom_center.z;
+        bottom[i].x *= scale_x;
+        bottom[i].y *= scale_y;
+        bottom[i].z *= scale_z;
+        bottom[i].x += bottom_center.x;
+        bottom[i].y += bottom_center.y;
+        bottom[i].z += bottom_center.z;
+
+        top[i].x -= top_center.x;
+        top[i].y -= top_center.y;
+        top[i].z -= top_center.z;
+        top[i].x *= scale_x;
+        top[i].y *= scale_y;
+        top[i].z *= scale_z;
+        top[i].x += top_center.x;
+        top[i].y += top_center.y;
+        top[i].z += top_center.z;
+    }
+}
 
 
 
-void Cilinder::draw(double d) {
+void Cilinder::draw(double d, int view_mode) {
     // drawing lines
     CV::color(0, 0, 0);
     for (int i = 0; i < n_points; i++) {
-        CV::line(perspective(bottom[i], d), perspective(bottom[(i + 1) % n_points], d));
-        CV::line(perspective(top[i], d), perspective(top[(i + 1) % n_points], d));
-        CV::line(perspective(bottom[i], d), perspective(top[i], d));
+        if (view_mode == DRAW_PERSPECTIVE) {
+            CV::line(perspective(bottom[i], d), perspective(bottom[(i + 1) % n_points], d));
+            CV::line(perspective(top[i], d), perspective(top[(i + 1) % n_points], d));
+            CV::line(perspective(bottom[i], d), perspective(top[i], d));
+        }
+        else {
+            this->scale(SCALE_ORTHO, SCALE_ORTHO, SCALE_ORTHO);
+            CV::line(ortho(bottom[i]), ortho(bottom[(i + 1) % n_points]));
+            CV::line(ortho(top[i]), ortho(top[(i + 1) % n_points]));
+            CV::line(ortho(bottom[i]), ortho(top[i]));
+            this->scale(1.0 / SCALE_ORTHO, 1.0 / SCALE_ORTHO, 1.0 / SCALE_ORTHO);
+        }
     }
 }
 

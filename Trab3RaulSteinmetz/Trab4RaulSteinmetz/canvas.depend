@@ -494,3 +494,86 @@
 1688909485 c:\users\rauls\onedrive\햞ea de trabalho\opengl\trab3raulsteinmetz\trab3raulsteinmetz\src\interface.h
 	"string"
 
+1687623462 source:c:\users\rauls\onedrive\햞ea de trabalho\opengl\trab3raulsteinmetz\trab4raulsteinmetz\src\gl_canvas2d.cpp
+	"gl_canvas2d.h"
+	<GL/glut.h>
+
+1684175269 c:\users\rauls\onedrive\햞ea de trabalho\opengl\trab3raulsteinmetz\trab4raulsteinmetz\src\gl_canvas2d.h
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	<string.h>
+	<GL/glut.h>
+	<GL/freeglut_ext.h>
+	"Vector2.h"
+
+1426372440 c:\users\rauls\onedrive\햞ea de trabalho\opengl\trab3raulsteinmetz\trab4raulsteinmetz\include\gl\glut.h
+	"freeglut_std.h"
+
+1437579942 c:\users\rauls\onedrive\햞ea de trabalho\opengl\trab3raulsteinmetz\trab4raulsteinmetz\include\gl\freeglut_std.h
+	<windows.h>
+	<EGL/egl.h>
+	<GLES/gl.h>
+	<GLES2/gl2.h>
+	<OpenGL/gl.h>
+	<OpenGL/glu.h>
+	<GL/gl.h>
+	<GL/glu.h>
+	<stdlib.h>
+
+1426372440 c:\users\rauls\onedrive\햞ea de trabalho\opengl\trab3raulsteinmetz\trab4raulsteinmetz\include\gl\freeglut_ext.h
+	<stdarg.h>
+
+1684338367 c:\users\rauls\onedrive\햞ea de trabalho\opengl\trab3raulsteinmetz\trab4raulsteinmetz\src\vector2.h
+	<math.h>
+
+1688909497 source:c:\users\rauls\onedrive\햞ea de trabalho\opengl\trab3raulsteinmetz\trab4raulsteinmetz\src\interface.cpp
+	"interface.h"
+	"gl_canvas2d.h"
+	<GL/glut.h>
+	<GL/freeglut_ext.h>
+
+1689004906 c:\users\rauls\onedrive\햞ea de trabalho\opengl\trab3raulsteinmetz\trab4raulsteinmetz\src\interface.h
+	"string"
+
+1689194055 source:c:\users\rauls\onedrive\햞ea de trabalho\opengl\trab3raulsteinmetz\trab4raulsteinmetz\src\models3d.cpp
+	"models3d.h"
+
+1689193946 c:\users\rauls\onedrive\햞ea de trabalho\opengl\trab3raulsteinmetz\trab4raulsteinmetz\src\models3d.h
+	"Vector2.h"
+	"gl_canvas2d.h"
+	"models3d.h"
+
+1689004703 source:c:\users\rauls\onedrive\햞ea de trabalho\opengl\trab3raulsteinmetz\trab4raulsteinmetz\src\engine2d.cpp
+	"engine2d.h"
+
+1689004727 c:\users\rauls\onedrive\햞ea de trabalho\opengl\trab3raulsteinmetz\trab4raulsteinmetz\src\engine2d.h
+	"gl_canvas2d.h"
+	"Vector2.h"
+	"math.h"
+	"stdio.h"
+
+1689192793 source:c:\users\rauls\onedrive\햞ea de trabalho\opengl\trab3raulsteinmetz\trab4raulsteinmetz\src\engine3d.cpp
+	"engine3d.h"
+
+1689194010 c:\users\rauls\onedrive\햞ea de trabalho\opengl\trab3raulsteinmetz\trab4raulsteinmetz\src\engine3d.h
+	"gl_canvas2d.h"
+	"Vector2.h"
+	"models3d.h"
+
+1689192964 source:c:\users\rauls\onedrive\햞ea de trabalho\opengl\trab3raulsteinmetz\trab4raulsteinmetz\src\main.cpp
+	<GL/glut.h>
+	<GL/freeglut_ext.h>
+	<math.h>
+	<stdio.h>
+	<stdlib.h>
+	"gl_canvas2d.h"
+	"frames.h"
+	"engine2d.h"
+	"engine3d.h"
+	"interface.h"
+
+1684336945 c:\users\rauls\onedrive\햞ea de trabalho\opengl\trab3raulsteinmetz\trab4raulsteinmetz\src\frames.h
+	<stdio.h>
+	<time.h>
+

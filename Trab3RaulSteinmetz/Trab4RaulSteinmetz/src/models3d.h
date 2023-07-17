@@ -11,6 +11,9 @@
 #define AXIS_Z 2
 
 
+#define DRAW_PERSPECTIVE 0
+#define DRAW_ORTHO 1
+
 // util
 class Vector3 {
     public:
@@ -20,6 +23,7 @@ class Vector3 {
 };
 
 Vector2 perspective(Vector3 v);
+Vector2 ortho(Vector3 v);
 
 Vector3 rotateVector3(int axis, double rad, Vector3 v);
 
@@ -35,8 +39,9 @@ class Cuboid {
         Cuboid(double size);
         Cuboid(double size, double offset_x, double offset_y, double offset_z);
         Cuboid(double hight, double width, double depth, double offset_x, double offset_y, double offset_z);
-        void draw(double d);
+        void draw(double d, int view_mode);
         void update_pos(double offset_x, double offset_y, double offset_z);
+        void scale(double scale_x, double scale_y, double scale_z);
 };
 
 class Cilinder {
@@ -53,7 +58,9 @@ class Cilinder {
         Cilinder(double radius, double height, double n_points, double offset_x, double offset_y, double offset_z);
         Cilinder(double radius, double n_points, Vector3 bottom_center, Vector3 top_center);
         void compute_cilinder_points();
-        void draw(double d);
+        void draw(double d, int view_mode);
+        void update_pos(double offset_x, double offset_y, double offset_z);
+        void scale(double scale_x, double scale_y, double scale_z);
 };
 
 
