@@ -30,10 +30,14 @@ The game environment is designed with infinite boundaries using Bezier curves, r
 
 This program provides a comprehensive graphical and mathematical simulation of a V-twin motor, drawing inspiration from the iconic Harley Davidson design. The simulation offers a wide range of features, allowing users to dynamically adjust the angle between the pistons and manipulate the rotations per minute (RPM). Users have the flexibility to view the motor from various perspectives and select specific components for detailed visualization. Furthermore, the model can be explored in both two-dimensional (2D) and three-dimensional (3D) representations, offering a comprehensive understanding of its intricate workings.
 
-![image](https://github.com/Raaulsthub/LowLevelCG/assets/85199336/0a002653-583f-45aa-b0b5-363ef7d2738d)
+![image](https://github.com/Raaulsthub/LowLevelCG/assets/85199336/d8862f1c-a3a8-4a13-9311-3f54a8d52dea)
 
-![image](https://github.com/Raaulsthub/LowLevelCG/assets/85199336/5e2a2489-ad24-4470-a134-bbfb4e44a80a)
+![image](https://github.com/Raaulsthub/LowLevelCG/assets/85199336/cb3bdffd-a73a-47ce-ade5-3382a05d2930)
 
-![image](https://github.com/Raaulsthub/LowLevelCG/assets/85199336/e49634a5-d4bd-49fd-a7ea-0e5c080c4d70)
+![image](https://github.com/Raaulsthub/LowLevelCG/assets/85199336/ef0b4a1b-0d14-44f0-9120-582df3a8461a)
 
-![image](https://github.com/Raaulsthub/LowLevelCG/assets/85199336/e0cc04c0-d9fe-48ec-b564-bfe3b15475ec)
+![image](https://github.com/Raaulsthub/LowLevelCG/assets/85199336/adaaa3e1-62b0-4a32-b40b-c2731ee07397)
+
+![image](https://github.com/Raaulsthub/LowLevelCG/assets/85199336/88f7c130-557a-4932-8da0-cfd24b4b8f04)
+
+![image](https://github.com/Raaulsthub/LowLevelCG/assets/85199336/d7b5a624-d31b-43db-94ad-d88e29374a0f)
