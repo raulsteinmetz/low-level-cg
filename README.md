@@ -20,7 +20,10 @@ This program showcases a space-invaders-style game that incorporates a progressi
 The game environment is designed with infinite boundaries using Bezier curves, resulting in a seamless and continuous playing area. This game heavily relies on mathematical principles to create a captivating and immersive experience. The implementation of advanced mathematical concepts enhances various aspects of the game, including trajectory calculations, collision detection, and realistic physics simulations.
 
 
-![image](https://github.com/Raaulsthub/LowLevelCG/assets/85199336/fe27a658-f5bb-4f8f-bd54-bfb0442be68f)
+![image](https://github.com/Raaulsthub/LowLevelCG/assets/85199336/effc2fa2-e3e3-44c5-aaf6-a6e8443ba2e1)
+
+
+![image](https://github.com/Raaulsthub/LowLevelCG/assets/85199336/721eaf03-31a2-4825-bbaa-92ee754b46ed)
 
 
 ## Harley-Davidson V-Twin motor graphic simulation
