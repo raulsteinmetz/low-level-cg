@@ -8,7 +8,7 @@ A graphical application that enables users to create and manipulate figures with
 ![image](https://github.com/Raaulsthub/LowLevelCG/assets/85199336/59c358b5-6165-4aa1-a818-01d0a2b72426)
 
 
-## Space Invaders like aplication
+## Space Invaders like game
 
 This program showcases a space-invaders-style game that incorporates a progressive difficulty system. The game includes a user-controlled spaceship capable of aiming, while the enemies are controlled by artificial intelligence algorithms.
 
